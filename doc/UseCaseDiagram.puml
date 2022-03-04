@@ -1,0 +1,30 @@
+@startuml
+
+
+left to right direction
+actor "Formateur" as forma
+actor "Coordianteur" as coor
+actor "Admin" as admin
+rectangle AppGreta {
+  usecase "Renseigner une fiche de séance" as UC1
+  usecase "Se connecter" as UC2
+  usecase "Export format specifique" as UC3
+  usecase "Gerer session" as UC4
+  usecase "Ajouter Reac" as UC5
+  usecase "Gerer formateur" as UC6
+  usecase "Gerer formation" as UC10
+  usecase "Gerer utilisateur" as UC11
+  usecase "Gerer centre" as UC12
+}
+forma <|- coor
+forma -- UC1
+UC1 .> UC2 :include
+UC3 .> UC1 :extend
+coor -- UC4
+coor -- UC5
+coor -- UC6
+UC10 --- admin
+UC11 -- admin
+UC12 -- admin
+
+@enduml

@@ -28,19 +28,19 @@ public class Seance {
     private String objectifPeda;
 
     @ManyToOne
-    private Formateur formateur;
+    private Formateur formateurs;
     @ManyToOne
     private Session session;
     @ManyToMany(mappedBy = "seances")
     private List<Competence> competances;
 
-    public Seance(Date dateDuJour, int durer, String supportUse, String deroulement, String objectifPeda, Formateur formateur, Session session, List<Competence> competances) {
+    public Seance(Date dateDuJour, int durer, String supportUse, String deroulement, String objectifPeda, Formateur formateurs, Session session, List<Competence> competances) {
         this.dateDuJour = dateDuJour;
         this.durer = durer;
         this.supportUse = supportUse;
         this.deroulement = deroulement;
         this.objectifPeda = objectifPeda;
-        this.formateur = formateur;
+        this.formateurs = formateurs;
         this.session = session;
         this.competances = competances;
     }

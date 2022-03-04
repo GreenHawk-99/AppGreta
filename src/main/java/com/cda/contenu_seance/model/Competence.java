@@ -28,9 +28,9 @@ public class Competence {
     @ManyToMany
     private Set<Seance>seances;
 
-    public Competence(String nom, Activite activiter, Set<Seance> seances) {
+    public Competence(String nom, Activite activite, Set<Seance> seances) {
         this.nom = nom;
-        this.activite = activiter;
+        this.activite = activite;
         this.seances = seances;
     }
 }

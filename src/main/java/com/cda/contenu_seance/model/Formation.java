@@ -30,8 +30,9 @@ public class Formation {
     @ManyToOne
     private Centre centre;
 
-    public Formation(String typeFormation, Centre centre) {
+    public Formation(String typeFormation, List<Reac> reac, Centre centre) {
         this.typeFormation = typeFormation;
+        this.reac = reac;
         this.centre = centre;
     }
 }

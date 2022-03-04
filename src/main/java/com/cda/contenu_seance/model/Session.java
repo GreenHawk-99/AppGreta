@@ -33,14 +33,16 @@ public class Session {
     @OneToMany(mappedBy = "session")
     private List<Seance> seances;
     @ManyToMany
-    private List<Formateur> formateur;
+    private List<Formateur> formateurs;
 
 
-    public Session(Date dateDebut, Date dateFin, Formation formation, List<Seance> seances) {
+    public Session(Date dateDebut, Date dateFin, Centre centre, Formation formation, List<Seance> seances, List<Formateur> formateurs) {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
+        this.centre = centre;
         this.formation = formation;
         this.seances = seances;
+        this.formateurs = formateurs;
     }
 
     @Override

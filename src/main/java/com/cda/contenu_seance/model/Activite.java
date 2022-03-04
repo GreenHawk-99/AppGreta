@@ -28,8 +28,8 @@ public class Activite {
     @ManyToOne
     private Reac reac;
 
-    public Activite(String activiteTypes, List<Competence> competences, Reac reac) {
-        this.activitesTypes = activiteTypes;
+    public Activite(String activitesTypes, List<Competence> competences, Reac reac) {
+        this.activitesTypes = activitesTypes;
         this.competences = competences;
         this.reac = reac;
     }

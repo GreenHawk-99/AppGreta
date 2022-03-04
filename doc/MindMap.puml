@@ -1,0 +1,16 @@
+@startmindmap
+!theme minty
+
+caption Mind Map
+title Application GRETA de suivi
+* <&globe>Home
+** <&people>Login
+*** <&flag> Formateur
+**** Formulaire de suivi
+*** <&flag> Coordinateur
+**** Dashboard des formulaire de suivi
+**** Formulaire de reac
+**** Formualire de centre
+**** Formualire de session
+
+@endmindmap

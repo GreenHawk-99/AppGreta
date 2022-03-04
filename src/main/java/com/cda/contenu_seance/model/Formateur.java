@@ -19,8 +19,8 @@ import java.util.*;
 @DiscriminatorValue(value = "Formateur")
 public class Formateur extends Intervenant{
 
-    @OneToMany(mappedBy = "formateur")
+    @OneToMany(mappedBy = "formateurs")
     private List<Seance> seances;
-    @ManyToMany(mappedBy = "formateur")
+    @ManyToMany(mappedBy = "formateurs")
     private List<Session> session;
 }

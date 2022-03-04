@@ -31,4 +31,13 @@ public class Centre {
     private List<Session> sessions;
     @ManyToOne
     private Coordinateur coordinateur;
+
+    public Centre(String nomCentre, String adresseCentre, String codesPostal, String ville, List<Session> sessions, Coordinateur coordinateur) {
+        this.nomCentre = nomCentre;
+        this.adresseCentre = adresseCentre;
+        this.codesPostal = codesPostal;
+        this.ville = ville;
+        this.sessions = sessions;
+        this.coordinateur = coordinateur;
+    }
 }
