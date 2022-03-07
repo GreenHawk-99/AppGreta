@@ -13,8 +13,8 @@ public class IndexController {
     public String login() {
         return "page/login";
     }
-    @GetMapping(value = {"/form"})
-    public String form() {
-        return "page/form";
+    @GetMapping(value = "/dashboard")
+    public String dashboard() {
+        return "page/dashboard";
     }
 }

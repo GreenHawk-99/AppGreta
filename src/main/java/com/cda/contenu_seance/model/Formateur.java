@@ -23,4 +23,10 @@ public class Formateur extends Intervenant{
     private List<Seance> seances;
     @ManyToMany(mappedBy = "formateurs")
     private List<Session> session;
+
+    /*
+    public String toFormateur(){
+        return "Formateur{"+"id="+this.getId()+", nom='" + this.getNom() +", prenom='" + this.getPrenom() + '\'' + '\'' +"}";
+    }
+    */
 }
