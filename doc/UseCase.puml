@@ -1,7 +1,8 @@
 @startuml
-
+!theme hacker
 
 left to right direction
+skinparam actorStyle awesome
 actor "Formateur" as forma
 actor "Coordianteur" as coor
 actor "Admin" as admin

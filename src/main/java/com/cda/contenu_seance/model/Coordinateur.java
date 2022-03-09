@@ -14,6 +14,8 @@ import java.util.List;
 @DiscriminatorValue(value = "Coordinateur")
 public class Coordinateur extends Intervenant{
 
-    @OneToMany(mappedBy = "coordinateur")
+    @ManyToMany(mappedBy = "coordinateurs")
     private List<Centre> centres;
+    @OneToMany(mappedBy = "coordinateur")
+    private List<Session> sessions;
 }

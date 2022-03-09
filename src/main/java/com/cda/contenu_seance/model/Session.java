@@ -34,6 +34,8 @@ public class Session {
     private List<Seance> seances;
     @ManyToMany
     private List<Formateur> formateurs;
+    @ManyToOne
+    private Coordinateur coordinateur;
 
 
     public Session(Date dateDebut, Date dateFin, Centre centre, Formation formation, List<Seance> seances, List<Formateur> formateurs) {

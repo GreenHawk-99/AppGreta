@@ -13,9 +13,9 @@ public class SeanceDTO {
     private Long id;
     private Date dateDuJour;
     private int durer;
-    private String supportUse;
-    private String deroulement;
     private String objectifPeda;
+    private String support;
+    private String deroulement;
     private Formateur formateur;
     private Session session;
 }

@@ -81,6 +81,18 @@
             <artifactId>modelmapper</artifactId>
             <version>2.3.7</version>
         </dependency>
+        <!-- Je craque va te faire Fred j'utilise ton API je cable trop sur les putains de services -->
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>30.1-jre</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
     </dependencies>
 
     <build>

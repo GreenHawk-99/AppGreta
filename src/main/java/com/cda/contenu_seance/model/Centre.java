@@ -29,15 +29,15 @@ public class Centre {
 
     @OneToMany(mappedBy = "centre")
     private List<Session> sessions;
-    @ManyToOne
-    private Coordinateur coordinateur;
+    @ManyToMany
+    private List<Coordinateur> coordinateurs;
 
-    public Centre(String nomCentre, String adresseCentre, String codesPostal, String ville, List<Session> sessions, Coordinateur coordinateur) {
+    public Centre(String nomCentre, String adresseCentre, String codesPostal, String ville, List<Session> sessions, List<Coordinateur> coordinateurs) {
         this.nomCentre = nomCentre;
         this.adresseCentre = adresseCentre;
         this.codesPostal = codesPostal;
         this.ville = ville;
         this.sessions = sessions;
-        this.coordinateur = coordinateur;
+        this.coordinateurs = coordinateurs;
     }
 }

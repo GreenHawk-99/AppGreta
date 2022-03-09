@@ -12,6 +12,7 @@ import java.util.List;
 public class ActiviteDTO {
     private Long id;
     private String activitesTypes;
+    private int numOrdre;
     private List<Competence> competences;
     private Reac reac;
 }
