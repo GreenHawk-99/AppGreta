@@ -2,7 +2,7 @@ package com.cda.contenu_seance.controller;
 
 import com.cda.contenu_seance.dto.SeanceDTO;
 import com.cda.contenu_seance.model.*;
-import com.cda.contenu_seance.service.FicheService;
+import com.cda.contenu_seance.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +14,15 @@ import java.util.List;
 public class FormController {
 
     private FicheService ficheService;
+    private ReferencielService referencielService;
+    private IntervenantService intervenantService;
 
     @GetMapping(value = {"/fiche"})
     public String addForm(Model model) {
         model.addAttribute("fiche", new SeanceDTO());
-        model.addAttribute("formateur", ficheService.getFormateurs());
-        model.addAttribute("activite",ficheService.getActivites());
-        model.addAttribute("competence", ficheService.getCompetences());
+        model.addAttribute("formateur", intervenantService.getFormateurs());
+        model.addAttribute("activite", referencielService.getActivites());
+        model.addAttribute("competence", referencielService.getCompetences());
         model.addAttribute("formation", ficheService.getFormations());
         return "page/formulaire/formFicheSuivi";
     }
@@ -34,9 +36,9 @@ public class FormController {
     public String editFiche(Model model, @PathVariable(name = "id") Long id){
         Seance seance = ficheService.getFiche(id);
         SeanceDTO seanceDTO = convertSeanceEntityToSeanceDTO(seance);
-        List<Formateur> formateurs = ficheService.getFormateurs();
-        List<Activite> activites = ficheService.getActivites();
-        List<Competence> competences = ficheService.getCompetences();
+        List<Formateur> formateurs = intervenantService.getFormateurs();
+        List<Activite> activites = referencielService.getActivites();
+        List<Competence> competences = referencielService.getCompetences();
         List<Formation> formations = ficheService.getFormations();
 
         model.addAttribute("fiche", seanceDTO);

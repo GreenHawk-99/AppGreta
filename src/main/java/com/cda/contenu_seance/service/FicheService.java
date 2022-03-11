@@ -31,31 +31,12 @@ public class FicheService {
         this.formationRepository = formationRepository;
     }
 
-    // TODO
-    //  getFiches
-    //  getActivites
-    //  getCompetences
-    //  getFormations
-
-
-    public List<Formateur> getFormateurs(){
-        return Lists.newArrayList(formateurRepository.findAll());
-    }
-
     public List<Seance> getFiches(){
         return Lists.newArrayList(seanceRepository.findAll());
     }
 
     public Seance getFiche(Long id){
         return seanceRepository.findById(id).orElse(new Seance());
-    }
-
-    public List<Activite> getActivites(){
-        return Lists.newArrayList(activiteRepository.findAll());
-    }
-
-    public List<Competence> getCompetences(){
-        return Lists.newArrayList(competenceRepository.findAll());
     }
 
     public List<Formation> getFormations(){

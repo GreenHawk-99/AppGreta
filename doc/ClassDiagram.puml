@@ -49,10 +49,6 @@ class Competence {
 -id: Long
 -nom: String
 }
-class Historique{
--id: Long
-}
-
 
 Intervenant <|- Coordinateur :"\t\t\t"
 Intervenant <|-- Formateur :"\t\t\t"
