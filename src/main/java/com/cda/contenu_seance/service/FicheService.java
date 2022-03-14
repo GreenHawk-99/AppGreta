@@ -2,7 +2,7 @@ package com.cda.contenu_seance.service;
 
 import com.cda.contenu_seance.dto.SeanceDTO;
 import com.cda.contenu_seance.model.*;
-import com.cda.contenu_seance.repositories.*;
+import com.cda.contenu_seance.repository.*;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,6 +30,9 @@ public class FicheService {
         this.sessionRepository = sessionRepository;
         this.formationRepository = formationRepository;
     }
+
+    // TODO EntityToDTO
+    //  DTOToEntity
 
     public List<Seance> getFiches(){
         return Lists.newArrayList(seanceRepository.findAll());

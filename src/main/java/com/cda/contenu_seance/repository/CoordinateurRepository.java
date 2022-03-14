@@ -1,4 +1,4 @@
-package com.cda.contenu_seance.repositories;
+package com.cda.contenu_seance.repository;
 
 import com.cda.contenu_seance.model.Coordinateur;
 import org.springframework.data.jpa.repository.JpaRepository;

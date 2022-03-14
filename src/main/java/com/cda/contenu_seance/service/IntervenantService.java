@@ -2,7 +2,7 @@ package com.cda.contenu_seance.service;
 
 import com.cda.contenu_seance.model.Coordinateur;
 import com.cda.contenu_seance.model.Formateur;
-import com.cda.contenu_seance.repositories.*;
+import com.cda.contenu_seance.repository.*;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,6 +18,10 @@ public class IntervenantService {
         this.formateurRepository = formateurRepository;
         this.coordinateurRepository = coordinateurRepository;
     }
+
+    // TODO EntityToDTO
+    //  DTOToEntity
+    //  saveIntervenant
 
 
     public List<Formateur> getFormateurs(){
