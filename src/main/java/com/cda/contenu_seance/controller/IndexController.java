@@ -15,7 +15,7 @@ public class IndexController {
     private IntervenantService intervenantService;
     private ReferencielService referencielService;
 
-    @GetMapping(value = {"/"})
+    @GetMapping(value = {"/", "home"})
     public String index(){
         return "page/index";
     }
@@ -23,8 +23,6 @@ public class IndexController {
     public String login(){
         return "page/login";
     }
-
-    // TODO faire route CRUD avec les services
 
     @GetMapping(value = "/dashboard")
     public String dashboard(Model model){

@@ -11,20 +11,20 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/formulaire")
-public class FormController {
+public class FormFicheController {
 
     private FicheService ficheService;
     private ReferencielService referencielService;
     private IntervenantService intervenantService;
 
     @GetMapping(value = {"/fiche"})
-    public String addForm(Model model) {
+    public String formFiche(Model model) {
         model.addAttribute("fiche", new SeanceDTO());
         model.addAttribute("formateur", intervenantService.getFormateurs());
         model.addAttribute("activite", referencielService.getActivites());
         model.addAttribute("competence", referencielService.getCompetences());
         model.addAttribute("formation", ficheService.getFormations());
-        return "page/formulaire/formFicheSuivi";
+        return "page/formulaire/formFiche";
     }
 
     // TODO
@@ -32,7 +32,7 @@ public class FormController {
     //  les détails ou la modification d'un formulaire
     //  dans le dashboard
 
-    @GetMapping("fiche/edit/{id}")
+    @GetMapping("/fiche/edit/{id}")
     public String editFiche(Model model, @PathVariable(name = "id") Long id){
         Seance seance = ficheService.getFiche(id);
         SeanceDTO seanceDTO = convertSeanceEntityToSeanceDTO(seance);
@@ -46,7 +46,7 @@ public class FormController {
         model.addAttribute("activite", activites);
         model.addAttribute("competence", competences);
         model.addAttribute("formation", formations);
-        return "page/formulaire/formFicheSuivi";
+        return "formulaire/formFiche";
     }
 
     private SeanceDTO convertSeanceEntityToSeanceDTO(Seance seance){
@@ -62,18 +62,13 @@ public class FormController {
 
     @PostMapping("/fiche")
     public String postFiche(@ModelAttribute(name="fiche")SeanceDTO seance){
-        ficheService.saveFiche(seance);
+        ficheService.saveUpdateFiche(seance);
         return "redirect:/";
     }
 
-    @GetMapping(value = "fiche/delete/{id}")
+    @GetMapping(value = "/fiche/delete/{id}")
     public String deleteForm(@PathVariable(name = "id") long id){
         ficheService.deleteFiche(id);
         return "redirect:/dashboard";
-    }
-
-    @GetMapping("act-comp")
-    public String actcompForm(){
-        return "page/";
     }
 }

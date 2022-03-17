@@ -16,6 +16,7 @@ public class Seance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Temporal(TemporalType.DATE)
     private Date dateDuJour;
     private int durer;
     private String objectifPeda;
@@ -26,7 +27,7 @@ public class Seance {
     private Formateur formateurs;
     @ManyToOne
     private Session session;
-    @ManyToMany(mappedBy = "seances")
+    @ManyToMany
     private List<Competence> competences;
 
     public Seance(Date dateDuJour, int durer, String support, String deroulement, String objectifPeda, Formateur formateurs, Session session, List<Competence> competences) {
