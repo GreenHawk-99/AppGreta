@@ -6,14 +6,15 @@ import com.cda.contenu_seance.model.*;
 import com.cda.contenu_seance.repository.*;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Service
 public class ReferencielService {
-    private ActiviteRepository activiteRepository;
-    private CompetenceRepository competenceRepository;
-    private ReacRepository reacRepository;
+    ActiviteRepository activiteRepository;
+    CompetenceRepository competenceRepository;
+    ReacRepository reacRepository;
 
     @Autowired
     public ReferencielService(ActiviteRepository activiteRepository,
@@ -23,10 +24,6 @@ public class ReferencielService {
         this.competenceRepository = competenceRepository;
         this.reacRepository = reacRepository;
     }
-
-    // TODO EntityToDTO
-    //  DTOToEntity
-    //  saveRef
 
     public void saveUpdateActivite(ActiviteDTO activiteDTO){
         Activite activite = activiteRepository.findById(activiteDTO.getId()).orElse(new Activite());

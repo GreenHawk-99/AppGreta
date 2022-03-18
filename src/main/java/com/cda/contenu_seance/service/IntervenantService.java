@@ -7,13 +7,15 @@ import com.cda.contenu_seance.model.Intervenant;
 import com.cda.contenu_seance.repository.*;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class IntervenantService {
-    private FormateurRepository formateurRepository;
-    private CoordinateurRepository coordinateurRepository;
-    private IntervenantRepository intervenantRepository;
+    FormateurRepository formateurRepository;
+    CoordinateurRepository coordinateurRepository;
+    IntervenantRepository intervenantRepository;
 
     @Autowired
     public IntervenantService(FormateurRepository formateurRepository,
@@ -59,9 +61,6 @@ public class IntervenantService {
     }
 
     public void saveUpdateFormateur(IntervenantDTO intervenantDTO){
-        /*if (intervenantDTO == null){
-
-        }*/
         Intervenant intervenant = intervenantRepository.findById(intervenantDTO.getId()).orElse(new Formateur());
         intervenant.setNom(intervenantDTO.getNom());
         intervenant.setPrenom(intervenantDTO.getPrenom());

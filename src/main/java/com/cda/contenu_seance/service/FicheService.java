@@ -2,19 +2,22 @@ package com.cda.contenu_seance.service;
 
 import com.cda.contenu_seance.dto.CentreDTO;
 import com.cda.contenu_seance.dto.SeanceDTO;
+import com.cda.contenu_seance.dto.SessionDTO;
 import com.cda.contenu_seance.model.*;
 import com.cda.contenu_seance.repository.*;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class FicheService {
-    private FormateurRepository formateurRepository;
-    private SeanceRepository seanceRepository;
-    private SessionRepository sessionRepository;
-    private FormationRepository formationRepository;
-    private CentreRepository centreRepository;
+    FormateurRepository formateurRepository;
+    SeanceRepository seanceRepository;
+    SessionRepository sessionRepository;
+    FormationRepository formationRepository;
+    CentreRepository centreRepository;
 
     @Autowired
     public FicheService(FormateurRepository formateurRepository,
@@ -89,14 +92,34 @@ public class FicheService {
     }
 
     public void saveUpdateCentre(CentreDTO centreDTO){
-        Centre centreDb = centreRepository.findById(centreDTO.getId()).orElse(new Centre());
+        Centre centreDb;
+        if (null==centreDTO.getId()){
+            centreDb = new Centre();
+        } else{
+            centreDb = centreRepository.findById(centreDTO.getId()).orElse(new Centre());
+        }
         centreDb.setNomCentre(centreDTO.getNomCentre());
         centreDb.setAdresseCentre(centreDTO.getAdresseCentre());
         centreDb.setCodesPostal(centreDTO.getCodesPostal());
         centreDb.setVille(centreDTO.getVille());
+        centreRepository.save(centreDb);
     }
 
     public void deleteCentre(Long id){
+        centreRepository.findById(id);
+    }
 
+    public List<Session> getSessions(){
+        return sessionRepository.findAll();
+    }
+
+    public void saveUpdateSession(SessionDTO sessionDTO){
+        Session sessionDb = sessionRepository.findById(sessionDTO.getId()).orElse(new Session());
+        sessionDb.setDateDebut(sessionDTO.getDateDebut());
+        sessionDb.setDateFin(sessionDTO.getDateFin());
+    }
+
+    public void deleteSession(Long id){
+        sessionRepository.findById(id);
     }
 }
