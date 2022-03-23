@@ -25,6 +25,4 @@ public class Reac {
     private Formation formation;
     @OneToMany(mappedBy = "reac")
     private List<Activite> activites;
-
-
 }

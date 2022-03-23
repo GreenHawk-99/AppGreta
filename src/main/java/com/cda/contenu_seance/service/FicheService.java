@@ -57,6 +57,8 @@ public class FicheService {
         return seance;
     }
 
+    // Méthodes CRUD Fiche
+
     public List<Seance> getFiches(){
         return Lists.newArrayList(seanceRepository.findAll());
     }
@@ -69,29 +71,52 @@ public class FicheService {
         seanceRepository.save(seance);
     }
 
-    public void saveUpdateFiche(SeanceDTO seanceDTO){
-        Seance seanceDb = seanceRepository.findById(seanceDTO.getId()).orElse(new Seance());
-        //Seance seance = getSeance(seanceDTO.getId());
+    public void saveFiche(SeanceDTO seanceDTO){
+        Seance seanceDb;
+        if (null==seanceDTO.getId()) {
+            seanceDb = new Seance();
+        } else {
+            seanceDb = seanceRepository.findById(seanceDTO.getId()).orElse(new Seance());
+        }
         seanceDb.setDateDuJour(seanceDTO.getDateDuJour());
         seanceDb.setDurer(seanceDTO.getDurer());
         seanceDb.setObjectifPeda(seanceDTO.getObjectifPeda());
         seanceDb.setSupport(seanceDTO.getSupport());
         seanceDb.setDeroulement(seanceDTO.getDeroulement());
+        seanceRepository.save(seanceDb);
+    }
+
+    public void updateFiche(SeanceDTO seanceDTO){
+        Seance seanceDb = seanceRepository.findById(seanceDTO.getId()).orElse(new Seance());
+        seanceDb.setDateDuJour(seanceDTO.getDateDuJour());
+        seanceDb.setDurer(seanceDTO.getDurer());
+        seanceDb.setObjectifPeda(seanceDTO.getObjectifPeda());
+        seanceDb.setSupport(seanceDTO.getSupport());
+        seanceDb.setDeroulement(seanceDTO.getDeroulement());
+        seanceRepository.save(seanceDb);
     }
 
     public void deleteFiche(Long id){
          seanceRepository.deleteById(id);
     }
 
+    // Méthodes CRUD Formation
+
     public List<Formation> getFormations(){
         return Lists.newArrayList(formationRepository.findAll());
     }
+
+    // Méthodes CRUD Centre
 
     public List<Centre> getCentres(){
         return centreRepository.findAll();
     }
 
-    public void saveUpdateCentre(CentreDTO centreDTO){
+    public Centre getCentre(long id){
+       return centreRepository.findById(id).orElse(null);
+    }
+
+    public void saveCentre(CentreDTO centreDTO){
         Centre centreDb;
         if (null==centreDTO.getId()){
             centreDb = new Centre();
@@ -105,21 +130,45 @@ public class FicheService {
         centreRepository.save(centreDb);
     }
 
-    public void deleteCentre(Long id){
-        centreRepository.findById(id);
+    public void updateCentre(CentreDTO centreDTO){
+        Centre centreDb = centreRepository.findById(centreDTO.getId()).orElse(null);
+        centreDb.setNomCentre(centreDTO.getNomCentre());
+        centreDb.setAdresseCentre(centreDTO.getAdresseCentre());
+        centreDb.setCodesPostal(centreDTO.getCodesPostal());
+        centreDb.setVille(centreDTO.getVille());
+        centreRepository.save(centreDb);
     }
+
+    public void deleteCentre(long id){
+        centreRepository.deleteById(id);
+    }
+
+    // Méthodes CRUD Session
 
     public List<Session> getSessions(){
         return sessionRepository.findAll();
     }
 
-    public void saveUpdateSession(SessionDTO sessionDTO){
+    public void saveSession(SessionDTO sessionDTO){
+        Session sessionDb;
+        if (null==sessionDTO.getId()){
+            sessionDb = new Session();
+        } else{
+            sessionDb = sessionRepository.findById(sessionDTO.getId()).orElse(new Session());
+        }
+        sessionDb.setDateDebut(sessionDTO.getDateDebut());
+        sessionDb.setDateFin(sessionDTO.getDateFin());
+        sessionRepository.save(sessionDb);
+    }
+
+    public void updateSession(SessionDTO sessionDTO){
         Session sessionDb = sessionRepository.findById(sessionDTO.getId()).orElse(new Session());
         sessionDb.setDateDebut(sessionDTO.getDateDebut());
         sessionDb.setDateFin(sessionDTO.getDateFin());
+        sessionRepository.save(sessionDb);
     }
 
-    public void deleteSession(Long id){
-        sessionRepository.findById(id);
+    public void deleteSession(long id){
+        sessionRepository.deleteById(id);
     }
 }

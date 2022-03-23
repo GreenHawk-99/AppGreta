@@ -29,15 +29,4 @@ public class Seance {
     private Session session;
     @ManyToMany
     private List<Competence> competences;
-
-    public Seance(Date dateDuJour, int durer, String support, String deroulement, String objectifPeda, Formateur formateurs, Session session, List<Competence> competences) {
-        this.dateDuJour = dateDuJour;
-        this.durer = durer;
-        this.support = support;
-        this.deroulement = deroulement;
-        this.objectifPeda = objectifPeda;
-        this.formateurs = formateurs;
-        this.session = session;
-        this.competences = competences;
-    }
 }

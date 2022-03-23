@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Page Index</title>
+  <div th:replace="fragments/header :: header-css (title='Fiche de Suivi')"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header-nav"/>
+
+<main>
+  <div class="container">
+    <div class="py-4 text-center">
+      <img class="d-block mx-auto mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72"
+           height="57">
+      <h2>Création de Centre GRETA</h2>
+      <p class="lead">Formulaire de création d'un centre du GRETA</p>
+    </div>
+
+    <div class="row g-6">
+      <h4 class="mb-4">Centre</h4>
+      <form class="needs-validation" novalidate="">
+        <div class="row g-4">
+          <div class="col-sm-5">
+            <label for="nomCentre" class="form-label">Nom du centre</label>
+            <input type="text" class="form-control" id="nomCentre" placeholder="Nom du centre demandé" value="" required>
+            <div class="invalid-feedback">
+              Nom valide est demandé.
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <label for="ville" class="form-label">Ville du centre</label>
+            <input type="text" class="form-control" id="ville" placeholder="Nom de ville est demandé" value="" required>
+            <div class="invalid-feedback">
+              Nom de ville valide est demandé.
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <label for="codePostal" class="form-label">Code postal</label>
+            <input type="text" class="form-control" id="codePostal" placeholder="Code postal est demandé" value="" required>
+            <div class="invalid-feedback">
+              Code postal valide est demandé.
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="adresse" class="form-label">Adresse du centre</label>
+            <input type="text" class="form-control" id="adresse" placeholder="Veuillez saisir l'adresse du centre" required>
+            <div class="invalid-feedback">
+              Veuillez saisir une adresse valide.
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4">
+        <div class="text-center">
+          <button class="w-50 btn btn-primary btn-lg" type="submit">Envoyer le formulaire</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<!-- /.container -->
+<div th:replace="fragments/footer:: footer"/>
+</body>
+</html>>

@@ -15,7 +15,7 @@ public class IndexController {
     private IntervenantService intervenantService;
     private ReferencielService referencielService;
 
-    @GetMapping(value = {"/", "home"})
+    @GetMapping(value = {"home"})
     public String index(){
         return "page/index";
     }
@@ -29,6 +29,6 @@ public class IndexController {
         model.addAttribute("fiches", ficheService.getFiches());
         model.addAttribute("formateur", intervenantDTO);
         model.addAttribute("formation", referencielService);
-        return "coordinateur/dashboard";
+        return "dashboardFiches";
     }
 }
