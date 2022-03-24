@@ -13,31 +13,31 @@ public class SessionController {
     @Autowired
     FicheService ficheService;
 
-    @GetMapping(value = "/sessions")
+    @GetMapping(value = "/session")
     public String formSession(Model model) {
         model.addAttribute("sessions", ficheService.getSessions());
         return "formulaire/session";
     }
 
-    @PostMapping(value = "/sessions/add")
+    @PostMapping(value = "/session/add")
     public String addSession(@ModelAttribute(name = "session") SessionDTO sessionDTO){
         ficheService.saveSession(sessionDTO);
         return "redirect:/dashboard/sessions";
     }
 
-    @GetMapping(value = "/sessions/edit/{id}")
+    @GetMapping(value = "/session/edit/{id}")
     public String editSession(Model model, @PathVariable(name = "id") long id){
         model.addAttribute("id", id);
-        return "formulaire/sessionUpdate";
+        return "formulaire/update/sessionUpdate";
     }
 
-    @PostMapping(value="/sessions/update")
+    @PostMapping(value="/session/update")
     public String updateSession(@ModelAttribute(name = "centreUpdate") SessionDTO sessionDTO){
         ficheService.updateSession(sessionDTO);
         return "redirect:/dashboard/sessions";
     }
 
-    @GetMapping(value = "/sessions/delete/{id}")
+    @GetMapping(value = "/session/delete/{id}")
     public String deleteSession(@PathVariable(name = "id") long id){
         ficheService.deleteSession(id);
         return "redirect:/dashboard/sessions";

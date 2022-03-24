@@ -28,7 +28,7 @@ public class CentreController {
     @GetMapping(value = "/centre/edit/{id}")
     public String editCentre(Model model, @PathVariable(name = "id") long id){
         model.addAttribute("id", id);
-        return "formulaire/centreUpdate";
+        return "formulaire/update/centreUpdate";
     }
 
     @PostMapping(value="/centre/update")

@@ -1,11 +1,11 @@
 package com.cda.contenu_seance.service;
 
 import com.cda.contenu_seance.dto.CentreDTO;
+import com.cda.contenu_seance.dto.FormationDTO;
 import com.cda.contenu_seance.dto.SeanceDTO;
 import com.cda.contenu_seance.dto.SessionDTO;
 import com.cda.contenu_seance.model.*;
 import com.cda.contenu_seance.repository.*;
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,26 +13,23 @@ import java.util.List;
 
 @Service
 public class FicheService {
-    FormateurRepository formateurRepository;
     SeanceRepository seanceRepository;
     SessionRepository sessionRepository;
     FormationRepository formationRepository;
     CentreRepository centreRepository;
 
     @Autowired
-    public FicheService(FormateurRepository formateurRepository,
-                        SeanceRepository seanceRepository,
+    public FicheService(SeanceRepository seanceRepository,
                         SessionRepository sessionRepository,
                         FormationRepository formationRepository,
                         CentreRepository centreRepository){
         this.centreRepository = centreRepository;
-        this.formateurRepository = formateurRepository;
         this.seanceRepository = seanceRepository;
         this.sessionRepository = sessionRepository;
         this.formationRepository = formationRepository;
     }
 
-    private SeanceDTO convertSEtoSDTO(Seance seance){
+    /*private SeanceDTO convertSEtoSDTO(Seance seance){
         SeanceDTO seanceDTO = new SeanceDTO();
         seanceDTO.setId(seance.getId());
         seanceDTO.setDateDuJour(seance.getDateDuJour());
@@ -55,20 +52,16 @@ public class FicheService {
         seance.setFormateurs(seanceDTO.getFormateur());
         seance.setSession(seanceDTO.getSession());
         return seance;
-    }
+    }*/
 
     // Méthodes CRUD Fiche
 
     public List<Seance> getFiches(){
-        return Lists.newArrayList(seanceRepository.findAll());
+        return seanceRepository.findAll();
     }
 
-    public Seance getFiche(Long id){
+    public Seance getFiche(long id){
         return seanceRepository.findById(id).orElse(new Seance());
-    }
-
-    public void saveUpdateFiche(Seance seance){
-        seanceRepository.save(seance);
     }
 
     public void saveFiche(SeanceDTO seanceDTO){
@@ -96,14 +89,39 @@ public class FicheService {
         seanceRepository.save(seanceDb);
     }
 
-    public void deleteFiche(Long id){
+    public void deleteFiche(long id){
          seanceRepository.deleteById(id);
     }
 
     // Méthodes CRUD Formation
 
     public List<Formation> getFormations(){
-        return Lists.newArrayList(formationRepository.findAll());
+        return formationRepository.findAll();
+    }
+
+    public Formation getFormation(long id){
+        return formationRepository.findById(id).orElse(null);
+    }
+
+    public void saveFormation(FormationDTO formationDTO){
+        Formation formationDb;
+        if (null==formationDTO.getId()){
+            formationDb = new Formation();
+        } else {
+            formationDb = formationRepository.findById(formationDTO.getId()).orElse(new Formation());
+        }
+        formationDb.setTypeFormation(formationDTO.getTypeFormation());
+        formationRepository.save(formationDb);
+    }
+
+    public void updateFormation(FormationDTO formationDTO){
+        Formation formationDb = formationRepository.findById(formationDTO.getId()).orElse(null);
+        formationDb.setTypeFormation(formationDTO.getTypeFormation());
+        formationRepository.save(formationDb);
+    }
+
+    public void deleteFormation(long id){
+        formationRepository.deleteById(id);
     }
 
     // Méthodes CRUD Centre

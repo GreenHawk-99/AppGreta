@@ -2,9 +2,9 @@ package com.cda.contenu_seance.service;
 
 import com.cda.contenu_seance.dto.ActiviteDTO;
 import com.cda.contenu_seance.dto.CompetenceDTO;
+import com.cda.contenu_seance.dto.ReacDTO;
 import com.cda.contenu_seance.model.*;
 import com.cda.contenu_seance.repository.*;
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,36 +19,108 @@ public class ReferencielService {
     @Autowired
     public ReferencielService(ActiviteRepository activiteRepository,
                               CompetenceRepository competenceRepository,
-                              ReacRepository reacRepository){
+                              ReacRepository reacRepository) {
         this.activiteRepository = activiteRepository;
         this.competenceRepository = competenceRepository;
         this.reacRepository = reacRepository;
     }
 
-    public void saveUpdateActivite(ActiviteDTO activiteDTO){
-        Activite activite = activiteRepository.findById(activiteDTO.getId()).orElse(new Activite());
-        activite.setActivitesTypes(activiteDTO.getActivitesTypes());
-        activite.setNumOrdre(activiteDTO.getNumOrdre());
-        activite.setCompetences(activiteDTO.getCompetences());
-        activite.setReac(activiteDTO.getReac());
+    // Méthodes CRUD Activite
+
+    public List<Activite> getActivites() {
+        return activiteRepository.findAll();
     }
 
-    public void saveUpdateCompetence(CompetenceDTO competenceDTO){
-        Competence competence = competenceRepository.findById(competenceDTO.getId()).orElse(new Competence());
-        competence.setNom(competenceDTO.getNom());
-        competence.setActivite(competenceDTO.getActiviter());
-        competence.setSeances(competenceDTO.getSeances());
+    public Activite getActivite(long id) {
+        return activiteRepository.findById(id).orElse(null);
     }
 
-    public List<Activite> getActivites(){
-        return Lists.newArrayList(activiteRepository.findAll());
+    public void saveActivite(ActiviteDTO activiteDTO) {
+        Activite activiteDb;
+        if (null == activiteDTO.getId()) {
+            activiteDb = new Activite();
+        } else {
+            activiteDb = activiteRepository.findById(activiteDTO.getId()).orElse(new Activite());
+        }
+        activiteDb.setActivitesTypes(activiteDTO.getActivitesTypes());
+        activiteDb.setNumOrdre(activiteDTO.getNumOrdre());
+        activiteRepository.save(activiteDb);
     }
 
-    public List<Competence> getCompetences(){
-        return Lists.newArrayList(competenceRepository.findAll());
+    public void updateActivite(ActiviteDTO activiteDTO) {
+        Activite activiteDb = activiteRepository.findById(activiteDTO.getId()).orElse(null);
+        activiteDb.setActivitesTypes(activiteDTO.getActivitesTypes());
+        activiteDb.setNumOrdre(activiteDTO.getNumOrdre());
+        activiteRepository.save(activiteDb);
     }
 
-    public Reac getReac(Long id){
-        return reacRepository.findById(id).orElse(new Reac());
+    public void deleteActivite(long id) {
+        activiteRepository.deleteById(id);
+    }
+
+    // Méthodes CRUD Competence
+
+    public List<Competence> getCompetences() {
+        return competenceRepository.findAll();
+    }
+
+    public Competence getCompetence(long id) {
+        return competenceRepository.findById(id).orElse(null);
+    }
+
+    public void saveCompetence(CompetenceDTO competenceDTO) {
+        Competence competenceDb;
+        if (null == competenceDTO.getId()) {
+            competenceDb = new Competence();
+        } else {
+            competenceDb = competenceRepository.findById(competenceDTO.getId()).orElse(new Competence());
+        }
+        competenceDb.setNom(competenceDTO.getNom());
+        competenceRepository.save(competenceDb);
+    }
+
+    public void updateCompetence(CompetenceDTO competenceDTO) {
+        Competence competenceDb = competenceRepository.findById(competenceDTO.getId()).orElse(null);
+        competenceDb.setNom(competenceDTO.getNom());
+        competenceRepository.save(competenceDb);
+    }
+
+    public void deleteCompetence(long id) {
+        competenceRepository.deleteById(id);
+    }
+
+    // Méthodes CRUD Reac
+
+    public List<Reac> getReacs() {
+        return reacRepository.findAll();
+    }
+
+    public Reac getReac(long id) {
+        return reacRepository.findById(id).orElse(null);
+    }
+
+    public void saveReac(ReacDTO reacDTO) {
+        Reac reacDb;
+        if (null == reacDTO.getId()) {
+            reacDb = new Reac();
+        } else {
+            reacDb = reacRepository.findById(reacDTO.getId()).orElse(new Reac());
+        }
+        reacDb.setLien(reacDTO.getLien());
+        reacDb.setDateDebut(reacDTO.getDateDebut());
+        reacDb.setDurer(reacDTO.getDurer());
+        reacRepository.save(reacDb);
+    }
+
+    public void updateReac(ReacDTO reacDTO) {
+        Reac reacDb = reacRepository.findById(reacDTO.getId()).orElse(null);
+        reacDb.setLien(reacDTO.getLien());
+        reacDb.setDateDebut(reacDTO.getDateDebut());
+        reacDb.setDurer(reacDTO.getDurer());
+        reacRepository.save(reacDb);
+    }
+
+    public void deleteReac(long id) {
+        reacRepository.deleteById(id);
     }
 }

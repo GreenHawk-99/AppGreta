@@ -9,37 +9,37 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/formulaire")
-public class FormationController {
+public class FormateurController {
     @Autowired
     FicheService ficheService;
 
-    @GetMapping(value = "/formation")
+    @GetMapping(value = "/formateur")
     public String formFormation(Model model){
         model.addAttribute("centres", ficheService.getCentres());
-        return "formulaire/formation";
+        return "formulaire/formateur";
     }
 
-    @PostMapping(value = "/formation/add")
+    @PostMapping(value = "/formateur/add")
     public String addFormation(@ModelAttribute(name = "centre") CentreDTO centreDTO){
         ficheService.saveCentre(centreDTO);
-        return "redirect:/dashboard/formations";
+        return "redirect:/dashboard/formateurs";
     }
 
-    @GetMapping(value = "/formation/edit/{id}")
+    @GetMapping(value = "/formateur/edit/{id}")
     public String editFormation(Model model, @PathVariable(name = "id") long id){
         model.addAttribute("id", id);
-        return "formulaire/update/formationUpdate";
+        return "formulaire/update/formateurUpdate";
     }
 
-    @PostMapping(value="/formation/update")
+    @PostMapping(value="/formateur/update")
     public String updateFormation(@ModelAttribute(name = "centreUpdate") CentreDTO centreDTO){
         ficheService.updateCentre(centreDTO);
-        return "redirect:/dashboard/formations";
+        return "redirect:/dashboard/formateurs";
     }
 
-    @GetMapping(value = "/formation/delete/{id}")
+    @GetMapping(value = "/formateur/delete/{id}")
     public String deleteFormation(@PathVariable(name = "id") long id){
         ficheService.deleteCentre(id);
-        return "redirect:/dashboard/formations";
+        return "redirect:/dashboard/formateurs";
     }
 }

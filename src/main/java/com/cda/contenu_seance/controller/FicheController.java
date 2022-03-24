@@ -28,7 +28,7 @@ public class FicheController {
     @GetMapping(value = "/fiche/edit/{id}")
     public String editFiche(Model model, @PathVariable(name = "id") long id) {
         model.addAttribute("id", id);
-        return "formulaire/ficheUpdate";
+        return "formulaire/update/ficheUpdate";
     }
 
     @PostMapping(value = "/fiche/update")
