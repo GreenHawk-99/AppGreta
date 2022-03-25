@@ -12,10 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = "/dashboard")
 public class DashboardController {
-    @Autowired
     FicheService ficheService;
     FormateurService formateurService;
     ReferencielService referencielService;
+
+    @Autowired
+    public DashboardController(FicheService ficheService, FormateurService formateurService, ReferencielService referencielService) {
+        this.ficheService = ficheService;
+        this.formateurService = formateurService;
+        this.referencielService = referencielService;
+    }
 
     @GetMapping(value = "/centres")
     public String dashboardCentres(Model model){
@@ -26,6 +32,8 @@ public class DashboardController {
     @GetMapping(value = "/fiches")
     public String dashboardFiches(Model model){
         model.addAttribute("fiches", ficheService.getFiches());
+        model.addAttribute("formateur", formateurService.getFormateurs());
+        model.addAttribute("foramtions", ficheService.getFormations());
         return "dashboard/dashboardFiches";
     }
 
@@ -43,7 +51,7 @@ public class DashboardController {
 
     @GetMapping(value = "/sessions")
     public String dashboardSessions(Model model){
-        model.addAttribute("sessions", ficheService.getSessions());
+        model.addAttribute("sessionsGRETA", ficheService.getSessions());
         return "dashboard/dashboardSessions";
     }
 

@@ -10,9 +10,15 @@ backward: Identifiants invalides;
 note right: Identifiants = adresse email et mot de passe
 repeat while (Les identifiants sont correctes?) is (Non) not (Oui)
 
-:L'utilisateur se connecte correctement;
+:L'utilisateur est connécté;
 
-:Les données et paramètre de l'utilisateur s'affiche;
+fork
+  :Formateur;
+fork again
+  :Coordonateur;
+end merge
+
+:Affichage et service correspondant;
 
 stop
 floating note right: L'utilisateur est connecté dans l'application

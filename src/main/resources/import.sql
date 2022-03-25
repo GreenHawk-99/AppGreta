@@ -1,7 +1,8 @@
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MP, CODE_POSTAL, TEL) VALUES ( 'formateur', 1, 'Bob', 'noblewomen', 'Bob@bobleprenom.ff','bob', '69420', '008865444');
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MP, CODE_POSTAL, TEL) VALUES ( 'coordinateur', 2, 'Bub', 'lebub', 'bub@bobleprenom.fr','coucou', '42690', '0145879745');
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MP, CODE_POSTAL, TEL) VALUES ( 'formateur', 3, 'Laper','Sonagé', 'aziz@gmail.cum', 'caca', '42962', '6942069');
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MP, CODE_POSTAL, TEL) VALUES ( 'coordinateur', 4, 'Jean', 'Laqueue', 'lop@leprenom.fr','calo', '77212', '0455884');
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 1, 'Bob', 'noblewomen', 'Bob@bobleprenom.ff','bob', '69420', '008865444');
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MP, CODE_POSTAL, TEL) VALUES ( 'Coordinateur', 2, 'Bub', 'lebub', 'bub@bobleprenom.fr','coucou', '42690', '0145879745');
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 3, 'Laper','Sonagé', 'aziz@gmail.cum', 'caca', '42962', '6942069');
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MP, CODE_POSTAL, TEL) VALUES ( 'Coordinateur', 4, 'Jean', 'Laqueue', 'lop@leprenom.fr','calo', '77212', '0455884');
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 5, 'Thierry','Golo', 'momo@proutos.com', 'maturite', '42962', '6942069');
 
 INSERT INTO CENTRE(ID, ADRESSE_CENTRE, CODES_POSTAL, NOM_CENTRE, VILLE) VALUES ( 1, '57 rue du champion', '69420', 'Champignon', 'Pot' );
 INSERT INTO CENTRE(ID, ADRESSE_CENTRE, CODES_POSTAL, NOM_CENTRE, VILLE) VALUES ( 2, '30 avenue de mon cul', '45666', 'Cachan', 'Cachan');

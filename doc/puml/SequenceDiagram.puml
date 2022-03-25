@@ -1,0 +1,30 @@
+@startuml
+
+actor Admin
+control "DashboardController" as DC
+participant "centreRepository" as CR
+entity "Centre" as C
+database "BDD" as BDD
+boundary "View" as V
+
+Admin -> DC: GET/dashboard/centre
+activate DC
+
+DC -> CR: findAll()
+activate CR
+
+CR -> BDD: select * from centre
+activate BDD
+BDD --> CR: return
+destroy BDD
+
+CR --> DC: return
+deactivate CR
+
+DC --> V: dispose
+V -> V: affiche l'HTML
+V --> DC: return
+
+DC --> Admin: return
+deactivate DC
+@enduml
