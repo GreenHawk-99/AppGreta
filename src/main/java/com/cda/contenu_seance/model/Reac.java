@@ -16,6 +16,7 @@ public class Reac {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nom;
     private String lien;
     @Temporal(TemporalType.DATE)
     private Date dateDebut;

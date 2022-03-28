@@ -1,7 +1,10 @@
 package com.cda.contenu_seance.controller;
 
 import com.cda.contenu_seance.dto.CentreDTO;
+import com.cda.contenu_seance.dto.FormationDTO;
+import com.cda.contenu_seance.dto.IntervenantDTO;
 import com.cda.contenu_seance.service.FicheService;
+import com.cda.contenu_seance.service.FormateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,35 +14,35 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/formulaire")
 public class FormateurController {
     @Autowired
-    FicheService ficheService;
+    FormateurService formateurService;
 
     @GetMapping(value = "/formateur")
-    public String formFormation(Model model){
-        model.addAttribute("centres", ficheService.getCentres());
+    public String formFormateur(Model model){
+        model.addAttribute("formateurs", formateurService.getFormateurs());
         return "formulaire/formateur";
     }
 
     @PostMapping(value = "/formateur/add")
-    public String addFormation(@ModelAttribute(name = "centre") CentreDTO centreDTO){
-        ficheService.saveCentre(centreDTO);
+    public String addFormateur(@ModelAttribute(name = "formateur") IntervenantDTO intervenantDTO){
+        formateurService.saveFormateur(intervenantDTO);
         return "redirect:/dashboard/formateurs";
     }
 
     @GetMapping(value = "/formateur/edit/{id}")
-    public String editFormation(Model model, @PathVariable(name = "id") long id){
+    public String editFormateur(Model model, @PathVariable(name = "id") long id){
         model.addAttribute("id", id);
         return "formulaire/update/formateurUpdate";
     }
 
     @PostMapping(value="/formateur/update")
-    public String updateFormation(@ModelAttribute(name = "centreUpdate") CentreDTO centreDTO){
-        ficheService.updateCentre(centreDTO);
+    public String updateFormateur(@ModelAttribute(name = "formateurUpdate") IntervenantDTO intervenantDTO){
+        formateurService.updateFormateur(intervenantDTO);
         return "redirect:/dashboard/formateurs";
     }
 
     @GetMapping(value = "/formateur/delete/{id}")
-    public String deleteFormation(@PathVariable(name = "id") long id){
-        ficheService.deleteCentre(id);
+    public String deleteFormateur(@PathVariable(name = "id") long id){
+        formateurService.deleteFormateur(id);
         return "redirect:/dashboard/formateurs";
     }
 }

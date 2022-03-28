@@ -1,6 +1,7 @@
 package com.cda.contenu_seance.controller;
 
 import com.cda.contenu_seance.dto.CentreDTO;
+import com.cda.contenu_seance.dto.FormationDTO;
 import com.cda.contenu_seance.service.FicheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,13 +16,13 @@ public class FormationController {
 
     @GetMapping(value = "/formation")
     public String formFormation(Model model){
-        model.addAttribute("centres", ficheService.getCentres());
+        model.addAttribute("formations", ficheService.getFormations());
         return "formulaire/formation";
     }
 
     @PostMapping(value = "/formation/add")
-    public String addFormation(@ModelAttribute(name = "centre") CentreDTO centreDTO){
-        ficheService.saveCentre(centreDTO);
+    public String addFormation(@ModelAttribute(name = "formation") FormationDTO formationDTO){
+        ficheService.saveFormation(formationDTO);
         return "redirect:/dashboard/formations";
     }
 
@@ -32,14 +33,14 @@ public class FormationController {
     }
 
     @PostMapping(value="/formation/update")
-    public String updateFormation(@ModelAttribute(name = "centreUpdate") CentreDTO centreDTO){
-        ficheService.updateCentre(centreDTO);
+    public String updateFormation(@ModelAttribute(name = "formationUpdate") FormationDTO formationDTO){
+        ficheService.updateFormation(formationDTO);
         return "redirect:/dashboard/formations";
     }
 
     @GetMapping(value = "/formation/delete/{id}")
     public String deleteFormation(@PathVariable(name = "id") long id){
-        ficheService.deleteCentre(id);
+        ficheService.deleteFormation(id);
         return "redirect:/dashboard/formations";
     }
 }

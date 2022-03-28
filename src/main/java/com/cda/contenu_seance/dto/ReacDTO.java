@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 public class ReacDTO {
     private Long id;
+    private String nom;
     private String lien;
     private Date dateDebut;
     private Long durer;

@@ -46,6 +46,7 @@ public class DashboardController {
     @GetMapping(value = "/formations")
     public String dashboardFormations(Model model){
         model.addAttribute("formations", ficheService.getFormations());
+        model.addAttribute("sessions", ficheService.getSessions());
         return "dashboard/dashboardFormations";
     }
 
@@ -53,6 +54,18 @@ public class DashboardController {
     public String dashboardSessions(Model model){
         model.addAttribute("sessionsGRETA", ficheService.getSessions());
         return "dashboard/dashboardSessions";
+    }
+
+    @GetMapping(value = "/activites")
+    public String dashboardActivites(Model model){
+        model.addAttribute("activites", referencielService.getActivites());
+        return "dashboard/dashboardActivites";
+    }
+
+    @GetMapping(value = "/competences")
+    public String dashboardCompetences(Model model){
+        model.addAttribute("competences", referencielService.getCompetences());
+        return "dashboard/dashboardCompetences";
     }
 
     @GetMapping(value = "/referenciels")

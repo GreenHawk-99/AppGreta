@@ -21,7 +21,7 @@ destroy BDD
 CR --> DC: return
 deactivate CR
 
-DC --> V: dispose
+DC -> V: dispose dans le template
 V -> V: affiche l'HTML
 V --> DC: return
 

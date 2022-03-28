@@ -32,7 +32,7 @@ public class SessionController {
     }
 
     @PostMapping(value="/session/update")
-    public String updateSession(@ModelAttribute(name = "centreUpdate") SessionDTO sessionDTO){
+    public String updateSession(@ModelAttribute(name = "sessionUpdate") SessionDTO sessionDTO){
         ficheService.updateSession(sessionDTO);
         return "redirect:/dashboard/sessions";
     }

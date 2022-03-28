@@ -10,7 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CentreDTO {
+public class  CentreDTO {
     private Long id;
     private String nomCentre;
     private String adresseCentre;
