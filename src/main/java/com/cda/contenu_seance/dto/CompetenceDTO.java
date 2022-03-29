@@ -11,7 +11,8 @@ import java.util.Set;
 @Setter
 public class CompetenceDTO {
     private Long id;
-    private String nom;
+    private String competenceProfessionel;
+    private int numCP;
     private Activite activiter;
     private Set<Seance> seances;
 }

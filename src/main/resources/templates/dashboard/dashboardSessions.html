@@ -50,8 +50,8 @@
             <th scope="col">Id</th>
             <th scope="col">Date de debut de session</th>
             <th scope="col">Date de fin de session</th>
-            <th scope="col">Centre</th>
             <th scope="col">Formation</th>
+            <th scope="col">Centre</th>
             <th scope="col">Action</th>
           </tr>
           </thead>
@@ -60,8 +60,8 @@
             <td th:utext="${sessionGRETA.id}">Id</td>
             <td th:utext="${sessionGRETA.dateDebut}">Date de debut de session</td>
             <td th:utext="${sessionGRETA.dateFin}">Date de fin de session</td>
-            <td th:utext="${sessionGRETA.centre.nomCentre}">Centre</td>
             <td th:utext="${sessionGRETA.formation.typeFormation}">Formation</td>
+            <td th:utext="${sessionGRETA.centre.nomCentre}">Centre</td>
             <td>
               <a class="btn btn-outline-success" href="#" th:href="@{'/formulaire/session/edit/'+${sessionGRETA.id}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"

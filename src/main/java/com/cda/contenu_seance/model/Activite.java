@@ -16,7 +16,7 @@ public class Activite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String activitesTypes;
-    private int numOrdre;
+    private int numAT;
 
     @OneToMany(mappedBy = "activite")
     private List<Competence> competences;

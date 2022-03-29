@@ -34,4 +34,5 @@ build/
 
 ### Personal exclusion ###
 /src/main/resources/application.properties
+application.properties
 .properties

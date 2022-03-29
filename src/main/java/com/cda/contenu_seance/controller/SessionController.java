@@ -15,7 +15,7 @@ public class SessionController {
 
     @GetMapping(value = "/session")
     public String formSession(Model model) {
-        model.addAttribute("sessions", ficheService.getSessions());
+        model.addAttribute("sessionsGRETA", ficheService.getSessions());
         return "formulaire/session";
     }
 

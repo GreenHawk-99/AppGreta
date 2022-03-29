@@ -46,7 +46,6 @@ public class DashboardController {
     @GetMapping(value = "/formations")
     public String dashboardFormations(Model model){
         model.addAttribute("formations", ficheService.getFormations());
-        model.addAttribute("sessions", ficheService.getSessions());
         return "dashboard/dashboardFormations";
     }
 

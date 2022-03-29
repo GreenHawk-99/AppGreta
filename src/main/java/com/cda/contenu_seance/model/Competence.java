@@ -11,12 +11,12 @@ import java.util.*;
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class Competence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nom;
+    private String competenceProfessionel;
+    private int numCP;
 
     @ManyToOne
     private Activite activite;

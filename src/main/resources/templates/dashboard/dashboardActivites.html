@@ -48,7 +48,7 @@
           <thead>
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Ordre n°</th>
+            <th scope="col">N° AT</th>
             <th scope="col">Activité</th>
             <th scope="col">Nom REAC</th>
             <th scope="col">Action</th>
@@ -57,9 +57,9 @@
           <tbody>
           <tr th:each="activite:${activites}">
             <td th:utext="${activite.id}">Id</td>
-            <td th:utext="${activite.numOrdre}">Ordre n°</td>
+            <td th:utext="${activite.numAT}">N° AT</td>
             <td th:utext="${activite.activitesTypes}">Activité</td>
-            <td th:utext="${activite.reac.}">Nom REAC</td>
+            <td th:utext="${activite.reac.nom}">Nom REAC</td>
             <td>
               <a class="btn btn-outline-success" href="#" th:href="@{'/formulaire/session/edit/'+${activite.id}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"

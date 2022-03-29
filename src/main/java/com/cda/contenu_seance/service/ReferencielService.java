@@ -43,14 +43,14 @@ public class ReferencielService {
             activiteDb = activiteRepository.findById(activiteDTO.getId()).orElse(new Activite());
         }
         activiteDb.setActivitesTypes(activiteDTO.getActivitesTypes());
-        activiteDb.setNumOrdre(activiteDTO.getNumOrdre());
+        activiteDb.setNumAT(activiteDTO.getNumAT());
         activiteRepository.save(activiteDb);
     }
 
     public void updateActivite(ActiviteDTO activiteDTO) {
         Activite activiteDb = activiteRepository.findById(activiteDTO.getId()).orElse(null);
         activiteDb.setActivitesTypes(activiteDTO.getActivitesTypes());
-        activiteDb.setNumOrdre(activiteDTO.getNumOrdre());
+        activiteDb.setNumAT(activiteDTO.getNumAT());
         activiteRepository.save(activiteDb);
     }
 
@@ -75,13 +75,15 @@ public class ReferencielService {
         } else {
             competenceDb = competenceRepository.findById(competenceDTO.getId()).orElse(new Competence());
         }
-        competenceDb.setNom(competenceDTO.getNom());
+        competenceDb.setCompetenceProfessionel(competenceDTO.getCompetenceProfessionel());
+        competenceDb.setNumCP(competenceDTO.getNumCP());
         competenceRepository.save(competenceDb);
     }
 
     public void updateCompetence(CompetenceDTO competenceDTO) {
         Competence competenceDb = competenceRepository.findById(competenceDTO.getId()).orElse(null);
-        competenceDb.setNom(competenceDTO.getNom());
+        competenceDb.setCompetenceProfessionel(competenceDTO.getCompetenceProfessionel());
+        competenceDb.setNumCP(competenceDTO.getNumCP());
         competenceRepository.save(competenceDb);
     }
 

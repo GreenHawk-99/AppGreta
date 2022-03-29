@@ -49,19 +49,19 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Type de la formation</th>
-            <th scope="col">Debut de la session</th>
+<!--            <th scope="col">Debut de la session</th>
             <th scope="col">Fin de la session</th>
-            <th scope="col">Reac</th>
+            <th scope="col">Reac</th>-->
             <th scope="col">Actions</th>
           </tr>
           </thead>
           <tbody>
           <tr th:each="formation:${formations}">
-            <td th:utext="${formation.id}">Id de la formation</td>
-            <td th:utext="${formation.typeFormation}">Type de la formation</td>
-            <td th:utext="${formation.sessions}">Debut de la session</td>
-            <td th:utext="${formation.sessions}">Fin de la session</td>
-            <td th:utext="${formation.reac}">Reac</td>
+            <td th:text="${formation.id}">Id de la formation</td>
+            <td th:text="${formation.typeFormation}">Type de la formation</td>
+<!--            <td th:text="${formations.sessions.dateDebut}">Debut de la session</td>
+            <td th:text="${formations.sessions.dateFin}">Fin de la session</td>
+            <td th:text="${formations.reac.nom}">Reac</td>-->
             <td>
               <a class="btn btn-outline-success" href="#" th:href="@{'/formulaire/formation/edit/'+${formation.id}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"
