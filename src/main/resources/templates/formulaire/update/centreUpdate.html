@@ -22,7 +22,7 @@
             <form name="centreUpdate" class="needs-validation" novalidate="" method="post" action="*"
                   th:action="@{'/formulaire/centre/update'}">
                 <div class="row g-4">
-                    <input name="id" type="hidden" value="" th:value="${id}">
+                    <input name="id" type="hidden" th:value="${id}">
                     <div class="col-sm-5">
                         <label for="nomCentre" class="form-label">Nom du centre</label>
                         <input name="nomCentre" type="text" class="form-control" id="nomCentre" placeholder="Nom du centre demandé" value=""  required>

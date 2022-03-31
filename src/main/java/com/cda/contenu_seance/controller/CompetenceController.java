@@ -1,9 +1,7 @@
 package com.cda.contenu_seance.controller;
 
 import com.cda.contenu_seance.dto.CompetenceDTO;
-import com.cda.contenu_seance.dto.SessionDTO;
-import com.cda.contenu_seance.service.FicheService;
-import com.cda.contenu_seance.service.ReferencielService;
+import com.cda.contenu_seance.service.ReferentielService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,17 +11,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/formulaire")
 public class CompetenceController {
     @Autowired
-    ReferencielService referencielService;
+    ReferentielService referentielService;
 
     @GetMapping(value = "/comptence")
     public String formCompetence(Model model) {
-        model.addAttribute("comptences", referencielService.getCompetences());
+        model.addAttribute("comptences", referentielService.getCompetences());
         return "formulaire/comptence";
     }
 
     @PostMapping(value = "/comptence/add")
     public String addCompetence(@ModelAttribute(name = "comptence") CompetenceDTO competenceDTO){
-        referencielService.saveCompetence(competenceDTO);
+        referentielService.saveCompetence(competenceDTO);
         return "redirect:/dashboard/comptences";
     }
 
@@ -35,13 +33,13 @@ public class CompetenceController {
 
     @PostMapping(value="/comptence/update")
     public String updateCompetence(@ModelAttribute(name = "comptenceUpdate") CompetenceDTO competenceDTO){
-        referencielService.updateCompetence(competenceDTO);
+        referentielService.updateCompetence(competenceDTO);
         return "redirect:/dashboard/comptences";
     }
 
     @GetMapping(value = "/comptence/delete/{id}")
     public String deleteCompetence(@PathVariable(name = "id") long id){
-        referencielService.deleteCompetence(id);
+        referentielService.deleteCompetence(id);
         return "redirect:/dashboard/comptences";
     }
 }

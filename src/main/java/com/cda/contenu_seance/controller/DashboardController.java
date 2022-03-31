@@ -2,7 +2,7 @@ package com.cda.contenu_seance.controller;
 
 import com.cda.contenu_seance.service.FicheService;
 import com.cda.contenu_seance.service.FormateurService;
-import com.cda.contenu_seance.service.ReferencielService;
+import com.cda.contenu_seance.service.ReferentielService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DashboardController {
     FicheService ficheService;
     FormateurService formateurService;
-    ReferencielService referencielService;
+    ReferentielService referentielService;
 
     @Autowired
-    public DashboardController(FicheService ficheService, FormateurService formateurService, ReferencielService referencielService) {
+    public DashboardController(FicheService ficheService, FormateurService formateurService, ReferentielService referentielService) {
         this.ficheService = ficheService;
         this.formateurService = formateurService;
-        this.referencielService = referencielService;
+        this.referentielService = referentielService;
     }
 
     @GetMapping(value = "/centres")
@@ -57,21 +57,21 @@ public class DashboardController {
 
     @GetMapping(value = "/activites")
     public String dashboardActivites(Model model){
-        model.addAttribute("activites", referencielService.getActivites());
+        model.addAttribute("activites", referentielService.getActivites());
         return "dashboard/dashboardActivites";
     }
 
     @GetMapping(value = "/competences")
     public String dashboardCompetences(Model model){
-        model.addAttribute("competences", referencielService.getCompetences());
+        model.addAttribute("competences", referentielService.getCompetences());
         return "dashboard/dashboardCompetences";
     }
 
-    @GetMapping(value = "/referenciels")
+    @GetMapping(value = "/referentiels")
     public String dashboardReac(Model model){
-        model.addAttribute("reacs", referencielService.getReacs());
-        model.addAttribute("activites", referencielService.getActivites());
-        model.addAttribute("competences", referencielService.getCompetences());
-        return "dashboard/dashboardReferenciels";
+        model.addAttribute("reacs", referentielService.getReacs());
+        model.addAttribute("activites", referentielService.getActivites());
+        model.addAttribute("competences", referentielService.getCompetences());
+        return "dashboard/dashboardReferentiels";
     }
 }

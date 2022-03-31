@@ -12,43 +12,79 @@
     <div class="py-4 text-center">
       <img class="d-block mx-auto mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72"
            height="57">
-      <h2>Création de Centre GRETA</h2>
-      <p class="lead">Formulaire de création d'un centre du GRETA</p>
+      <h2>Création d'une Fiche de suivi</h2>
+      <p class="lead">Formulaire de création d'une fiche de suivi</p>
     </div>
 
     <div class="row g-6">
-      <h4 class="mb-4">Centre</h4>
-      <form class="needs-validation" novalidate="">
+      <h4 class="mb-4">Fiche de suivi</h4>
+      <form class="needs-validation" novalidate="" method="post" action="*"
+            th:action="@{'/formulaire/fiche/add'}"
+      th:object="${fiche}">
         <div class="row g-4">
-          <div class="col-sm-5">
-            <label for="nomCentre" class="form-label">Nom du centre</label>
-            <input type="text" class="form-control" id="nomCentre" placeholder="Nom du centre demandé" value="" required>
+          <div class="col-sm-6">
+            <label for="dateSeance" class="form-label">Date de la séance</label>
+            <input th:field="*{dateDuJour}" th:value="${dateDuJour}" type="date" class="form-control" id="dateSeance" placeholder="Date de la séance" value="" required>
             <div class="invalid-feedback">
-              Nom valide est demandé.
+              Date valide est demandé.
             </div>
           </div>
 
-          <div class="col-sm-4">
-            <label for="ville" class="form-label">Ville du centre</label>
-            <input type="text" class="form-control" id="ville" placeholder="Nom de ville est demandé" value="" required>
+          <div class="col-sm-6">
+            <label for="dureeSeance" class="form-label">Durée de la séance</label>
+            <input th:field="*{durer}" th:value="${durer}" th:name="${durer}" type="number" class="form-control" id="dureeSeance" placeholder="Combien d'heure de cours" value="" required>
             <div class="invalid-feedback">
-              Nom de ville valide est demandé.
+              Heure de séance valide est demandé.
             </div>
           </div>
 
-          <div class="col-sm-3">
-            <label for="codePostal" class="form-label">Code postal</label>
-            <input type="text" class="form-control" id="codePostal" placeholder="Code postal est demandé" value="" required>
+          <div class="col-md-5">
+            <label for="formation" class="form-label">Formation</label>
+            <select th:field="*{session.formation.typeFormation}" th:name="${typeFormation}" class="form-select" id="formation" required=>
+              <option selected class="disable" disabled>Choisissez la formation</option>
+              <option th:each="formation:${formations}"
+                      th:text="${formation.typeFormation}"
+                      th:value="${typeFormation}">Formations</option>
+            </select>
             <div class="invalid-feedback">
-              Code postal valide est demandé.
+              Please select a valid country.
             </div>
           </div>
 
           <div class="col-12">
-            <label for="adresse" class="form-label">Adresse du centre</label>
-            <input type="text" class="form-control" id="adresse" placeholder="Veuillez saisir l'adresse du centre" required>
+            <label for="contenuePedagogique" class="form-label">Contenus pédagogique de la séance</label>
+            <input th:field="*{objectifPeda}" th:value="${objectifPeda}" th:name="${objetctifPeda}" type="text" class="form-control" id="contenuePedagogique" placeholder="Base de l'informatique, Bureautique, Développement Web, Communication écrite et orale..." required>
             <div class="invalid-feedback">
-              Veuillez saisir une adresse valide.
+              Veuillez entrer un contenue pédagogique valide.
+            </div>
+          </div>
+
+          <div class="col-8">
+            <label for="competence" class="form-label">Competence</label>
+            <select th:field="*{competences}" th:value="${competences}"  class="form-select" id="competence" required=>
+              <option selected class="disable" disabled>Choisissez la formation</option>
+              <option th:each="competence:${competences}"
+                      th:text="${competence.competenceProfessionel}"
+                      th:name="${dateDuJour}">Competences</option>
+            </select>
+            <div class="invalid-feedback">
+              Préciser les comptences traitées.
+            </div>
+          </div>
+          <div class="col-4">
+            <label for="support" class="form-label">Support<span class="text-muted"> (Optional)</span></label>
+            <input th:field="*{support}" th:value="${support}" th:name="${support}" type="text" class="form-control" id="support" placeholder="Support utilisé">
+            <div class="invalid-feedback">
+              Préciser votre support.
+            </div>
+          </div>
+
+
+          <div class="col-12">
+            <label for="deroulement" class="form-label">Deroulement</label>
+            <div class="form-floating">
+              <textarea th:field="*{deroulement}" th:name="${deroulement}" class="form-control" id="deroulement" placeholder="Déroulement du cours et éléments abordés" style="height: 150px" required></textarea>
+              <label for="deroulement" class="text-muted">Déroulement du cours et éléments abordés</label>
             </div>
           </div>
         </div>

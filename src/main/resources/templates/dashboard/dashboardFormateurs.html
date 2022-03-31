@@ -59,13 +59,13 @@
           </thead>
           <tbody>
           <tr th:each="formateur:${formateurs}">
-            <td th:utext="${formateur.id}">Id</td>
-            <td th:utext="${formateur.nom}">Nom</td>
-            <td th:utext="${formateur.prenom}">Prenom</td>
-            <td th:utext="${formateur.email}">Adresse Email</td>
-            <td th:utext="${formateur.mp}">Mot de passe</td>
-            <td th:utext="${formateur.codePostal}">Code Postal</td>
-            <td th:utext="${formateur.tel}">Telephone</td>
+            <td th:text="${formateur.id}">Id</td>
+            <td th:text="${formateur.nom}">Nom</td>
+            <td th:text="${formateur.prenom}">Prenom</td>
+            <td th:text="${formateur.email}">Adresse Email</td>
+            <td th:text="${formateur.mp}">Mot de passe</td>
+            <td th:text="${formateur.codePostal}">Code Postal</td>
+            <td th:text="${formateur.tel}">Telephone</td>
             <td>
               <a class="btn btn-outline-success" href="#" th:href="@{'/formulaire/formateur/edit/'+${formateur.id}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"

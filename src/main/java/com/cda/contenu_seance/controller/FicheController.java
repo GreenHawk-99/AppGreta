@@ -12,15 +12,19 @@ import org.springframework.web.bind.annotation.*;
 public class FicheController {
     @Autowired
     FicheService ficheService;
+    @Autowired
+    ReferentielService referentielService;
 
     @GetMapping(value = {"/fiche"})
     public String formFiche(Model model) {
-        model.addAttribute("fiches", ficheService.getFiches());
+        model.addAttribute("fiche", new SeanceDTO());
+        model.addAttribute("competences", referentielService.getCompetences());
+        model.addAttribute("formations", ficheService.getFormations());
         return "formulaire/fiche";
     }
 
     @PostMapping(value = "/fiche/add")
-    public String saveFiche(@ModelAttribute(name = "session") SeanceDTO seanceDTO){
+    public String saveFiche(@ModelAttribute(name = "fiche") SeanceDTO seanceDTO){
         ficheService.saveFiche(seanceDTO);
         return "redirect:/dashboard/fiches";
     }
@@ -32,7 +36,7 @@ public class FicheController {
     }
 
     @PostMapping(value = "/fiche/update")
-    public String updateFiche(@ModelAttribute(name = "sessionUpdate") SeanceDTO seanceDTO){
+    public String updateFiche(@ModelAttribute(name = "ficheUpdate") SeanceDTO seanceDTO){
         ficheService.updateFiche(seanceDTO);
         return "redirect:/dashboard/fiches";
     }

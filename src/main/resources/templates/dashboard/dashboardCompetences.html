@@ -56,10 +56,10 @@
           </thead>
           <tbody>
           <tr th:each="competence:${competences}">
-            <td th:utext="${competence.id}">Id</td>
-            <td th:utext="${competence.numCP}">N° CP</td>
-            <td th:utext="${competence.competenceProfessionel}">Nom de la compétence</td>
-            <td th:utext="${competence.activite.activitesTypes}">Nom de l'activite</td>
+            <td th:text="${competence.id}">Id</td>
+            <td th:text="${competence.numCP}">N° CP</td>
+            <td th:text="${competence.competenceProfessionel}">Nom de la compétence</td>
+            <td th:text="${competence.activite.activitesTypes}">Nom de l'activite</td>
             <td>
               <a class="btn btn-outline-success" href="#" th:href="@{'/formulaire/session/edit/'+${competence.id}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"

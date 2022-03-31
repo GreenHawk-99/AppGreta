@@ -20,7 +20,7 @@ public class Reac {
     private String lien;
     @Temporal(TemporalType.DATE)
     private Date dateDebut;
-    private Long durer;
+    private int duree;
 
     @ManyToOne
     private Formation formation;

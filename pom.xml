@@ -70,7 +70,7 @@
             <artifactId>bootstrap</artifactId>
             <version>5.1.3</version>
         </dependency>
-        <!-- Depencies about validation other -->
+        <!-- Depencies about validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
@@ -81,6 +81,14 @@
             <artifactId>modelmapper</artifactId>
             <version>2.3.7</version>
         </dependency>
+        <!-- Validator -->
+        <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+        <!--<dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>-->
+
     </dependencies>
 
     <build>

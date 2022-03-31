@@ -57,11 +57,11 @@
           </thead>
           <tbody>
           <tr th:each="centre:${centres}">
-            <td th:utext="${centre.id}">Id</td>
-            <td th:utext="${centre.nomCentre}">Nom</td>
-            <td th:utext="${centre.ville}">Ville</td>
-            <td th:utext="${centre.adresseCentre}">Adresse</td>
-            <td th:utext="${centre.codesPostal}">Code Postal</td>
+            <td th:text="${centre.id}">Id</td>
+            <td th:text="${centre.nomCentre}">Nom</td>
+            <td th:text="${centre.ville}">Ville</td>
+            <td th:text="${centre.adresseCentre}">Adresse</td>
+            <td th:text="${centre.codesPostal}">Code Postal</td>
             <td>
               <a class="btn btn-outline-success" href="#" th:href="@{'/formulaire/centre/edit/'+${centre.id}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"

@@ -26,26 +26,34 @@
         </button>
       </div>
     </div>
-    <h2>Fiche de suivis des cours</h2>
+    <h2>Fiche de suivi des cours</h2>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
         <thead>
         <tr>
           <th scope="col">Id</th>
           <th scope="col">Formateur</th>
+          <th scope="col">Date</th>
           <th scope="col">Formation</th>
           <th scope="col">Contenue pédagogique</th>
-          <th scope="col">Date</th>
+          <th scope="col">Déroulement</th>
+          <th scope="col">Support</th>
+          <th scope="col">Comp</th>
+          <th scope="col">Durée de la séance en heure</th>
           <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="fiche:${fiches}">
-          <td th:utext="${formateur.id}">Id</td>
-          <td th:utext="${formateur.nom}+' '+${formateur.prenom}">Formateur</td>
-          <td th:utext="${formation.nom}">Formation</td>
-          <td th:utext="${fiche.contenuepedagogique}">Contenue pédagogique</td>
-          <td th:utext="${fiche.dateDuJour}">Date</td>
+          <td th:text="${fiche.id}">Id</td>
+          <td th:text="${fiche.formateurs.nom}+' '+${fiche.formateurs.prenom}">Formateur</td>
+          <td th:text="${fiche.dateDuJour}">Date</td>
+          <td th:text="${fiche.session.formation.typeFormation}">Formation</td>
+          <td th:text="${fiche.objectifPeda}">Contenue pédagogique</td>
+          <td th:text="${fiche.deroulement}">Déroulement</td>
+          <td th:text="${fiche.support}">Support</td>
+          <td><p th:each="competence:${fiche.competences}" th:text="${competence.competenceProfessionel}"></p></td>
+          <td th:text="${fiche.durer}">Durée de la séance en heure</td>
           <td>
               <div class="btn btn-outline-success">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">

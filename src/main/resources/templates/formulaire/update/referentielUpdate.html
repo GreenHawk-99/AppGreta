@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Page Index</title>
+    <div th:replace="fragments/header :: header-css (title='Index')"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header-nav"/>
+
+<main>
+    <div class="container">
+        <div class="py-4 text-center">
+            <img class="d-block mx-auto mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72"
+                 height="57">
+            <h2>Création d'un Référentiel (REAC)</h2>
+            <p class="lead">Formulaire de création d'un référentiel emploi activités et compétences.</p>
+        </div>
+
+        <div class="row g-6">
+            <h4 class="mb-4">REAC</h4>
+            <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
+                  th:action="@{'/formulaire/referentiel/add'}"
+                  th:object="${reacDTO}">
+                <div class="row g-4">
+                    <input name="id" type="hidden" th:value="${id}">
+                    <div class="col-sm-6">
+                        <label for="nomRef" class="form-label">Nom du REAC</label>
+                        <input th:field="*{nom}" name="nomRef" type="text" class="form-control" id="nomRef" placeholder="Nom du REAC est demandé" value=""  required>
+                        <div class="invalid-feedback">
+                            Nom de REAC valide est demandé.
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="lien" class="form-label">Lien du référentiel</label>
+                        <input th:field="*{lien}" name="lien" type="text" class="form-control" id="lien" placeholder="Lien du référentiel est demandé" value="" required>
+                        <div class="invalid-feedback">
+                            Lien du référentiel valide est demandé.
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label for="dateDebut" class="form-label">Date d'application du REAC</label>
+                        <input th:field="*{dateDebut}" name="dateDebut" type="date" class="form-control" id="dateDebut" placeholder="Veuillez saisir une date d'application du REAC" value="" required>
+                        <div class="invalid-feedback">
+                            Veuillez saisir une date d'application du REAC valide.
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label for="duree" class="form-label">Durée applicative du REAC</label>
+                        <input th:field="*{duree}" name="duree" type="number" class="form-control" id="duree" placeholder="Veuillez saisir une durée applicative du REAC" required>
+                        <div class="invalid-feedback">
+                            Veuillez saisir une durée applicative du REAC valide.
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="formation" class="form-label">Formation</label>
+                        <select th:field="*{formation}" class="form-select" id="formation" required=>
+                            <option selected class="disable" value="" disabled>Choisissez la formation pour le REAC</option>
+                            <option th:each="uneFormation:${formations}"
+                                    th:text="${uneFormation.typeFormation}"
+                                    th:value="${uneFormation.id}">Liste des formations</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+                <div class="text-center">
+                    <button class="w-50 btn btn-primary btn-lg" type="submit">Envoyer le formulaire</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<!-- /.container -->
+<div th:replace="fragments/footer:: footer"/>
+</body>
+</html>

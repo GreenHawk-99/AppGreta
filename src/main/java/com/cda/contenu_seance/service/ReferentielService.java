@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ReferencielService {
+public class ReferentielService {
     ActiviteRepository activiteRepository;
     CompetenceRepository competenceRepository;
     ReacRepository reacRepository;
 
     @Autowired
-    public ReferencielService(ActiviteRepository activiteRepository,
+    public ReferentielService(ActiviteRepository activiteRepository,
                               CompetenceRepository competenceRepository,
                               ReacRepository reacRepository) {
         this.activiteRepository = activiteRepository;
@@ -108,17 +108,21 @@ public class ReferencielService {
         } else {
             reacDb = reacRepository.findById(reacDTO.getId()).orElse(new Reac());
         }
+        reacDb.setNom(reacDTO.getNom());
         reacDb.setLien(reacDTO.getLien());
         reacDb.setDateDebut(reacDTO.getDateDebut());
-        reacDb.setDurer(reacDTO.getDurer());
+        reacDb.setDuree(reacDTO.getDuree());
+        reacDb.setFormation(reacDTO.getFormation());
         reacRepository.save(reacDb);
     }
 
     public void updateReac(ReacDTO reacDTO) {
         Reac reacDb = reacRepository.findById(reacDTO.getId()).orElse(null);
+        reacDb.setNom(reacDTO.getNom());
         reacDb.setLien(reacDTO.getLien());
         reacDb.setDateDebut(reacDTO.getDateDebut());
-        reacDb.setDurer(reacDTO.getDurer());
+        reacDb.setDuree(reacDTO.getDuree());
+        reacDb.setFormation(reacDTO.getFormation());
         reacRepository.save(reacDb);
     }
 
