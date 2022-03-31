@@ -13,6 +13,6 @@ public class CompetenceDTO {
     private Long id;
     private String competenceProfessionel;
     private int numCP;
-    private Activite activiter;
+    private Activite activite;
     private Set<Seance> seances;
 }

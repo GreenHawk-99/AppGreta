@@ -2,6 +2,7 @@ package com.cda.contenu_seance.controller;
 
 import com.cda.contenu_seance.dto.CentreDTO;
 import com.cda.contenu_seance.dto.FormationDTO;
+import com.cda.contenu_seance.model.Formation;
 import com.cda.contenu_seance.service.FicheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ public class FormationController {
 
     @GetMapping(value = "/formation")
     public String formFormation(Model model){
-        model.addAttribute("formation", new FormationDTO());
+        model.addAttribute("formation", new Formation());
         return "formulaire/formation";
     }
 
@@ -30,7 +31,7 @@ public class FormationController {
 
     @GetMapping(value = "/formation/edit/{id}")
     public String editFormation(Model model, @PathVariable(name = "id") long id){
-        model.addAttribute("formation", new FormationDTO());
+        model.addAttribute("formation", new Formation());
         model.addAttribute("id", id);
         return "formulaire/update/formationUpdate";
     }

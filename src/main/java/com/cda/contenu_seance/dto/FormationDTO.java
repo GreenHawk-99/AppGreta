@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 public class FormationDTO {
     private Long id;
-    @NotNull@NotEmpty@NotBlank
+    @NotNull@NotEmpty
     private String typeFormation;
     private List<Reac> reac;
     private Centre centre;

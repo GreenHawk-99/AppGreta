@@ -1,10 +1,12 @@
 package com.cda.contenu_seance.controller;
 
 import com.cda.contenu_seance.dto.ActiviteDTO;
+import com.cda.contenu_seance.model.Activite;
 import com.cda.contenu_seance.service.ReferentielService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -15,26 +17,27 @@ public class ActiviteController {
 
     @GetMapping(value = "/activite")
     public String formActivite(Model model) {
-        model.addAttribute("activite", new ActiviteDTO());
-        model.addAttribute("reacsliste", referentielService.getReacs());
+        model.addAttribute("activite", new Activite());
+        model.addAttribute("reacs", referentielService.getReacs());
         return "formulaire/activite";
     }
 
     @PostMapping(value = "/activite/add")
-    public String addActivite(@ModelAttribute(name = "activite") ActiviteDTO activiteDTO){
+    public String addActivite(@Validated @ModelAttribute(name = "activite") ActiviteDTO activiteDTO){
         referentielService.saveActivite(activiteDTO);
         return "redirect:/dashboard/activites";
     }
 
     @GetMapping(value = "/activite/edit/{id}")
     public String editActivite(Model model, @PathVariable(name = "id") long id){
-        model.addAttribute("activite", new ActiviteDTO());
         model.addAttribute("id", id);
+        model.addAttribute("activite", new Activite());
+        model.addAttribute("reacs", referentielService.getReacs());
         return "formulaire/update/activiteUpdate";
     }
 
     @PostMapping(value="/activite/update")
-    public String updateActivite(@ModelAttribute(name = "activiteUpdate") ActiviteDTO activiteDTO){
+    public String updateActivite(@Validated @ModelAttribute(name = "activiteUpdate") ActiviteDTO activiteDTO){
         referentielService.updateActivite(activiteDTO);
         return "redirect:/dashboard/activites";
     }

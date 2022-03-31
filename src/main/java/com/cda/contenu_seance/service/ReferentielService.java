@@ -44,6 +44,7 @@ public class ReferentielService {
         }
         activiteDb.setActivitesTypes(activiteDTO.getActivitesTypes());
         activiteDb.setNumAT(activiteDTO.getNumAT());
+        activiteDb.setReac(activiteDTO.getReac());
         activiteRepository.save(activiteDb);
     }
 
@@ -51,6 +52,7 @@ public class ReferentielService {
         Activite activiteDb = activiteRepository.findById(activiteDTO.getId()).orElse(null);
         activiteDb.setActivitesTypes(activiteDTO.getActivitesTypes());
         activiteDb.setNumAT(activiteDTO.getNumAT());
+        activiteDb.setReac(activiteDTO.getReac());
         activiteRepository.save(activiteDb);
     }
 
@@ -77,6 +79,7 @@ public class ReferentielService {
         }
         competenceDb.setCompetenceProfessionel(competenceDTO.getCompetenceProfessionel());
         competenceDb.setNumCP(competenceDTO.getNumCP());
+        competenceDb.setActivite(competenceDTO.getActivite());
         competenceRepository.save(competenceDb);
     }
 
@@ -84,6 +87,7 @@ public class ReferentielService {
         Competence competenceDb = competenceRepository.findById(competenceDTO.getId()).orElse(null);
         competenceDb.setCompetenceProfessionel(competenceDTO.getCompetenceProfessionel());
         competenceDb.setNumCP(competenceDTO.getNumCP());
+        competenceDb.setActivite(competenceDTO.getActivite());
         competenceRepository.save(competenceDb);
     }
 

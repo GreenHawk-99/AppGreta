@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 public class ReacDTO {
     private Long id;
-    @NotNull@NotEmpty@NotBlank
+    @NotNull@NotEmpty
     private String nom;
     @NotNull@NotEmpty@NotBlank
     private String lien;

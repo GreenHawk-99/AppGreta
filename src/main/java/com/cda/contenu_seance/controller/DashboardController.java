@@ -1,5 +1,6 @@
 package com.cda.contenu_seance.controller;
 
+import com.cda.contenu_seance.dto.FormationDTO;
 import com.cda.contenu_seance.service.FicheService;
 import com.cda.contenu_seance.service.FormateurService;
 import com.cda.contenu_seance.service.ReferentielService;
@@ -46,6 +47,7 @@ public class DashboardController {
     @GetMapping(value = "/formations")
     public String dashboardFormations(Model model){
         model.addAttribute("formations", ficheService.getFormations());
+        model.addAttribute("formationDTO", new FormationDTO());
         return "dashboard/dashboardFormations";
     }
 
