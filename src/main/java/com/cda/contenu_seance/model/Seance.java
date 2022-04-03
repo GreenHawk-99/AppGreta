@@ -18,7 +18,7 @@ public class Seance {
     private Long id;
     @Temporal(TemporalType.DATE)
     private Date dateDuJour;
-    private int durer;
+    private int duree;
     private String objectifPeda;
     private String support;
     private String deroulement;

@@ -42,6 +42,62 @@
           </button>
         </div>
       </div>
+
+      <!--  Form  -->
+
+      <div class="row justify-content-center">
+        <div class="card border-primary col col-lg-6 col-md-12">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+            <div class="container">
+              <div class="py-4 text-center">
+                <h2 class="text-primary">Création d'une Activité</h2>
+              </div>
+
+              <div class="row g-6">
+                <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
+                      th:action="@{'/formulaire/activite/add'}"
+                      th:object="${activiteForm}">
+                  <div class="row g-4">
+                    <div class="col-sm-6">
+                      <label for="activitesTypes" class="form-label">Nom de l'activité</label>
+                      <input th:field="*{activitesTypes}" name="activitesTypes" type="text" class="form-control" id="activitesTypes" placeholder="Veuillez saisir un nom d'une activité" value=""  required>
+                      <div class="invalid-feedback">
+                        Nom de REAC valide est demandé.
+                      </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                      <label for="numAT" class="form-label">Numéro de l'activité</label>
+                      <input th:field="*{numAT}" name="numAT" type="text" class="form-control" id="numAT" placeholder="Veuillez saisir un numéro de l'activité" value="" required>
+                      <div class="invalid-feedback">
+                        Lien du référentiel valide est demandé.
+                      </div>
+                    </div>
+
+                    <div class="col-4">
+                      <label for="reac" class="form-label">Référentiel</label>
+                      <select th:field="*{reac}" class="form-select" id="reac" required=>
+                        <option selected class="disable" value="" disabled>Choisissez le référentiel</option>
+                        <option th:each="unReac:${reacs}"
+                                th:text="${unReac.nom}"
+                                th:value="${unReac.id}">Liste des REAC</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <hr class="my-4">
+                  <div class="text-center">
+                    <button class="w-50 btn btn-primary btn-lg" type="submit">Envoyer le formulaire</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--  Tableau  -->
+
       <h2>Activités</h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -50,27 +106,25 @@
             <th scope="col">Id</th>
             <th scope="col">N° AT</th>
             <th scope="col">Activité</th>
-            <th scope="col">Compétences</th>
             <th scope="col">Nom REAC</th>
             <th scope="col">Action</th>
           </tr>
           </thead>
           <tbody>
-          <tr th:each="activite:${activites}">
-            <td th:text="${activite.id}">Id</td>
-            <td th:text="${activite.numAT}">N° AT</td>
-            <td th:text="${activite.activitesTypes}">Activité</td>
-            <td><p th:each="competence:${activite.competences}" th:text="'-'+${competence.competenceProfessionel}"></p></td>
-            <td th:text="${activite.reac.nom}">Nom REAC</td>
+          <tr th:each="uneActivite:${activites}">
+            <td th:text="${uneActivite.id}">Id</td>
+            <td th:text="${uneActivite.numAT}">N° AT</td>
+            <td th:text="${uneActivite.activitesTypes}">Activité</td>
+            <td th:text="${uneActivite.reac.nom}">Nom REAC</td>
             <td>
-              <a class="btn btn-outline-success" href="#" th:href="@{'/formulaire/activite/edit/'+${activite.id}}">
+              <a class="btn btn-outline-success" href="#" th:href="@{'/formulaire/activite/edit/'+${uneActivite.id}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"
                      viewBox="0 0 16 16">
                   <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
                   <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
                 </svg>
               </a>
-              <a class="btn btn-outline-danger" href="#" th:href="@{'/formulaire/activite/delete/'+${activite.id}}">
+              <a class="btn btn-outline-danger" href="#" th:href="@{'/formulaire/activite/delete/'+${uneActivite.id}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
                      viewBox="0 0 16 16">
                   <path fill-rule="evenodd"

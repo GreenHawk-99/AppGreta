@@ -19,7 +19,7 @@ public class FicheController {
     public String formFiche(Model model) {
         model.addAttribute("fiche", new SeanceDTO());
         model.addAttribute("competences", referentielService.getCompetences());
-        model.addAttribute("formations", ficheService.getFormations());
+        model.addAttribute("sessions", ficheService.getSessions());
         return "formulaire/fiche";
     }
 

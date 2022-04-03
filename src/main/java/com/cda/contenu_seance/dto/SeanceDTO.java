@@ -16,7 +16,7 @@ public class SeanceDTO {
     private Long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDuJour;
-    private int durer;
+    private int duree;
     private String objectifPeda;
     private String support;
     private String deroulement;

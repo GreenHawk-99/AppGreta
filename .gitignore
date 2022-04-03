@@ -33,8 +33,5 @@ build/
 .vscode/
 
 ### Personal exclusion ###
-src/main/resources/application.properties
-/src/main/resources/application.properties
-application.properties
-.properties
-db.properties
+
+/src/main/resources/db.properties

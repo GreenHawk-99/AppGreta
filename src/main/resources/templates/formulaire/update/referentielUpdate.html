@@ -18,12 +18,13 @@
 
         <div class="row g-6">
             <h4 class="mb-4">REAC</h4>
+            <h2 th:text="'Id: '+${id}"></h2>
             <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
                   th:action="@{'/formulaire/referentiel/add'}"
                   th:object="${reacDTO}">
                 <div class="row g-4">
-                    <input name="id" type="hidden" th:value="${id}">
                     <div class="col-sm-6">
+                        <input name="id" type="hidden" th:value="${id}">
                         <label for="nomRef" class="form-label">Nom du REAC</label>
                         <input th:field="*{nom}" name="nomRef" type="text" class="form-control" id="nomRef" placeholder="Nom du REAC est demandé" value=""  required>
                         <div class="invalid-feedback">

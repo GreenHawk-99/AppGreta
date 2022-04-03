@@ -12,41 +12,41 @@
         <div class="py-4 text-center">
             <img class="d-block mx-auto mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72"
                  height="57">
-            <h2>Modification d'une Activité</h2>
-            <p class="lead">Formulaire de création d'une activité type.</p>
+            <h2>Création d'une Compétence</h2>
+            <p class="lead">Formulaire de création d'une compétence d'une activité type.</p>
         </div>
 
         <div class="row g-6">
-            <h4 class="mb-4">Activité</h4>
+            <h4 class="mb-4">Compétence</h4>
             <h2 th:text="'Id: '+${id}"></h2>
             <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
-                  th:action="@{'/formulaire/activite/add'}"
-                  th:object="${activite}">
+                  th:action="@{'/formulaire/competence/add'}"
+                  th:object="${competence}">
                 <div class="row g-4">
                     <div class="col-sm-6">
                         <input name="id" type="hidden" th:value="${id}">
-                        <label for="activitesTypes" class="form-label">Nom de l'activité</label>
-                        <input th:field="*{activitesTypes}" name="activitesTypes" type="text" class="form-control" id="activitesTypes" placeholder="Veuillez saisir un nom d'une activité" value=""  required>
+                        <label for="competenceProfessionel" class="form-label">Nom de la compétence</label>
+                        <input th:field="*{competenceProfessionel}" name="competenceProfessionel" type="text" class="form-control" id="competenceProfessionel" placeholder="Veuillez saisir un nom d'une compétence" value=""  required>
                         <div class="invalid-feedback">
                             Nom de REAC valide est demandé.
                         </div>
                     </div>
 
                     <div class="col-sm-2">
-                        <label for="numAT" class="form-label">Numéro de l'activité</label>
-                        <input th:field="*{numAT}" name="numAT" type="text" class="form-control" id="numAT" placeholder="Veuillez saisir un numéro de l'activité" value="" required>
+                        <label for="numCP" class="form-label">Numéro de l'activité</label>
+                        <input th:field="*{numCP}" name="numCP" type="text" class="form-control" id="numCP" placeholder="Veuillez saisir un numéro de l'activité" value="" required>
                         <div class="invalid-feedback">
                             Lien du référentiel valide est demandé.
                         </div>
                     </div>
 
                     <div class="col-4">
-                        <label for="reac" class="form-label">Référentiel</label>
-                        <select th:field="*{reac}" class="form-select" id="reac" required=>
-                            <option selected class="disable" value="" disabled>Choisissez le référentiel</option>
-                            <option th:each="unReac:${reacs}"
-                                    th:text="${unReac.nom}"
-                                    th:value="${unReac.id}">Liste des REAC</option>
+                        <label for="activite" class="form-label">Activité</label>
+                        <select th:field="*{activite}" class="form-select" id="activite" required=>
+                            <option selected class="disable" value="" disabled>Choisissez l'activité</option>
+                            <option th:each="uneActivite:${activites}"
+                                    th:text="${uneActivite.activitesTypes}"
+                                    th:value="${uneActivite.id}">Liste des activités</option>
                         </select>
                     </div>
                 </div>

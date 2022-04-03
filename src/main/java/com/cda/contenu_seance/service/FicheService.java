@@ -72,20 +72,24 @@ public class FicheService {
             seanceDb = seanceRepository.findById(seanceDTO.getId()).orElse(new Seance());
         }
         seanceDb.setDateDuJour(seanceDTO.getDateDuJour());
-        seanceDb.setDurer(seanceDTO.getDurer());
+        seanceDb.setDuree(seanceDTO.getDuree());
         seanceDb.setObjectifPeda(seanceDTO.getObjectifPeda());
         seanceDb.setSupport(seanceDTO.getSupport());
         seanceDb.setDeroulement(seanceDTO.getDeroulement());
+        seanceDb.setFormateurs(seanceDTO.getFormateur());
+        seanceDb.setSession(seanceDTO.getSession());
         seanceRepository.save(seanceDb);
     }
 
     public void updateFiche(SeanceDTO seanceDTO){
         Seance seanceDb = seanceRepository.findById(seanceDTO.getId()).orElse(new Seance());
         seanceDb.setDateDuJour(seanceDTO.getDateDuJour());
-        seanceDb.setDurer(seanceDTO.getDurer());
+        seanceDb.setDuree(seanceDTO.getDuree());
         seanceDb.setObjectifPeda(seanceDTO.getObjectifPeda());
         seanceDb.setSupport(seanceDTO.getSupport());
         seanceDb.setDeroulement(seanceDTO.getDeroulement());
+        seanceDb.setFormateurs(seanceDTO.getFormateur());
+        seanceDb.setSession(seanceDTO.getSession());
         seanceRepository.save(seanceDb);
     }
 

@@ -23,28 +23,28 @@
       th:object="${fiche}">
         <div class="row g-4">
           <div class="col-sm-6">
-            <label for="dateSeance" class="form-label">Date de la séance</label>
-            <input th:field="*{dateDuJour}" th:value="${dateDuJour}" type="date" class="form-control" id="dateSeance" placeholder="Date de la séance" value="" required>
+            <label for="dateDuJour" class="form-label">Date de la séance</label>
+            <input th:field="*{dateDuJour}" name="dateDuJour" type="date" class="form-control" id="dateDuJour" placeholder="Date de la séance" required>
             <div class="invalid-feedback">
               Date valide est demandé.
             </div>
           </div>
 
           <div class="col-sm-6">
-            <label for="dureeSeance" class="form-label">Durée de la séance</label>
-            <input th:field="*{durer}" th:value="${durer}" th:name="${durer}" type="number" class="form-control" id="dureeSeance" placeholder="Combien d'heure de cours" value="" required>
+            <label for="duree" class="form-label">Durée de la séance</label>
+            <input th:field="*{duree}" name="duree" type="number" class="form-control" id="duree" placeholder="Combien d'heure de cours" required>
             <div class="invalid-feedback">
               Heure de séance valide est demandé.
             </div>
           </div>
 
           <div class="col-md-5">
-            <label for="formation" class="form-label">Formation</label>
-            <select th:field="*{session.formation.typeFormation}" th:name="${typeFormation}" class="form-select" id="formation" required=>
-              <option selected class="disable" disabled>Choisissez la formation</option>
-              <option th:each="formation:${formations}"
-                      th:text="${formation.typeFormation}"
-                      th:value="${typeFormation}">Formations</option>
+            <label for="formation" class="form-label">Session</label>
+            <select th:field="*{session}" name="formation" class="form-select" id="formation" required=>
+              <option selected value="" class="disable" disabled>Choisissez la session</option>
+              <option th:each="uneSession:${sessions}"
+                      th:text="${uneSession.formation.typeFormation}"
+                      th:value="${uneSession.id}">Liste des sessions</option>
             </select>
             <div class="invalid-feedback">
               Please select a valid country.
@@ -52,8 +52,8 @@
           </div>
 
           <div class="col-12">
-            <label for="contenuePedagogique" class="form-label">Contenus pédagogique de la séance</label>
-            <input th:field="*{objectifPeda}" th:value="${objectifPeda}" th:name="${objetctifPeda}" type="text" class="form-control" id="contenuePedagogique" placeholder="Base de l'informatique, Bureautique, Développement Web, Communication écrite et orale..." required>
+            <label for="objectifPeda" class="form-label">Contenus pédagogique de la séance</label>
+            <input th:field="*{objectifPeda}" name="objectifPeda" type="text" class="form-control" id="objectifPeda" placeholder="Base de l'informatique, Bureautique, Développement Web, Communication écrite et orale..." required>
             <div class="invalid-feedback">
               Veuillez entrer un contenue pédagogique valide.
             </div>
@@ -62,10 +62,10 @@
           <div class="col-8">
             <label for="competence" class="form-label">Competence</label>
             <select th:field="*{competences}" th:value="${competences}"  class="form-select" id="competence" required=>
-              <option selected class="disable" disabled>Choisissez la formation</option>
-              <option th:each="competence:${competences}"
-                      th:text="${competence.competenceProfessionel}"
-                      th:name="${dateDuJour}">Competences</option>
+              <option selected value="" class="disable" disabled>Choisissez la formation</option>
+              <option th:each="uneCompetence:${competences}"
+                      th:text="${uneCompetence.competenceProfessionel}"
+                      th:value="${uneCompetence.id}">Liste de competences</option>
             </select>
             <div class="invalid-feedback">
               Préciser les comptences traitées.
@@ -73,7 +73,7 @@
           </div>
           <div class="col-4">
             <label for="support" class="form-label">Support<span class="text-muted"> (Optional)</span></label>
-            <input th:field="*{support}" th:value="${support}" th:name="${support}" type="text" class="form-control" id="support" placeholder="Support utilisé">
+            <input th:field="*{support}" name="support" type="text" class="form-control" id="support" placeholder="Support utilisé">
             <div class="invalid-feedback">
               Préciser votre support.
             </div>
@@ -83,7 +83,7 @@
           <div class="col-12">
             <label for="deroulement" class="form-label">Deroulement</label>
             <div class="form-floating">
-              <textarea th:field="*{deroulement}" th:name="${deroulement}" class="form-control" id="deroulement" placeholder="Déroulement du cours et éléments abordés" style="height: 150px" required></textarea>
+              <textarea th:field="*{deroulement}" name="deroulement" class="form-control" id="deroulement" placeholder="Déroulement du cours et éléments abordés" style="height: 150px" required></textarea>
               <label for="deroulement" class="text-muted">Déroulement du cours et éléments abordés</label>
             </div>
           </div>
