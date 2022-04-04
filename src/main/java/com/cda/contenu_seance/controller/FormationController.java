@@ -31,8 +31,8 @@ public class FormationController {
 
     @GetMapping(value = "/formation/edit/{id}")
     public String editFormation(Model model, @PathVariable(name = "id") long id){
-        model.addAttribute("formation", new Formation());
         model.addAttribute("id", id);
+        model.addAttribute("formationForm", new Formation());
         return "formulaire/update/formationUpdate";
     }
 

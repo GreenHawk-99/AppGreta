@@ -18,7 +18,7 @@ public class FormateurController {
 
     @GetMapping(value = "/formateur")
     public String formFormateur(Model model){
-        model.addAttribute("formateurs", formateurService.getFormateurs());
+        model.addAttribute("formateurForm", new IntervenantDTO());
         return "formulaire/formateur";
     }
 
@@ -31,6 +31,7 @@ public class FormateurController {
     @GetMapping(value = "/formateur/edit/{id}")
     public String editFormateur(Model model, @PathVariable(name = "id") long id){
         model.addAttribute("id", id);
+        model.addAttribute("formateurForm", new IntervenantDTO());
         return "formulaire/update/formateurUpdate";
     }
 

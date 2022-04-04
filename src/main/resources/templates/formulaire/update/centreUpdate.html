@@ -10,15 +10,12 @@
 <main>
     <div class="container">
         <div class="py-4 text-center">
-            <img class="d-block mx-auto mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72"
-                 height="57">
             <h2>Modification de Centre GRETA</h2>
-            <p class="lead">Formulaire de création d'un centre du GRETA</p>
         </div>
 
         <div class="row g-6">
-            <h4 class="mb-4">Centre</h4>
-            <h2 th:text="'Id:'+${id}"></h2>
+            <h2 class="mb-4">Centre</h2>
+            <h4 th:text="'Id:'+${id}"></h4>
             <form name="centreUpdate" class="needs-validation" novalidate="" method="post" action="*"
                   th:action="@{'/formulaire/centre/update'}">
                 <div class="row g-4">

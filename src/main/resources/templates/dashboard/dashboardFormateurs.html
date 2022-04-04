@@ -50,43 +50,42 @@
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
             <div class="container">
               <div class="py-4 text-center">
-                <h2 class="text-primary">Création de Formateur GRETA</h2>
+                <h2 class="text-primary">Création d'un Formateur du GRETA</h2>
               </div>
 
               <div class="row g-6">
                 <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
-                      th:action="@{'/formulaire/formateur/add'}">
+                      th:action="@{'/formulaire/formateur/add'}"
+                      th:object="${formateurForm}">
                   <div class="row g-4">
-                    <div class="col-sm-5">
-                      <label for="nomCentre" class="form-label">Nom du centre</label>
-                      <input name="nomCentre" type="text" class="form-control" id="nomCentre" placeholder="Nom du centre demandé" value=""  required>
-                      <div class="invalid-feedback">
-                        Nom valide est demandé.
-                      </div>
+                    <div class="col-sm-6">
+                      <label for="nom" class="form-label">Nom du formateur</label>
+                      <input th:field="*{nom}" type="text" class="form-control" id="nom" placeholder="Veuillez saisir le nom du formateur" value=""  required>
                     </div>
 
-                    <div class="col-sm-4">
-                      <label for="ville" class="form-label">Ville du centre</label>
-                      <input name="ville" type="text" class="form-control" id="ville" placeholder="Nom de ville est demandé" value="" required>
-                      <div class="invalid-feedback">
-                        Nom de ville valide est demandé.
-                      </div>
+                    <div class="col-sm-6">
+                      <label for="prenom" class="form-label">Prénom du formateur</label>
+                      <input th:field="*{prenom}" type="text" class="form-control" id="prenom" placeholder="Veuillez saisir le prénom du formateur" value="" required>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-7">
+                      <label for="email" class="form-label">Adresse email</label>
+                      <input th:field="*{email}" type="text" class="form-control" id="email" placeholder="Veuillez saisir l'adresse email du formateur" value="" required>
+                    </div>
+
+                    <div class="col-5">
+                      <label for="mp" class="form-label">Mot de passe temporaire</label>
+                      <input th:field="*{mp}" type="text" class="form-control" id="mp" placeholder="Veuillez saisir le mot de passe temporaire du formateur" required>
+                    </div>
+
+                    <div class="col-5">
                       <label for="codePostal" class="form-label">Code postal</label>
-                      <input name="codesPostal" type="text" class="form-control" id="codePostal" placeholder="Code postal est demandé" value="" required>
-                      <div class="invalid-feedback">
-                        Code postal valide est demandé.
-                      </div>
+                      <input th:field="*{codePostal}" type="text" class="form-control" id="codePostal" placeholder="Veuillez saisir le code postal du formateur" required>
                     </div>
 
-                    <div class="col-12">
-                      <label for="adresse" class="form-label">Adresse du centre</label>
-                      <input name="adresseCentre" type="text" class="form-control" id="adresse" placeholder="Veuillez saisir l'adresse du centre" required>
-                      <div class="invalid-feedback">
-                        Veuillez saisir une adresse valide.
-                      </div>
+                    <div class="col-7">
+                      <label for="tel" class="form-label">Numéro de téléphone</label>
+                      <input th:field="*{tel}" type="text" class="form-control" id="tel" placeholder="Veuillez saisir le numéro de téléphone du formateur" required>
                     </div>
                   </div>
 
@@ -112,9 +111,8 @@
             <th scope="col">Nom</th>
             <th scope="col">Prenom</th>
             <th scope="col">Adresse Email</th>
-            <th scope="col">Mot de passe</th>
             <th scope="col">Code Postal</th>
-            <th scope="col">Telephone</th>
+            <th scope="col">Téléphone</th>
             <th scope="col">Action</th>
           </tr>
           </thead>
@@ -124,7 +122,6 @@
             <td th:text="${unFormateur.nom}">Nom</td>
             <td th:text="${unFormateur.prenom}">Prenom</td>
             <td th:text="${unFormateur.email}">Adresse Email</td>
-            <td th:text="${unFormateur.mp}">Mot de passe</td>
             <td th:text="${unFormateur.codePostal}">Code Postal</td>
             <td th:text="${unFormateur.tel}">Telephone</td>
             <td>
