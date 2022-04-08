@@ -27,34 +27,28 @@ public class ReferentielController {
     }
 
     @GetMapping(value = "/referentiel")
-    public String formReferenciel(Model model){
+    public String formReferenciel(Model model) {
         model.addAttribute("reacDTO", new ReacDTO());
         model.addAttribute("formations", ficheService.getFormations());
         return "formulaire/referentiel";
     }
 
-    @PostMapping(value = "/referentiel/add")
-    public String addReferenciel(@Validated @ModelAttribute(name = "referentiel") ReacDTO reacDTO){
+    @PostMapping(value = "/referentiel/save")
+    public String addReferenciel(@Validated @ModelAttribute(name = "referentiel") ReacDTO reacDTO) {
         referentielService.saveReac(reacDTO);
         return "redirect:/dashboard/referentiels";
     }
 
     @GetMapping(value = "/referentiel/edit/{id}")
-    public String editReferenciel(Model model, @PathVariable(name = "id") long id){
+    public String editReferenciel(Model model, @PathVariable(name = "id") long id) {
         model.addAttribute("id", id);
-        model.addAttribute("reacDTO", new ReacDTO());
+        model.addAttribute("reacForm", new ReacDTO());
         model.addAttribute("formations", ficheService.getFormations());
         return "formulaire/update/referentielUpdate";
     }
 
-    @PostMapping(value= "/referentiel/update")
-    public String updateReferenciel(@Validated @ModelAttribute(name = "referentielUpdate") ReacDTO reacDTO){
-        referentielService.updateReac(reacDTO);
-        return "redirect:/dashboard/referentiels";
-    }
-
     @GetMapping(value = "/referentiel/delete/{id}")
-    public String deleteReferenciel(@PathVariable(name = "id") long id){
+    public String deleteReferenciel(@PathVariable(name = "id") long id) {
         referentielService.deleteReac(id);
         return "redirect:/dashboard/referentiels";
     }

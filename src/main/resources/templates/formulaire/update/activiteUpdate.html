@@ -17,8 +17,8 @@
             <h2 class="mb-4">Activité</h2>
             <h4 th:text="'Id: '+${id}"></h4>
             <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
-                  th:action="@{'/formulaire/activite/update'}"
-                  th:object="${activite}">
+                  th:action="@{'/formulaire/activite/save'}"
+                  th:object="${activiteForm}">
                 <div class="row g-4">
                     <div class="col-sm-6">
                         <input name="id" type="hidden" th:value="${id}">

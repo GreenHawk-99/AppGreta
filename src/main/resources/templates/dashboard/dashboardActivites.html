@@ -7,7 +7,7 @@
 <body>
 <div th:replace="fragments/header :: header-nav"/>
 
-<main>
+<div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div th:replace="fragments/sidebar :: sidebar-nav"/>
@@ -55,7 +55,7 @@
 
               <div class="row g-6">
                 <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
-                      th:action="@{'/formulaire/activite/add'}"
+                      th:action="@{'/formulaire/activite/save'}"
                       th:object="${activiteForm}">
                   <div class="row g-4">
                     <div class="col-sm-6">
@@ -140,7 +140,7 @@
       </div>
     </main>
   </div>
-</main>
+</div>
 <!-- /.container -->
 <div th:replace="fragments/footer:: footer"/>
 </body>

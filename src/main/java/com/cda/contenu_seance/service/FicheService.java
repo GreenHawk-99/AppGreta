@@ -81,18 +81,6 @@ public class FicheService {
         seanceRepository.save(seanceDb);
     }
 
-    public void updateFiche(SeanceDTO seanceDTO){
-        Seance seanceDb = seanceRepository.findById(seanceDTO.getId()).orElse(new Seance());
-        seanceDb.setDateDuJour(seanceDTO.getDateDuJour());
-        seanceDb.setDuree(seanceDTO.getDuree());
-        seanceDb.setObjectifPeda(seanceDTO.getObjectifPeda());
-        seanceDb.setSupport(seanceDTO.getSupport());
-        seanceDb.setDeroulement(seanceDTO.getDeroulement());
-        seanceDb.setFormateurs(seanceDTO.getFormateur());
-        seanceDb.setSession(seanceDTO.getSession());
-        seanceRepository.save(seanceDb);
-    }
-
     public void deleteFiche(long id){
          seanceRepository.deleteById(id);
     }
@@ -114,12 +102,6 @@ public class FicheService {
         } else {
             formationDb = formationRepository.findById(formationDTO.getId()).orElse(new Formation());
         }
-        formationDb.setTypeFormation(formationDTO.getTypeFormation());
-        formationRepository.save(formationDb);
-    }
-
-    public void updateFormation(FormationDTO formationDTO){
-        Formation formationDb = formationRepository.findById(formationDTO.getId()).orElse(null);
         formationDb.setTypeFormation(formationDTO.getTypeFormation());
         formationRepository.save(formationDb);
     }
@@ -152,15 +134,6 @@ public class FicheService {
         centreRepository.save(centreDb);
     }
 
-    public void updateCentre(CentreDTO centreDTO){
-        Centre centreDb = centreRepository.findById(centreDTO.getId()).orElse(null);
-        centreDb.setNomCentre(centreDTO.getNomCentre());
-        centreDb.setAdresseCentre(centreDTO.getAdresseCentre());
-        centreDb.setCodesPostal(centreDTO.getCodesPostal());
-        centreDb.setVille(centreDTO.getVille());
-        centreRepository.save(centreDb);
-    }
-
     public void deleteCentre(long id){
         centreRepository.deleteById(id);
     }
@@ -178,13 +151,6 @@ public class FicheService {
         } else{
             sessionDb = sessionRepository.findById(sessionDTO.getId()).orElse(new Session());
         }
-        sessionDb.setDateDebut(sessionDTO.getDateDebut());
-        sessionDb.setDateFin(sessionDTO.getDateFin());
-        sessionRepository.save(sessionDb);
-    }
-
-    public void updateSession(SessionDTO sessionDTO){
-        Session sessionDb = sessionRepository.findById(sessionDTO.getId()).orElse(new Session());
         sessionDb.setDateDebut(sessionDTO.getDateDebut());
         sessionDb.setDateFin(sessionDTO.getDateFin());
         sessionRepository.save(sessionDb);

@@ -10,20 +10,22 @@
 <main>
     <div class="container">
         <div class="py-4 text-center">
-            <h2>Création d'une Compétence</h2>
+            <h2>Modification d'une Compétence</h2>
         </div>
 
         <div class="row g-6">
             <h2 class="mb-4">Compétence</h2>
             <h4 th:text="'Id: '+${id}"></h4>
             <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
-                  th:action="@{'/formulaire/competence/update'}"
-                  th:object="${competence}">
+                  th:action="@{'/formulaire/competence/save'}"
+                  th:object="${competenceForm}">
                 <div class="row g-4">
                     <div class="col-sm-6">
                         <input name="id" type="hidden" th:value="${id}">
                         <label for="competenceProfessionel" class="form-label">Nom de la compétence</label>
-                        <input th:field="*{competenceProfessionel}" name="competenceProfessionel" type="text" class="form-control" id="competenceProfessionel" placeholder="Veuillez saisir un nom d'une compétence" value=""  required>
+                        <input th:field="*{competenceProfessionel}" name="competenceProfessionel" type="text"
+                               class="form-control" id="competenceProfessionel"
+                               placeholder="Veuillez saisir un nom d'une compétence" value="" required>
                         <div class="invalid-feedback">
                             Nom de REAC valide est demandé.
                         </div>
@@ -31,7 +33,8 @@
 
                     <div class="col-sm-2">
                         <label for="numCP" class="form-label">Numéro de l'activité</label>
-                        <input th:field="*{numCP}" name="numCP" type="text" class="form-control" id="numCP" placeholder="Veuillez saisir un numéro de l'activité" value="" required>
+                        <input th:field="*{numCP}" name="numCP" type="text" class="form-control" id="numCP"
+                               placeholder="Veuillez saisir un numéro de l'activité" value="" required>
                         <div class="invalid-feedback">
                             Lien du référentiel valide est demandé.
                         </div>
@@ -43,7 +46,8 @@
                             <option selected class="disable" value="" disabled>Choisissez l'activité</option>
                             <option th:each="uneActivite:${activites}"
                                     th:text="${uneActivite.activitesTypes}"
-                                    th:value="${uneActivite.id}">Liste des activités</option>
+                                    th:value="${uneActivite.id}">Liste des activités
+                            </option>
                         </select>
                     </div>
                 </div>

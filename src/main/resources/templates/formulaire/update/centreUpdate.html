@@ -10,19 +10,20 @@
 <main>
     <div class="container">
         <div class="py-4 text-center">
-            <h2>Modification de Centre GRETA</h2>
+            <h2>Modification d'un Centre GRETA</h2>
         </div>
 
         <div class="row g-6">
             <h2 class="mb-4">Centre</h2>
             <h4 th:text="'Id:'+${id}"></h4>
             <form name="centreUpdate" class="needs-validation" novalidate="" method="post" action="*"
-                  th:action="@{'/formulaire/centre/update'}">
+                  th:action="@{'/formulaire/centre/save'}">
                 <div class="row g-4">
                     <input name="id" type="hidden" th:value="${id}">
                     <div class="col-sm-5">
                         <label for="nomCentre" class="form-label">Nom du centre</label>
-                        <input name="nomCentre" type="text" class="form-control" id="nomCentre" placeholder="Nom du centre demandé" value=""  required>
+                        <input name="nomCentre" type="text" class="form-control" id="nomCentre"
+                               placeholder="Nom du centre demandé" value="" required>
                         <div class="invalid-feedback">
                             Nom valide est demandé.
                         </div>
@@ -30,7 +31,8 @@
 
                     <div class="col-sm-4">
                         <label for="ville" class="form-label">Ville du centre</label>
-                        <input name="ville" type="text" class="form-control" id="ville" placeholder="Nom de ville est demandé" value="" required>
+                        <input name="ville" type="text" class="form-control" id="ville"
+                               placeholder="Nom de ville est demandé" value="" required>
                         <div class="invalid-feedback">
                             Nom de ville valide est demandé.
                         </div>
@@ -38,7 +40,8 @@
 
                     <div class="col-sm-3">
                         <label for="codePostal" class="form-label">Code postal</label>
-                        <input name="codesPostal" type="text" class="form-control" id="codePostal" placeholder="Code postal est demandé" value="" required>
+                        <input name="codesPostal" type="text" class="form-control" id="codePostal"
+                               placeholder="Code postal est demandé" value="" required>
                         <div class="invalid-feedback">
                             Code postal valide est demandé.
                         </div>
@@ -46,7 +49,8 @@
 
                     <div class="col-12">
                         <label for="adresse" class="form-label">Adresse du centre</label>
-                        <input name="adresseCentre" type="text" class="form-control" id="adresse" placeholder="Veuillez saisir l'adresse du centre" required>
+                        <input name="adresseCentre" type="text" class="form-control" id="adresse"
+                               placeholder="Veuillez saisir l'adresse du centre" required>
                         <div class="invalid-feedback">
                             Veuillez saisir une adresse valide.
                         </div>

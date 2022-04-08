@@ -48,6 +48,7 @@ public class ReferentielService {
         activiteRepository.save(activiteDb);
     }
 
+/*
     public void updateActivite(ActiviteDTO activiteDTO) {
         Activite activiteDb = activiteRepository.findById(activiteDTO.getId()).orElse(null);
         activiteDb.setActivitesTypes(activiteDTO.getActivitesTypes());
@@ -55,6 +56,7 @@ public class ReferentielService {
         activiteDb.setReac(activiteDTO.getReac());
         activiteRepository.save(activiteDb);
     }
+*/
 
     public void deleteActivite(long id) {
         activiteRepository.deleteById(id);
@@ -83,14 +85,6 @@ public class ReferentielService {
         competenceRepository.save(competenceDb);
     }
 
-    public void updateCompetence(CompetenceDTO competenceDTO) {
-        Competence competenceDb = competenceRepository.findById(competenceDTO.getId()).orElse(null);
-        competenceDb.setCompetenceProfessionel(competenceDTO.getCompetenceProfessionel());
-        competenceDb.setNumCP(competenceDTO.getNumCP());
-        competenceDb.setActivite(competenceDTO.getActivite());
-        competenceRepository.save(competenceDb);
-    }
-
     public void deleteCompetence(long id) {
         competenceRepository.deleteById(id);
     }
@@ -112,16 +106,6 @@ public class ReferentielService {
         } else {
             reacDb = reacRepository.findById(reacDTO.getId()).orElse(new Reac());
         }
-        reacDb.setNom(reacDTO.getNom());
-        reacDb.setLien(reacDTO.getLien());
-        reacDb.setDateDebut(reacDTO.getDateDebut());
-        reacDb.setDuree(reacDTO.getDuree());
-        reacDb.setFormation(reacDTO.getFormation());
-        reacRepository.save(reacDb);
-    }
-
-    public void updateReac(ReacDTO reacDTO) {
-        Reac reacDb = reacRepository.findById(reacDTO.getId()).orElse(null);
         reacDb.setNom(reacDTO.getNom());
         reacDb.setLien(reacDTO.getLien());
         reacDb.setDateDebut(reacDTO.getDateDebut());

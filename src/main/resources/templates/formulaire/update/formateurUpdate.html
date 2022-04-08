@@ -10,45 +10,51 @@
 <main>
     <div class="container">
         <div class="py-4 text-center">
-            <h2>Création d'un Formateur du GRETA</h2>
+            <h2>Modification d'un Formateur du GRETA</h2>
         </div>
 
         <div class="row g-6">
             <h2 class="mb-4">Formateur</h2>
             <h4 th:text="'Id: '+${id}"></h4>
             <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
-                  th:action="@{'/formulaire/formateur/update'}"
+                  th:action="@{'/formulaire/formateur/save'}"
                   th:object="${formateurForm}">
                 <div class="row g-4">
                     <input name="id" type="hidden" th:value="${id}">
                     <div class="col-sm-6">
                         <label for="nom" class="form-label">Nom du formateur</label>
-                        <input th:field="*{nom}" type="text" class="form-control" id="nom" placeholder="Veuillez saisir le nom du formateur" value=""  required>
+                        <input th:field="*{nom}" type="text" class="form-control" id="nom"
+                               placeholder="Veuillez saisir le nom du formateur" value="" required>
                     </div>
 
                     <div class="col-sm-6">
                         <label for="prenom" class="form-label">Prénom du formateur</label>
-                        <input th:field="*{prenom}" type="text" class="form-control" id="prenom" placeholder="Veuillez saisir le prénom du formateur" value="" required>
+                        <input th:field="*{prenom}" type="text" class="form-control" id="prenom"
+                               placeholder="Veuillez saisir le prénom du formateur" value="" required>
                     </div>
 
                     <div class="col-sm-7">
                         <label for="email" class="form-label">Adresse email</label>
-                        <input th:field="*{email}" type="text" class="form-control" id="email" placeholder="Veuillez saisir l'adresse email du formateur" value="" required>
+                        <input th:field="*{email}" type="text" class="form-control" id="email"
+                               placeholder="Veuillez saisir l'adresse email du formateur" value="" required>
                     </div>
 
                     <div class="col-5">
                         <label for="mp" class="form-label">Mot de passe temporaire</label>
-                        <input th:field="*{mp}" type="text" class="form-control" id="mp" placeholder="Veuillez saisir le mot de passe temporaire du formateur" required>
+                        <input th:field="*{mp}" type="text" class="form-control" id="mp"
+                               placeholder="Veuillez saisir le mot de passe temporaire du formateur" required>
                     </div>
 
                     <div class="col-5">
                         <label for="codePostal" class="form-label">Code postal</label>
-                        <input th:field="*{codePostal}" type="text" class="form-control" id="codePostal" placeholder="Veuillez saisir le code postal du formateur" required>
+                        <input th:field="*{codePostal}" type="text" class="form-control" id="codePostal"
+                               placeholder="Veuillez saisir le code postal du formateur" required>
                     </div>
 
                     <div class="col-7">
                         <label for="tel" class="form-label">Numéro de téléphone</label>
-                        <input th:field="*{tel}" type="text" class="form-control" id="tel" placeholder="Veuillez saisir le numéro de téléphone du formateur" required>
+                        <input th:field="*{tel}" type="text" class="form-control" id="tel"
+                               placeholder="Veuillez saisir le numéro de téléphone du formateur" required>
                     </div>
                 </div>
 

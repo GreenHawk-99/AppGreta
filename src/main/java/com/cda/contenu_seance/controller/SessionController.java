@@ -19,26 +19,21 @@ public class SessionController {
         return "formulaire/session";
     }
 
-    @PostMapping(value = "/session/add")
-    public String addSession(@ModelAttribute(name = "session") SessionDTO sessionDTO){
+    @PostMapping(value = "/session/save")
+    public String addSession(@ModelAttribute(name = "session") SessionDTO sessionDTO) {
         ficheService.saveSession(sessionDTO);
         return "redirect:/dashboard/sessions";
     }
 
     @GetMapping(value = "/session/edit/{id}")
-    public String editSession(Model model, @PathVariable(name = "id") long id){
+    public String editSession(Model model, @PathVariable(name = "id") long id) {
         model.addAttribute("id", id);
+        model.addAttribute("sessionForm", new SessionDTO());
         return "formulaire/update/sessionUpdate";
     }
 
-    @PostMapping(value="/session/update")
-    public String updateSession(@ModelAttribute(name = "sessionUpdate") SessionDTO sessionDTO){
-        ficheService.updateSession(sessionDTO);
-        return "redirect:/dashboard/sessions";
-    }
-
     @GetMapping(value = "/session/delete/{id}")
-    public String deleteSession(@PathVariable(name = "id") long id){
+    public String deleteSession(@PathVariable(name = "id") long id) {
         ficheService.deleteSession(id);
         return "redirect:/dashboard/sessions";
     }

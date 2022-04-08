@@ -22,7 +22,7 @@ public class ActiviteController {
         return "formulaire/activite";
     }
 
-    @PostMapping(value = "/activite/add")
+    @PostMapping(value = "/activite/save")
     public String addActivite(@Validated @ModelAttribute(name = "activite") ActiviteDTO activiteDTO){
         referentielService.saveActivite(activiteDTO);
         return "redirect:/dashboard/activites";
@@ -31,16 +31,18 @@ public class ActiviteController {
     @GetMapping(value = "/activite/edit/{id}")
     public String editActivite(Model model, @PathVariable(name = "id") long id){
         model.addAttribute("id", id);
-        model.addAttribute("activite", new Activite());
+        model.addAttribute("activiteForm", new Activite());
         model.addAttribute("reacs", referentielService.getReacs());
         return "formulaire/update/activiteUpdate";
     }
 
+    /*
     @PostMapping(value="/activite/update")
     public String updateActivite(@Validated @ModelAttribute(name = "activiteUpdate") ActiviteDTO activiteDTO){
         referentielService.updateActivite(activiteDTO);
         return "redirect:/dashboard/activites";
     }
+    */
 
     @GetMapping(value = "/activite/delete/{id}")
     public String deleteActivite(@PathVariable(name = "id") long id){

@@ -10,13 +10,16 @@
 <main>
     <div class="container">
         <div class="py-4 text-center">
-            <h2>Modification de Session</h2>
+            <h2>Modification d'une Session</h2>
+
         </div>
 
         <div class="row g-6">
             <h2 class="mb-4">Session</h2>
             <h4 th:text="'Id: '+${id}"></h4>
-            <form class="needs-validation" novalidate="">
+            <form class="needs-validation" novalidate="" method="post" action="*"
+                  th:action="@{'/formulaire/session/save'}"
+                  th:object="${sessionForm}">
                 <div class="row g-4">
                     <div class="col-sm-6">
                         <input name="id" type="hidden" th:value="${id}">
@@ -37,21 +40,30 @@
                         </div>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="formation" class="form-label">Formation de la session</label>
                         <select class="form-select" id="formation" required=>
                             <option selected class="disable" disabled>Choisissez la formation</option>
-                            <option value="CDA">Concepteur Développeur d'Applications</option>
-                            <option value="DWWM">Développeur Web & Web Mobile</option>
-                            <option value="TSSR">Technicien Supérieur Système & Réseaux</option>
-                            <option value="TAI">Technicien d’Assistance en Informatique</option>
-                            <option value="AQDMI">Découverte des métiers de l’Informatique</option>
+                            <option th:each="sessionGRETA:${sessionsGRETA}"
+                                    th:text="${sessionGRETA.formation.typeFormation}">Formation
+                            </option>
                         </select>
                         <div class="invalid-feedback">
-                            Please select a valid country.
+                            Formation invalide.
                         </div>
                     </div>
-
+                    <div class="col-md-6">
+                        <label for="formation" class="form-label">Centre de la session</label>
+                        <select class="form-select" id="centre" required=>
+                            <option selected class="disable" disabled>Choisissez le centre</option>
+                            <option th:each="sessionGRETA:${sessionsGRETA}" th:text="${sessionGRETA.centre.nomCentre}">
+                                Centre
+                            </option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Centre invalide.
+                        </div>
+                    </div>
                     <hr class="my-4">
                     <div class="text-center">
                         <button class="w-50 btn btn-primary btn-lg" type="submit">Envoyer le formulaire</button>

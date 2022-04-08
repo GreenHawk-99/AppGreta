@@ -23,8 +23,8 @@ public class FicheController {
         return "formulaire/fiche";
     }
 
-    @PostMapping(value = "/fiche/add")
-    public String saveFiche(@ModelAttribute(name = "fiche") SeanceDTO seanceDTO){
+    @PostMapping(value = "/fiche/save")
+    public String saveFiche(@ModelAttribute(name = "fiche") SeanceDTO seanceDTO) {
         ficheService.saveFiche(seanceDTO);
         return "redirect:/dashboard/fiches";
     }
@@ -32,17 +32,14 @@ public class FicheController {
     @GetMapping(value = "/fiche/edit/{id}")
     public String editFiche(Model model, @PathVariable(name = "id") long id) {
         model.addAttribute("id", id);
+        model.addAttribute("ficheForm", new SeanceDTO());
+        model.addAttribute("competences", referentielService.getCompetences());
+        model.addAttribute("sessions", ficheService.getSessions());
         return "formulaire/update/ficheUpdate";
     }
 
-    @PostMapping(value = "/fiche/update")
-    public String updateFiche(@ModelAttribute(name = "ficheUpdate") SeanceDTO seanceDTO){
-        ficheService.updateFiche(seanceDTO);
-        return "redirect:/dashboard/fiches";
-    }
-
     @GetMapping(value = "/fiche/delete/{id}")
-    public String deleteFiche(@PathVariable(name = "id") long id){
+    public String deleteFiche(@PathVariable(name = "id") long id) {
         ficheService.deleteFiche(id);
         return "redirect:/dashboard/fiches";
     }

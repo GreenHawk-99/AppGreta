@@ -21,7 +21,7 @@ public class CompetenceController {
         return "formulaire/competence";
     }
 
-    @PostMapping(value = "/competence/add")
+    @PostMapping(value = "/competence/save")
     public String addCompetence(@ModelAttribute(name = "competence") CompetenceDTO competenceDTO){
         referentielService.saveCompetence(competenceDTO);
         return "redirect:/dashboard/competences";
@@ -30,15 +30,9 @@ public class CompetenceController {
     @GetMapping(value = "/competence/edit/{id}")
     public String editCompetence(Model model, @PathVariable(name = "id") long id){
         model.addAttribute("id", id);
-        model.addAttribute("competence", new Competence());
+        model.addAttribute("competenceForm", new Competence());
         model.addAttribute("activites", referentielService.getActivites());
         return "formulaire/update/competenceUpdate";
-    }
-
-    @PostMapping(value="/competence/update")
-    public String updateCompetence(@ModelAttribute(name = "competenceUpdate") CompetenceDTO competenceDTO){
-        referentielService.updateCompetence(competenceDTO);
-        return "redirect:/dashboard/competences";
     }
 
     @GetMapping(value = "/competence/delete/{id}")

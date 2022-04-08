@@ -17,8 +17,8 @@
             <h2 class="mb-4">REAC</h2>
             <h4 th:text="'Id: '+${id}"></h4>
             <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
-                  th:action="@{'/formulaire/referentiel/update'}"
-                  th:object="${reacDTO}">
+                  th:action="@{'/formulaire/referentiel/save'}"
+                  th:object="${reacForm}">
                 <div class="row g-4">
                     <div class="col-sm-6">
                         <input name="id" type="hidden" th:value="${id}">

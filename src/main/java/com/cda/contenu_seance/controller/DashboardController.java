@@ -25,7 +25,7 @@ public class DashboardController {
     }
 
     @GetMapping(value = "/centres")
-    public String dashboardCentres(Model model){
+    public String dashboardCentres(Model model) {
         // Tableau
         model.addAttribute("centres", ficheService.getCentres());
         // Form
@@ -34,7 +34,7 @@ public class DashboardController {
     }
 
     @GetMapping(value = "/fiches")
-    public String dashboardFiches(Model model){
+    public String dashboardFiches(Model model) {
         // Tableau
         model.addAttribute("fiches", ficheService.getFiches());
         // Form
@@ -45,7 +45,7 @@ public class DashboardController {
     }
 
     @GetMapping(value = "/formateurs")
-    public String dashboardFormateurs(Model model){
+    public String dashboardFormateurs(Model model) {
         // Tableau
         model.addAttribute("formateurs", formateurService.getFormateurs());
         // Form
@@ -54,7 +54,7 @@ public class DashboardController {
     }
 
     @GetMapping(value = "/formations")
-    public String dashboardFormations(Model model){
+    public String dashboardFormations(Model model) {
         // Tableau
         model.addAttribute("formations", ficheService.getFormations());
         // Form
@@ -63,16 +63,16 @@ public class DashboardController {
     }
 
     @GetMapping(value = "/sessions")
-    public String dashboardSessions(Model model){
+    public String dashboardSessions(Model model) {
         // Tableau
         model.addAttribute("sessionsGRETA", ficheService.getSessions());
         // Form
-        model.addAttribute("sessionForm",new SessionDTO());
+        model.addAttribute("sessionForm", new SessionDTO());
         return "dashboard/dashboardSessions";
     }
 
     @GetMapping(value = "/activites")
-    public String dashboardActivites(Model model){
+    public String dashboardActivites(Model model) {
         // Tableau
         model.addAttribute("activites", referentielService.getActivites());
         // Form
@@ -82,7 +82,7 @@ public class DashboardController {
     }
 
     @GetMapping(value = "/competences")
-    public String dashboardCompetences(Model model){
+    public String dashboardCompetences(Model model) {
         // Tableau
         model.addAttribute("competences", referentielService.getCompetences());
         // Form
@@ -92,7 +92,7 @@ public class DashboardController {
     }
 
     @GetMapping(value = "/referentiels")
-    public String dashboardReac(Model model){
+    public String dashboardReac(Model model) {
         // Tableau
         model.addAttribute("reacs", referentielService.getReacs());
         model.addAttribute("activites", referentielService.getActivites());
