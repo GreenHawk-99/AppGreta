@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Page Index</title>
-    <div th:replace="fragments/header :: header-css (title='Dashboard Centre')"/>
+    <div th:replace="fragments/header :: header-css (title='Dashboard Formations')"/>
 </head>
 <body>
 <div th:replace="fragments/header :: header-nav"/>
@@ -63,9 +62,7 @@
                                             <input th:field="*{typeFormation}" type="text" class="form-control"
                                                    id="nomFormation"
                                                    placeholder="Veuillez saisir le nom de la formation" required>
-                                            <div class="invalid-feedback">
-                                                Formation valide est demandé.
-                                            </div>
+                                            <span class="invalid-feedback" th:if="${#fields.hasErrors('typeFormation')}" th:errors="*{typeFormation}"></span>
                                         </div>
                                     </div>
 

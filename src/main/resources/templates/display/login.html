@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Page Index</title>
-    <div th:replace="fragments/header :: header-css (title='Index')"/>
+    <div th:replace="fragments/header :: header-css (title='Log in')"/>
 </head>
 <body>
 <div th:replace="fragments/header :: header-nav"/>
@@ -12,16 +11,30 @@
         <div class="py-4 text-center">
 
             <form>
-                <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
                 <h1 class="h3 m-4 fw-normal">Connectez-vous</h1>
 
                 <div class="form-floating m-4">
                     <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
+                    <label for="floatingInput">Adresse Email</label>
                 </div>
                 <div class="form-floating m-4">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
+                    <label for="floatingPassword">Mot de passe</label>
+                </div>
+
+                <div class="form-floating m-4">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Formateur
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Cordonateur
+                        </label>
+                    </div>
                 </div>
 
                 <!--<div class="form-floating m-4">

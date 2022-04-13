@@ -6,12 +6,15 @@ import com.cda.contenu_seance.service.FicheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+@Validated
 @Controller
 @RequestMapping(value = "/formulaire")
-public class FormationController {
+public class FormationController implements WebMvcConfigurer {
 
     @Autowired
     FicheService ficheService;
@@ -23,9 +26,14 @@ public class FormationController {
     }
 
     @PostMapping(value = "/formation/save")
-    public String addFormation(@Validated @ModelAttribute(name = "formation") FormationDTO formationDTO) {
+    public String addFormation(@Validated @ModelAttribute(name = "formation") FormationDTO formationDTO, Model model, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            System.out.println("caca");
+            model.addAttribute("formation", ficheService.getFormations());
+            return "/dashboard/formations";
+        }
         ficheService.saveFormation(formationDTO);
-        return "redirect:/dashboard/formations";
+        return "redirect:/home";
     }
 
     @GetMapping(value = "/formation/edit/{id}")

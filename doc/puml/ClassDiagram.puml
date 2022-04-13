@@ -62,5 +62,5 @@ Session "*" - "1" Formation :"\t\t\t"
 Formation "1" - "*" Reac :"\t\t\t"
 Reac "1" -- "*" Activite :"\t\t\t"
 Activite "1" -- "*" Competence :"\t\t\t"
-Seance "*" - "1..*" Competence :"\t\t\t\t\t\t\t\t\t\t\t"
+Seance "*" - "1" Competence :"\t\t\t\t\t\t\t\t\t\t\t"
 @enduml

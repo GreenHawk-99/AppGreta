@@ -20,6 +20,6 @@ public class Competence {
 
     @ManyToOne
     private Activite activite;
-    @ManyToMany(mappedBy = "competences")
-    private Set<Seance>seances;
+    @OneToMany(mappedBy = "competence")
+    private Set<Seance> seances;
 }

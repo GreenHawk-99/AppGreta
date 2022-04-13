@@ -16,12 +16,17 @@ import java.util.List;
 @Setter
 public class ReacDTO {
     private Long id;
-    @NotNull@NotEmpty
+    @NotNull
+    @NotEmpty
     private String nom;
-    @NotNull@NotEmpty@NotBlank
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private String lien;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDebut;
+    @NotNull
+    @NotEmpty
     private int duree;
     private Formation formation;
     private List<Activite> activites;
