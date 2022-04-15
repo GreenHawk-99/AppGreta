@@ -5,6 +5,7 @@ import com.cda.contenu_seance.service.FicheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -20,14 +21,15 @@ public class CentreController {
     }
 
     @PostMapping(value = "/centre/save")
-    public String addCentre(@ModelAttribute(name = "centre") CentreDTO centreDTO) {
+    public String saveCentre(@Validated CentreDTO centreDTO, Model model) {
         ficheService.saveCentre(centreDTO);
         return "redirect:/dashboard/centres";
     }
 
     @GetMapping(value = "/centre/edit/{id}")
-    public String editCentre(Model model, @PathVariable(name = "id") long id) {
+    public String editCentre(@PathVariable(name = "id") long id, Model model, CentreDTO centreDTO) {
         model.addAttribute("id", id);
+        model.addAttribute("centreForm", centreDTO);
         return "formulaire/update/centreUpdate";
     }
 

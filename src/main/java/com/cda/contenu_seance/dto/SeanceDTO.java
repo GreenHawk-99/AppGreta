@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -19,7 +20,7 @@ public class SeanceDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDuJour;
     @NotNull
-    @NotEmpty
+    @NotBlank
     private int duree;
     @NotNull
     @NotEmpty
@@ -30,7 +31,8 @@ public class SeanceDTO {
     @NotNull
     @NotEmpty
     private String deroulement;
+
     private Formateur formateur;
     private Session session;
-    private List<Competence> competences;
+    private Competence competence;
 }

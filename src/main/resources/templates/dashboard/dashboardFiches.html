@@ -63,7 +63,7 @@
                                             <label for="dateDuJour" class="form-label">Date de la séance</label>
                                             <input th:field="*{dateDuJour}" name="dateDuJour" type="date"
                                                    class="form-control" id="dateDuJour" placeholder="Date de la séance"
-                                                   required>
+                                                   >
                                             <div class="invalid-feedback">
                                                 Date valide est demandé.
                                             </div>
@@ -72,7 +72,7 @@
                                         <div class="col-sm-6">
                                             <label for="duree" class="form-label">Durée de la séance</label>
                                             <input th:field="*{duree}" name="duree" type="number" class="form-control"
-                                                   id="duree" placeholder="Combien d'heure de cours" required>
+                                                   id="duree" placeholder="Combien d'heure de cours" >
                                             <div class="invalid-feedback">
                                                 Heure de séance valide est demandé.
                                             </div>
@@ -81,7 +81,7 @@
                                         <div class="col-md-5">
                                             <label for="formation" class="form-label">Session</label>
                                             <select th:field="*{session}" name="formation" class="form-select"
-                                                    id="formation" required=>
+                                                    id="formation" =>
                                                 <option selected value="" class="disable" disabled>Choisissez la
                                                     session
                                                 </option>
@@ -101,7 +101,7 @@
                                             <input th:field="*{objectifPeda}" name="objectifPeda" type="text"
                                                    class="form-control" id="objectifPeda"
                                                    placeholder="Base de l'informatique, Bureautique, Développement Web, Communication écrite et orale..."
-                                                   required>
+                                                   >
                                             <div class="invalid-feedback">
                                                 Veuillez entrer un contenue pédagogique valide.
                                             </div>
@@ -109,8 +109,8 @@
 
                                         <div class="col-8">
                                             <label for="competence" class="form-label">Competence</label>
-                                            <select th:field="*{competences}" th:value="${competences}"
-                                                    class="form-select" id="competence" required=>
+                                            <select th:field="*{competence}" th:value="${competences}"
+                                                    class="form-select" id="competence">
                                                 <option selected value="" class="disable" disabled>Choisissez la
                                                     formation
                                                 </option>
@@ -187,9 +187,7 @@
                         <td th:text="${uneFiche.objectifPeda}">Contenue pédagogique</td>
                         <td th:text="${uneFiche.deroulement}">Déroulement</td>
                         <td th:text="${uneFiche.support}">Support</td>
-                        <td><p th:each="uneCompetence:${uneFiche.competences}"
-                               th:text="${uneCompetence.competenceProfessionel}"></p>
-                        </td>
+                        <td th:text="${uneFiche.competence.competenceProfessionel}">Compétence</td>
                         <td th:text="${uneFiche.duree}">Durée de la séance en heure</td>
                         <td>
                             <a class="btn btn-outline-success" th:href="@{'/formulaire/fiche/edit/'+${uneFiche.id}}">

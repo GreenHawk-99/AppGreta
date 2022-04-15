@@ -18,9 +18,9 @@ public class ActiviteDTO {
     @NotEmpty
     private String activitesTypes;
     @NotNull
-    @NotEmpty
     @NotBlank
     private int numAT;
+
     private List<Competence> competences;
     private Reac reac;
 }

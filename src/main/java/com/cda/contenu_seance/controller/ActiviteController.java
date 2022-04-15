@@ -16,22 +16,22 @@ public class ActiviteController {
     ReferentielService referentielService;
 
     @GetMapping(value = "/activite")
-    public String formActivite(Model model) {
-        model.addAttribute("activite", new Activite());
+    public String formActivite(Model model, ActiviteDTO activiteDTO) {
+        model.addAttribute("activite", activiteDTO);
         model.addAttribute("reacs", referentielService.getReacs());
         return "formulaire/activite";
     }
 
     @PostMapping(value = "/activite/save")
-    public String addActivite(@Validated @ModelAttribute(name = "activite") ActiviteDTO activiteDTO){
+    public String saveActivite(@Validated ActiviteDTO activiteDTO){
         referentielService.saveActivite(activiteDTO);
         return "redirect:/dashboard/activites";
     }
 
     @GetMapping(value = "/activite/edit/{id}")
-    public String editActivite(Model model, @PathVariable(name = "id") long id){
+    public String editActivite(@PathVariable(name = "id") long id, Model model, ActiviteDTO activiteDTO){
         model.addAttribute("id", id);
-        model.addAttribute("activiteForm", new Activite());
+        model.addAttribute("activiteForm", activiteDTO);
         model.addAttribute("reacs", referentielService.getReacs());
         return "formulaire/update/activiteUpdate";
     }

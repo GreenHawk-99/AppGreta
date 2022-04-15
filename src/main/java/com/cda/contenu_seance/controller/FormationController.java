@@ -1,7 +1,6 @@
 package com.cda.contenu_seance.controller;
 
 import com.cda.contenu_seance.dto.FormationDTO;
-import com.cda.contenu_seance.model.Formation;
 import com.cda.contenu_seance.service.FicheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,37 +8,35 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Validated
 @Controller
 @RequestMapping(value = "/formulaire")
-public class FormationController implements WebMvcConfigurer {
+public class FormationController {
 
     @Autowired
     FicheService ficheService;
 
     @GetMapping(value = "/formation")
-    public String formFormation(Model model) {
-        model.addAttribute("formation", new Formation());
+    public String formFormation(Model model, FormationDTO formationDTO) {
+        model.addAttribute("formation", formationDTO);
         return "formulaire/formation";
     }
 
     @PostMapping(value = "/formation/save")
-    public String addFormation(@Validated @ModelAttribute(name = "formation") FormationDTO formationDTO, Model model, BindingResult bindingResult) {
+    public String saveFormation(@Validated FormationDTO formationDTO, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()){
-            System.out.println("caca");
             model.addAttribute("formation", ficheService.getFormations());
-            return "/dashboard/formations";
+            model.addAttribute("formationForm", formationDTO);
+            return "dashboard/dashboardFormations";
         }
         ficheService.saveFormation(formationDTO);
-        return "redirect:/home";
+        return "redirect:/dashboard/formations";
     }
 
     @GetMapping(value = "/formation/edit/{id}")
-    public String editFormation(Model model, @PathVariable(name = "id") long id) {
+    public String editFormation(@PathVariable(name = "id") long id, Model model, FormationDTO formationDTO) {
         model.addAttribute("id", id);
-        model.addAttribute("formationForm", new Formation());
+        model.addAttribute("formationForm", formationDTO);
         return "formulaire/update/formationUpdate";
     }
 

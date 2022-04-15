@@ -26,8 +26,9 @@ public class ReacDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDebut;
     @NotNull
-    @NotEmpty
+    @NotBlank
     private int duree;
+
     private Formation formation;
     private List<Activite> activites;
 }

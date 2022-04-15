@@ -20,7 +20,7 @@ public class SessionController {
     }
 
     @PostMapping(value = "/session/save")
-    public String addSession(@ModelAttribute(name = "session") SessionDTO sessionDTO) {
+    public String saveSession(@ModelAttribute(name = "session") SessionDTO sessionDTO) {
         ficheService.saveSession(sessionDTO);
         return "redirect:/dashboard/sessions";
     }

@@ -18,9 +18,9 @@ public class CompetenceDTO {
     @NotEmpty
     private String competenceProfessionel;
     @NotNull
-    @NotEmpty
     @NotBlank
     private int numCP;
+
     private Activite activite;
     private Set<Seance> seances;
 }

@@ -34,7 +34,7 @@ public class ReferentielController {
     }
 
     @PostMapping(value = "/referentiel/save")
-    public String addReferenciel(@Validated @ModelAttribute(name = "referentiel") ReacDTO reacDTO) {
+    public String saveReferenciel(@Validated @ModelAttribute(name = "referentiel") ReacDTO reacDTO) {
         referentielService.saveReac(reacDTO);
         return "redirect:/dashboard/referentiels";
     }

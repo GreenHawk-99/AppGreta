@@ -17,6 +17,7 @@ public class SessionDTO {
     private Date dateDebut;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateFin;
+
     private Formation formation;
     private List<Seance> seances;
 }

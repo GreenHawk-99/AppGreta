@@ -1,6 +1,7 @@
 package com.cda.contenu_seance.controller;
 
 import com.cda.contenu_seance.dto.*;
+import com.cda.contenu_seance.service.CoordinateurService;
 import com.cda.contenu_seance.service.FicheService;
 import com.cda.contenu_seance.service.FormateurService;
 import com.cda.contenu_seance.service.ReferentielService;
@@ -17,15 +18,17 @@ import javax.validation.Valid;
 @Validated
 @Controller
 @RequestMapping(value = "/dashboard")
-public class DashboardController implements WebMvcConfigurer {
-    FicheService ficheService;
+public class DashboardController {
+    CoordinateurService coordinateurService;
     FormateurService formateurService;
+    FicheService ficheService;
     ReferentielService referentielService;
 
     @Autowired
-    public DashboardController(FicheService ficheService, FormateurService formateurService, ReferentielService referentielService) {
-        this.ficheService = ficheService;
+    public DashboardController(CoordinateurService coordinateurService, FormateurService formateurService, FicheService ficheService, ReferentielService referentielService) {
+        this.coordinateurService = coordinateurService;
         this.formateurService = formateurService;
+        this.ficheService = ficheService;
         this.referentielService = referentielService;
     }
 
@@ -71,6 +74,9 @@ public class DashboardController implements WebMvcConfigurer {
     public String dashboardSessions(Model model) {
         // Tableau
         model.addAttribute("sessionsGRETA", ficheService.getSessions());
+        model.addAttribute("formations", ficheService.getFormations());
+        model.addAttribute("centres", ficheService.getCentres());
+        model.addAttribute("coordinateurs", coordinateurService.getCoordinateurs());
         // Form
         model.addAttribute("sessionForm", new SessionDTO());
         return "dashboard/dashboardSessions";

@@ -75,7 +75,7 @@
 
                     <div class="col-4">
                       <label for="reac" class="form-label">Référentiel</label>
-                      <select th:field="*{reac}" class="form-select" id="reac" required=>
+                      <select th:field="*{reac}" class="form-select" id="reac">
                         <option selected class="disable" value="" disabled>Choisissez le référentiel</option>
                         <option th:each="unReac:${reacs}"
                                 th:text="${unReac.nom}"

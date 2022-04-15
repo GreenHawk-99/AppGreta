@@ -62,10 +62,10 @@
                                         <div class="col-sm-6">
                                             <label for="competenceProfessionel" class="form-label">Nom de la
                                                 compétence</label>
-                                            <input th:field="*{competenceProfessionel}" name="competenceProfessionel"
+                                            <input th:field="*{competenceProfessionel}"
                                                    type="text" class="form-control" id="competenceProfessionel"
                                                    placeholder="Veuillez saisir un nom d'une compétence" value=""
-                                                   required>
+                                                   >
                                             <div class="invalid-feedback">
                                                 Nom de REAC valide est demandé.
                                             </div>
@@ -73,9 +73,9 @@
 
                                         <div class="col-sm-2">
                                             <label for="numCP" class="form-label">Numéro de l'activité</label>
-                                            <input th:field="*{numCP}" name="numCP" type="text" class="form-control"
+                                            <input th:field="*{numCP}" type="text" class="form-control"
                                                    id="numCP" placeholder="Veuillez saisir un numéro de l'activité"
-                                                   value="" required>
+                                                   value="" >
                                             <div class="invalid-feedback">
                                                 Lien du référentiel valide est demandé.
                                             </div>
@@ -83,7 +83,7 @@
 
                                         <div class="col-4">
                                             <label for="activite" class="form-label">Activité</label>
-                                            <select th:field="*{activite}" class="form-select" id="activite" required=>
+                                            <select th:field="*{activite}" class="form-select" id="activite">
                                                 <option selected class="disable" value="" disabled>Choisissez
                                                     l'activité
                                                 </option>

@@ -23,7 +23,7 @@ public class CoordinateurService {
 
     // Méthodes CRUD Coordinateur
 
-    public List<Coordinateur> getCoordinateur() {
+    public List<Coordinateur> getCoordinateurs() {
         return coordinateurRepository.findAll();
     }
 

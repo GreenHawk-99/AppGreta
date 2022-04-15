@@ -20,7 +20,7 @@ public class FormateurController {
     }
 
     @PostMapping(value = "/formateur/save")
-    public String addFormateur(@ModelAttribute(name = "formateur") IntervenantDTO intervenantDTO) {
+    public String saveFormateur(@ModelAttribute(name = "formateur") IntervenantDTO intervenantDTO) {
         formateurService.saveFormateur(intervenantDTO);
         return "redirect:/dashboard/formateurs";
     }

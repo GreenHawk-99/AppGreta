@@ -26,6 +26,7 @@ public class  CentreDTO {
     @NotNull
     @NotEmpty
     private String ville;
+
     private List<Session> sessions;
     private Coordinateur coordinateurs;
 }
