@@ -1,5 +1,7 @@
 # Application GRETA
 
+lien d'origine du projet:https://gitlab.com/floriangtmegmail/contenuSuivie
+
 #### 1 Besoin et Objectif
 
 Dans le cadre de notre projet de fin d’année, deux camarades et moi avons choisis de concevoir une application pour le GRETA pour simplifier le renseignement de fiches de suivi des cours au sein du GRETA.  
