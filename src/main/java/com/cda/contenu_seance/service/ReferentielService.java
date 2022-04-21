@@ -42,7 +42,7 @@ public class ReferentielService {
         } else {
             activiteDb = activiteRepository.findById(activiteDTO.getId()).orElse(new Activite());
         }
-        activiteDb.setActivitesTypes(activiteDTO.getActivitesTypes());
+        activiteDb.setActivitesTypes(activiteDTO.getActivitesTypes().trim());
         activiteDb.setNumAT(activiteDTO.getNumAT());
         activiteDb.setReac(activiteDTO.getReac());
         activiteRepository.save(activiteDb);
@@ -79,7 +79,7 @@ public class ReferentielService {
         } else {
             competenceDb = competenceRepository.findById(competenceDTO.getId()).orElse(new Competence());
         }
-        competenceDb.setCompetenceProfessionel(competenceDTO.getCompetenceProfessionel());
+        competenceDb.setCompetenceProfessionel(competenceDTO.getCompetenceProfessionel().trim());
         competenceDb.setNumCP(competenceDTO.getNumCP());
         competenceDb.setActivite(competenceDTO.getActivite());
         competenceRepository.save(competenceDb);
@@ -106,8 +106,8 @@ public class ReferentielService {
         } else {
             reacDb = reacRepository.findById(reacDTO.getId()).orElse(new Reac());
         }
-        reacDb.setNom(reacDTO.getNom());
-        reacDb.setLien(reacDTO.getLien());
+        reacDb.setNom(reacDTO.getNom().trim());
+        reacDb.setLien(reacDTO.getLien().trim());
         reacDb.setDateDebut(reacDTO.getDateDebut());
         reacDb.setDuree(reacDTO.getDuree());
         reacDb.setFormation(reacDTO.getFormation());

@@ -14,11 +14,11 @@ import java.util.Set;
 @Setter
 public class CompetenceDTO {
     private Long id;
-    @NotNull
-    @NotEmpty
+    @NotEmpty(message = "Le champ ne peut pas être vide")
+    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
     private String competenceProfessionel;
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Le champ ne doit pas être null")
+    @NotEmpty(message = "Le champ ne peut pas être vide")
     private int numCP;
 
     private Activite activite;

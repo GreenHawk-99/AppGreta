@@ -1,7 +1,7 @@
 package com.cda.contenu_seance.controller;
 
 import com.cda.contenu_seance.dto.IntervenantDTO;
-import com.cda.contenu_seance.service.FormateurService;
+import com.cda.contenu_seance.service.IntervenantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/formulaire")
 public class FormateurController {
     @Autowired
-    FormateurService formateurService;
+    IntervenantService intervenantService;
 
     @GetMapping(value = "/formateur")
     public String formFormateur(Model model) {
@@ -20,8 +20,8 @@ public class FormateurController {
     }
 
     @PostMapping(value = "/formateur/save")
-    public String saveFormateur(@ModelAttribute(name = "formateur") IntervenantDTO intervenantDTO) {
-        formateurService.saveFormateur(intervenantDTO);
+    public String addFormateur(@ModelAttribute(name = "formateur") IntervenantDTO intervenantDTO) {
+        intervenantService.saveFormateur(intervenantDTO);
         return "redirect:/dashboard/formateurs";
     }
 
@@ -34,7 +34,7 @@ public class FormateurController {
 
     @GetMapping(value = "/formateur/delete/{id}")
     public String deleteFormateur(@PathVariable(name = "id") long id) {
-        formateurService.deleteFormateur(id);
+        intervenantService.deleteFormateur(id);
         return "redirect:/dashboard/formateurs";
     }
 }

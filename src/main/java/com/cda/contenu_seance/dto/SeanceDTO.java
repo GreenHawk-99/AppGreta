@@ -20,19 +20,19 @@ public class SeanceDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDuJour;
     @NotNull
-    @NotBlank
+    @NotEmpty(message = "Le champ ne peut pas être vide")
     private int duree;
-    @NotNull
-    @NotEmpty
+    @NotEmpty(message = "Le champ ne peut pas être vide")
+    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
     private String objectifPeda;
-    @NotNull
-    @NotEmpty
+    @NotEmpty(message = "Le champ ne peut pas être vide")
+    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
     private String support;
-    @NotNull
-    @NotEmpty
+    @NotEmpty(message = "Le champ ne peut pas être vide")
+    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
     private String deroulement;
 
     private Formateur formateur;
     private Session session;
-    private Competence competence;
+    private List<Competence> competences;
 }

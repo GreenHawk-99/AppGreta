@@ -62,23 +62,25 @@
                                         <div class="col-sm-6">
                                             <label for="competenceProfessionel" class="form-label">Nom de la
                                                 compétence</label>
+                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
+                                                <p class="alert alert-danger"
+                                                   th:text="${anError.defaultMessage}"></p>
+                                            </div>
                                             <input th:field="*{competenceProfessionel}"
                                                    type="text" class="form-control" id="competenceProfessionel"
                                                    placeholder="Veuillez saisir un nom d'une compétence" value=""
-                                                   >
-                                            <div class="invalid-feedback">
-                                                Nom de REAC valide est demandé.
-                                            </div>
+                                            >
                                         </div>
 
                                         <div class="col-sm-2">
                                             <label for="numCP" class="form-label">Numéro de l'activité</label>
+                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
+                                                <p class="alert alert-danger"
+                                                   th:text="${anError.defaultMessage}"></p>
+                                            </div>
                                             <input th:field="*{numCP}" type="text" class="form-control"
                                                    id="numCP" placeholder="Veuillez saisir un numéro de l'activité"
-                                                   value="" >
-                                            <div class="invalid-feedback">
-                                                Lien du référentiel valide est demandé.
-                                            </div>
+                                                   value="">
                                         </div>
 
                                         <div class="col-4">

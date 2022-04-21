@@ -53,16 +53,19 @@
                             </div>
 
                             <div class="row g-6">
-                                <form name="centre" class="needs-validation" novalidate="" method="post"
+                                <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
                                       th:action="@{'/formulaire/formation/save'}"
                                       th:object="${formationForm}">
                                     <div class="row justify-content-center g-4">
                                         <div class="col-sm-5">
                                             <label for="nomFormation" class="form-label">Nom de la Formation</label>
+                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
+                                                <p class="alert alert-danger"
+                                                   th:text="${anError.defaultMessage}"></p>
+                                            </div>
                                             <input th:field="*{typeFormation}" type="text" class="form-control"
                                                    id="nomFormation"
                                                    placeholder="Veuillez saisir le nom de la formation">
-                                            <span th:if="${#fields.hasErrors('typeFormation')}" th:errors="*{typeFormation}"></span>
                                         </div>
                                     </div>
 

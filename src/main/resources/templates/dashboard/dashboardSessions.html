@@ -59,62 +59,71 @@
                                     <div class="row g-4">
                                         <div class="col-sm-6">
                                             <label for="debutSession" class="form-label">Début de la session</label>
-                                            <input th:field="*{dateDebut}" type="date" class="form-control" id="debutSession"
-                                                   placeholder="Date du début de la session" value="" required>
-                                            <div class="invalid-feedback">
-                                                Date de début valide est demandé.
+                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
+                                                <p class="alert alert-danger"
+                                                   th:text="${anError.defaultMessage}"></p>
                                             </div>
+                                            <input th:field="*{dateDebut}" type="date" class="form-control"
+                                                   id="debutSession"
+                                                   placeholder="Date du début de la session" value="">
                                         </div>
 
                                         <div class="col-sm-6">
                                             <label for="finSession" class="form-label">Fin de la session</label>
-                                            <input th:field="*{dateFin}" type="date" class="form-control" id="finSession"
-                                                   placeholder="Date de la fin de la session" value="" required>
-                                            <div class="invalid-feedback">
-                                                Date de fin valide est demandé.
+                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
+                                                <p class="alert alert-danger"
+                                                   th:text="${anError.defaultMessage}"></p>
                                             </div>
+                                            <input th:field="*{dateFin}" type="date" class="form-control"
+                                                   id="finSession"
+                                                   placeholder="Date de la fin de la session" value="">
                                         </div>
 
                                         <div class="col-md-6">
                                             <label for="formation" class="form-label">Formation de la session</label>
-                                            <select class="form-select" id="formation" required=>
+                                            <select th:field="*{formation}" class="form-select" id="formation">
                                                 <option selected class="disable" disabled>Choisissez la formation
                                                 </option>
-                                                <option th:each="uneFormation:${formations}"
-                                                        th:text="${uneFormation.typeFormation}"
-                                                        th:value="${uneFormation.id}">Formation
+                                                <option th:each="sessionGRETA:${sessionsGRETA}"
+                                                        th:text="${sessionGRETA.formation.typeFormation}"
+                                                        th:value="${unCoordinateur.id}">Formation
                                                 </option>
                                             </select>
-                                            <div class="invalid-feedback">
-                                                Formation invalide.
-                                            </div>
                                         </div>
+
                                         <div class="col-md-6">
                                             <label for="centre" class="form-label">Centre de la session</label>
-                                            <select class="form-select" id="centre" required=>
+                                            <select th:field="*{centre}" class="form-select" id="centre">
                                                 <option selected class="disable" disabled>Choisissez le centre</option>
                                                 <option th:each="unCentre:${centres}"
                                                         th:text="${unCentre.nomCentre}"
                                                         th:value="${unCentre.id}">Centre
                                                 </option>
                                             </select>
-                                            <div class="invalid-feedback">
-                                                Centre invalide.
-                                            </div>
                                         </div>
+
                                         <div class="col-md-6">
                                             <label for="coordinateur" class="form-label">Centre de la session</label>
-                                            <select class="form-select" id="coordinateur" required=>
+                                            <select th:field="*{coordinateur}" class="form-select" id="coordinateur">
                                                 <option selected class="disable" disabled>Choisissez le centre</option>
                                                 <option th:each="unCoordinateur:${coordinateurs}"
                                                         th:text="${unCoordinateur.nom}+' '+${unCoordinateur.prenom}"
                                                         th:value="${unCoordinateur.id}">Centre
                                                 </option>
                                             </select>
-                                            <div class="invalid-feedback">
-                                                Centre invalide.
-                                            </div>
                                         </div>
+
+                                        <div class="col-md-6">
+                                            <label for="formateurs" class="form-label">Centre de la session</label>
+                                            <select th:field="*{formateurs}" class="form-select" id="formateurs">
+                                                <option selected class="disable" disabled>Choisissez le centre</option>
+                                                <option th:each="unFormateur:${formateurs}"
+                                                        th:text="${unFormateur.nom}+' '+${unFormateur.prenom}"
+                                                        th:value="${unFormateur.id}">Centre
+                                                </option>
+                                            </select>
+                                        </div>
+
                                         <hr class="my-4">
                                         <div class="text-center">
                                             <button class="w-50 btn btn-primary btn-lg" type="submit">Envoyer le

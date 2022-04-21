@@ -2,7 +2,6 @@ package com.cda.contenu_seance.dto;
 
 import com.cda.contenu_seance.model.Centre;
 import com.cda.contenu_seance.model.Reac;
-import com.cda.contenu_seance.model.Session;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,11 +15,11 @@ import java.util.List;
 @Setter
 public class FormationDTO {
     private Long id;
-    @NotNull(message = "pipi")
-    @NotEmpty(message = "caca")
-    @NotBlank(message = "blanc")
+    @NotEmpty(message = "Le champ ne peut pas être vide")
+    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
+    @Size(min = 2, max = 20, message = "Le champ doit contenir de 2 à 20 caractère")
     private String typeFormation;
 
     private List<Reac> reac;
-    private List<Session> sessions;
+    private Centre centre;
 }

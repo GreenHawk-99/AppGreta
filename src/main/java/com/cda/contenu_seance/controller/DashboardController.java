@@ -1,9 +1,8 @@
 package com.cda.contenu_seance.controller;
 
 import com.cda.contenu_seance.dto.*;
-import com.cda.contenu_seance.service.CoordinateurService;
 import com.cda.contenu_seance.service.FicheService;
-import com.cda.contenu_seance.service.FormateurService;
+import com.cda.contenu_seance.service.IntervenantService;
 import com.cda.contenu_seance.service.ReferentielService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,22 +12,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import javax.validation.Valid;
-
 @Validated
 @Controller
 @RequestMapping(value = "/dashboard")
-public class DashboardController {
-    CoordinateurService coordinateurService;
-    FormateurService formateurService;
+public class DashboardController implements WebMvcConfigurer {
     FicheService ficheService;
+    IntervenantService intervenantService;
     ReferentielService referentielService;
 
     @Autowired
-    public DashboardController(CoordinateurService coordinateurService, FormateurService formateurService, FicheService ficheService, ReferentielService referentielService) {
-        this.coordinateurService = coordinateurService;
-        this.formateurService = formateurService;
+    public DashboardController(FicheService ficheService,
+                               IntervenantService intervenantService,
+                               ReferentielService referentielService) {
         this.ficheService = ficheService;
+        this.intervenantService = intervenantService;
         this.referentielService = referentielService;
     }
 
@@ -55,7 +52,7 @@ public class DashboardController {
     @GetMapping(value = "/formateurs")
     public String dashboardFormateurs(Model model) {
         // Tableau
-        model.addAttribute("formateurs", formateurService.getFormateurs());
+        model.addAttribute("formateurs", intervenantService.getFormateurs());
         // Form
         model.addAttribute("formateurForm", new IntervenantDTO());
         return "dashboard/dashboardFormateurs";
@@ -76,7 +73,8 @@ public class DashboardController {
         model.addAttribute("sessionsGRETA", ficheService.getSessions());
         model.addAttribute("formations", ficheService.getFormations());
         model.addAttribute("centres", ficheService.getCentres());
-        model.addAttribute("coordinateurs", coordinateurService.getCoordinateurs());
+        model.addAttribute("coordinateurs", intervenantService.getCoordinateurs());
+        model.addAttribute("formateurs", intervenantService.getFormateurs());
         // Form
         model.addAttribute("sessionForm", new SessionDTO());
         return "dashboard/dashboardSessions";

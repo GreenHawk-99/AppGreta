@@ -61,27 +61,29 @@
                                     <div class="row g-4">
                                         <div class="col-sm-6">
                                             <label for="dateDuJour" class="form-label">Date de la séance</label>
-                                            <input th:field="*{dateDuJour}" name="dateDuJour" type="date"
-                                                   class="form-control" id="dateDuJour" placeholder="Date de la séance"
-                                                   >
-                                            <div class="invalid-feedback">
-                                                Date valide est demandé.
+                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
+                                                <p class="alert alert-danger"
+                                                   th:text="${anError.defaultMessage}"></p>
                                             </div>
+                                            <input th:field="*{dateDuJour}" type="date"
+                                                   class="form-control" id="dateDuJour" placeholder="Date de la séance"
+                                            >
                                         </div>
 
                                         <div class="col-sm-6">
                                             <label for="duree" class="form-label">Durée de la séance</label>
-                                            <input th:field="*{duree}" name="duree" type="number" class="form-control"
-                                                   id="duree" placeholder="Combien d'heure de cours" >
-                                            <div class="invalid-feedback">
-                                                Heure de séance valide est demandé.
+                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
+                                                <p class="alert alert-danger"
+                                                   th:text="${anError.defaultMessage}"></p>
                                             </div>
+                                            <input th:field="*{duree}" type="number" class="form-control"
+                                                   id="duree" placeholder="Combien d'heure de cours">
                                         </div>
 
                                         <div class="col-md-5">
                                             <label for="formation" class="form-label">Session</label>
-                                            <select th:field="*{session}" name="formation" class="form-select"
-                                                    id="formation" =>
+                                            <select th:field="*{session}" class="form-select"
+                                                    id="formation">
                                                 <option selected value="" class="disable" disabled>Choisissez la
                                                     session
                                                 </option>
@@ -98,18 +100,19 @@
                                         <div class="col-12">
                                             <label for="objectifPeda" class="form-label">Contenus pédagogique de la
                                                 séance</label>
-                                            <input th:field="*{objectifPeda}" name="objectifPeda" type="text"
+                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
+                                                <p class="alert alert-danger"
+                                                   th:text="${anError.defaultMessage}"></p>
+                                            </div>
+                                            <input th:field="*{objectifPeda}" type="text"
                                                    class="form-control" id="objectifPeda"
                                                    placeholder="Base de l'informatique, Bureautique, Développement Web, Communication écrite et orale..."
-                                                   >
-                                            <div class="invalid-feedback">
-                                                Veuillez entrer un contenue pédagogique valide.
-                                            </div>
+                                            >
                                         </div>
 
                                         <div class="col-8">
                                             <label for="competence" class="form-label">Competence</label>
-                                            <select th:field="*{competence}" th:value="${competences}"
+                                            <select th:field="*{competences}" th:value="${competences}"
                                                     class="form-select" id="competence">
                                                 <option selected value="" class="disable" disabled>Choisissez la
                                                     formation
@@ -125,21 +128,26 @@
                                         </div>
                                         <div class="col-4">
                                             <label for="support" class="form-label">Support<span class="text-muted"> (Optional)</span></label>
-                                            <input th:field="*{support}" name="support" type="text" class="form-control"
-                                                   id="support" placeholder="Support utilisé">
-                                            <div class="invalid-feedback">
-                                                Préciser votre support.
+                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
+                                                <p class="alert alert-danger"
+                                                   th:text="${anError.defaultMessage}"></p>
                                             </div>
+                                            <input th:field="*{support}" type="text" class="form-control"
+                                                   id="support" placeholder="Support utilisé">
                                         </div>
 
 
                                         <div class="col-12">
                                             <label for="deroulement" class="form-label">Deroulement</label>
+                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
+                                                <p class="alert alert-danger"
+                                                   th:text="${anError.defaultMessage}"></p>
+                                            </div>
                                             <div class="form-floating">
                                                 <textarea th:field="*{deroulement}" name="deroulement"
                                                           class="form-control" id="deroulement"
                                                           placeholder="Déroulement du cours et éléments abordés"
-                                                          style="height: 150px" required></textarea>
+                                                          style="height: 150px"></textarea>
                                                 <label for="deroulement" class="text-muted">Déroulement du cours et
                                                     éléments abordés</label>
                                             </div>
@@ -187,7 +195,9 @@
                         <td th:text="${uneFiche.objectifPeda}">Contenue pédagogique</td>
                         <td th:text="${uneFiche.deroulement}">Déroulement</td>
                         <td th:text="${uneFiche.support}">Support</td>
-                        <td th:text="${uneFiche.competence.competenceProfessionel}">Compétence</td>
+                        <td><p th:each="uneCompetence:${uneFiche.competences}"
+                               th:text="${uneCompetence.competenceProfessionel}"></p>
+                        </td>
                         <td th:text="${uneFiche.duree}">Durée de la séance en heure</td>
                         <td>
                             <a class="btn btn-outline-success" th:href="@{'/formulaire/fiche/edit/'+${uneFiche.id}}">

@@ -1,7 +1,6 @@
 package com.cda.contenu_seance.dto;
 
-import com.cda.contenu_seance.model.Formation;
-import com.cda.contenu_seance.model.Seance;
+import com.cda.contenu_seance.model.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,6 +17,9 @@ public class SessionDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateFin;
 
+    private Centre centre;
     private Formation formation;
     private List<Seance> seances;
+    private List<Formateur> formateurs;
+    private Coordinateur coordinateur;
 }

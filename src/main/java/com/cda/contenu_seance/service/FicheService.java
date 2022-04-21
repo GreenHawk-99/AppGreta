@@ -73,9 +73,9 @@ public class FicheService {
         }
         seanceDb.setDateDuJour(seanceDTO.getDateDuJour());
         seanceDb.setDuree(seanceDTO.getDuree());
-        seanceDb.setObjectifPeda(seanceDTO.getObjectifPeda());
-        seanceDb.setSupport(seanceDTO.getSupport());
-        seanceDb.setDeroulement(seanceDTO.getDeroulement());
+        seanceDb.setObjectifPeda(seanceDTO.getObjectifPeda().trim());
+        seanceDb.setSupport(seanceDTO.getSupport().trim());
+        seanceDb.setDeroulement(seanceDTO.getDeroulement().trim());
         seanceDb.setFormateurs(seanceDTO.getFormateur());
         seanceDb.setSession(seanceDTO.getSession());
         seanceRepository.save(seanceDb);
@@ -102,7 +102,7 @@ public class FicheService {
         } else {
             formationDb = formationRepository.findById(formationDTO.getId()).orElse(new Formation());
         }
-        formationDb.setTypeFormation(formationDTO.getTypeFormation());
+        formationDb.setTypeFormation(formationDTO.getTypeFormation().trim());
         formationRepository.save(formationDb);
     }
 
@@ -127,10 +127,10 @@ public class FicheService {
         } else{
             centreDb = centreRepository.findById(centreDTO.getId()).orElse(new Centre());
         }
-        centreDb.setNomCentre(centreDTO.getNomCentre());
-        centreDb.setAdresseCentre(centreDTO.getAdresseCentre());
-        centreDb.setCodesPostal(centreDTO.getCodesPostal());
-        centreDb.setVille(centreDTO.getVille());
+        centreDb.setNomCentre(centreDTO.getNomCentre().trim());
+        centreDb.setAdresseCentre(centreDTO.getAdresseCentre().trim());
+        centreDb.setCodesPostal(centreDTO.getCodesPostal().trim());
+        centreDb.setVille(centreDTO.getVille().trim());
         centreRepository.save(centreDb);
     }
 
