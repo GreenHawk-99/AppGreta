@@ -1,7 +1,7 @@
 package com.cda.contenu_seance.controllers;
 
 import com.cda.contenu_seance.dto.ActiviteDTO;
-import com.cda.contenu_seance.models.Activite;
+import com.cda.contenu_seance.models.entities.Activite;
 import com.cda.contenu_seance.services.ReferentielService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ public class ActiviteController {
     @GetMapping(value = "/activite")
     public String formActivite(Model model) {
         model.addAttribute("activite", new Activite());
-        model.addAttribute("reacs", referentielService.getReacs());
+        model.addAttribute("reacs", referentielService.getAllReacs());
         return "formulaire/activite";
     }
 
@@ -32,7 +32,7 @@ public class ActiviteController {
     public String editActivite(Model model, @PathVariable(name = "id") long id){
         model.addAttribute("id", id);
         model.addAttribute("activiteForm", new Activite());
-        model.addAttribute("reacs", referentielService.getReacs());
+        model.addAttribute("reacs", referentielService.getAllReacs());
         return "formulaire/update/activiteUpdate";
     }
 

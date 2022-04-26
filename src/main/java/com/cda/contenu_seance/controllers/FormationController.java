@@ -1,7 +1,7 @@
 package com.cda.contenu_seance.controllers;
 
 import com.cda.contenu_seance.dto.FormationDTO;
-import com.cda.contenu_seance.models.Formation;
+import com.cda.contenu_seance.models.entities.Formation;
 import com.cda.contenu_seance.services.FicheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class FormationController implements WebMvcConfigurer {
     @PostMapping(value = "/formation/save")
     public String addFormation(@Validated FormationDTO formationDTO, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()){
-            model.addAttribute("formations", ficheService.getFormations());
+            model.addAttribute("formations", ficheService.getAllFormations());
             model.addAttribute("formationForm", new FormationDTO());
             model.addAttribute("errorForm", bindingResult.getAllErrors());
             return "dashboard/dashboardFormations";

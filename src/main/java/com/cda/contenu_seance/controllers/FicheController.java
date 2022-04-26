@@ -18,8 +18,8 @@ public class FicheController {
     @GetMapping(value = {"/fiche"})
     public String formFiche(Model model) {
         model.addAttribute("fiche", new SeanceDTO());
-        model.addAttribute("competences", referentielService.getCompetences());
-        model.addAttribute("sessions", ficheService.getSessions());
+        model.addAttribute("competences", referentielService.getAllCompetences());
+        model.addAttribute("sessions", ficheService.getAllSessions());
         return "formulaire/fiche";
     }
 
@@ -33,8 +33,8 @@ public class FicheController {
     public String editFiche(Model model, @PathVariable(name = "id") long id) {
         model.addAttribute("id", id);
         model.addAttribute("ficheForm", new SeanceDTO());
-        model.addAttribute("competences", referentielService.getCompetences());
-        model.addAttribute("sessions", ficheService.getSessions());
+        model.addAttribute("competences", referentielService.getAllCompetences());
+        model.addAttribute("sessions", ficheService.getAllSessions());
         return "formulaire/update/ficheUpdate";
     }
 

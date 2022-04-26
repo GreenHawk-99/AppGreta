@@ -4,8 +4,14 @@ import com.cda.contenu_seance.dto.CentreDTO;
 import com.cda.contenu_seance.dto.FormationDTO;
 import com.cda.contenu_seance.dto.SeanceDTO;
 import com.cda.contenu_seance.dto.SessionDTO;
-import com.cda.contenu_seance.models.*;
-import com.cda.contenu_seance.repositories.*;
+import com.cda.contenu_seance.models.entities.Centre;
+import com.cda.contenu_seance.models.entities.Formation;
+import com.cda.contenu_seance.models.entities.Seance;
+import com.cda.contenu_seance.models.entities.Session;
+import com.cda.contenu_seance.models.repositories.CentreRepository;
+import com.cda.contenu_seance.models.repositories.FormationRepository;
+import com.cda.contenu_seance.models.repositories.SeanceRepository;
+import com.cda.contenu_seance.models.repositories.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +62,7 @@ public class FicheService {
 
     // Méthodes CRUD Fiche
 
-    public List<Seance> getFiches(){
+    public List<Seance> getAllFiches(){
         return seanceRepository.findAll();
     }
 
@@ -87,7 +93,7 @@ public class FicheService {
 
     // Méthodes CRUD Formation
 
-    public List<Formation> getFormations(){
+    public List<Formation> getAllFormations(){
         return formationRepository.findAll();
     }
 
@@ -112,7 +118,7 @@ public class FicheService {
 
     // Méthodes CRUD Centre
 
-    public List<Centre> getCentres(){
+    public List<Centre> getAllCentres(){
         return centreRepository.findAll();
     }
 
@@ -140,7 +146,7 @@ public class FicheService {
 
     // Méthodes CRUD Session
 
-    public List<Session> getSessions(){
+    public List<Session> getAllSessions(){
         return sessionRepository.findAll();
     }
 

@@ -1,7 +1,7 @@
 package com.cda.contenu_seance.controllers;
 
 import com.cda.contenu_seance.dto.CompetenceDTO;
-import com.cda.contenu_seance.models.Competence;
+import com.cda.contenu_seance.models.entities.Competence;
 import com.cda.contenu_seance.services.ReferentielService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ public class CompetenceController {
     @GetMapping(value = "/competence")
     public String formCompetence(Model model) {
         model.addAttribute("competence", new Competence());
-        model.addAttribute("activites", referentielService.getActivites());
+        model.addAttribute("activites", referentielService.getAllActivites());
         return "formulaire/competence";
     }
 
@@ -31,7 +31,7 @@ public class CompetenceController {
     public String editCompetence(Model model, @PathVariable(name = "id") long id){
         model.addAttribute("id", id);
         model.addAttribute("competenceForm", new Competence());
-        model.addAttribute("activites", referentielService.getActivites());
+        model.addAttribute("activites", referentielService.getAllActivites());
         return "formulaire/update/competenceUpdate";
     }
 

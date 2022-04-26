@@ -82,7 +82,7 @@
                                         <div class="col-md-6">
                                             <label for="formation" class="form-label">Formation de la session</label>
                                             <select th:field="*{formation}" class="form-select" id="formation">
-                                                <option selected class="disable" disabled>Choisissez la formation
+                                                <option selected value="" class="disable" disabled>Choisissez la formation
                                                 </option>
                                                 <option th:each="uneFormation:${formations}"
                                                         th:text="${uneFormation.typeFormation}"
@@ -94,7 +94,7 @@
                                         <div class="col-md-6">
                                             <label for="centre" class="form-label">Centre de la session</label>
                                             <select th:field="*{centre}" class="form-select" id="centre">
-                                                <option selected class="disable" disabled>Choisissez le centre</option>
+                                                <option selected value="" class="disable" disabled>Choisissez le centre</option>
                                                 <option th:each="unCentre:${centres}"
                                                         th:text="${unCentre.nomCentre}"
                                                         th:value="${unCentre.id}">Centre
@@ -103,23 +103,23 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label for="coordinateur" class="form-label">Centre de la session</label>
+                                            <label for="coordinateur" class="form-label">Coordonateur de la session</label>
                                             <select th:field="*{coordinateur}" class="form-select" id="coordinateur">
-                                                <option selected class="disable" disabled>Choisissez le centre</option>
+                                                <option selected value="" class="disable" disabled>Choisissez le coordonateur</option>
                                                 <option th:each="unCoordinateur:${coordinateurs}"
                                                         th:text="${unCoordinateur.nom}+' '+${unCoordinateur.prenom}"
-                                                        th:value="${unCoordinateur.id}">Centre
+                                                        th:value="${unCoordinateur.id}">Coordonateur
                                                 </option>
                                             </select>
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label for="formateurs" class="form-label">Centre de la session</label>
+                                            <label for="formateurs" class="form-label">Formateur de la session</label>
                                             <select th:field="*{formateurs}" class="form-select" id="formateurs">
-                                                <option selected class="disable" disabled>Choisissez le centre</option>
+                                                <option selected value="" class="disable" disabled>Choisissez le formateur</option>
                                                 <option th:each="unFormateur:${formateurs}"
                                                         th:text="${unFormateur.nom}+' '+${unFormateur.prenom}"
-                                                        th:value="${unFormateur.id}">Centre
+                                                        th:value="${unFormateur.id}">Formateur
                                                 </option>
                                             </select>
                                         </div>

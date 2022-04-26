@@ -1,6 +1,6 @@
-package com.cda.contenu_seance.repositories;
+package com.cda.contenu_seance.models.repositories;
 
-import com.cda.contenu_seance.models.Competence;
+import com.cda.contenu_seance.models.entities.Competence;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

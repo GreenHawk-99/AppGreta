@@ -1,12 +1,12 @@
 package com.cda.contenu_seance.services;
 
 import com.cda.contenu_seance.dto.IntervenantDTO;
-import com.cda.contenu_seance.models.Coordinateur;
-import com.cda.contenu_seance.models.Formateur;
-import com.cda.contenu_seance.models.Intervenant;
-import com.cda.contenu_seance.repositories.CoordinateurRepository;
-import com.cda.contenu_seance.repositories.FormateurRepository;
-import com.cda.contenu_seance.repositories.IntervenantRepository;
+import com.cda.contenu_seance.models.entities.Coordinateur;
+import com.cda.contenu_seance.models.entities.Formateur;
+import com.cda.contenu_seance.models.entities.Intervenant;
+import com.cda.contenu_seance.models.repositories.CoordinateurRepository;
+import com.cda.contenu_seance.models.repositories.FormateurRepository;
+import com.cda.contenu_seance.models.repositories.IntervenantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +38,7 @@ public class IntervenantService {
 
     // Méthodes CRUD Coordinateur
 
-    public List<Coordinateur> getCoordinateurs() {
+    public List<Coordinateur> getAllCoordinateurs() {
         return coordinateurRepository.findAll();
     }
 
@@ -69,7 +69,7 @@ public class IntervenantService {
 
     // Méthodes CRUD Formateur
 
-    public List<Formateur> getFormateurs() {
+    public List<Formateur> getAllFormateurs() {
         return formateurRepository.findAll();
     }
 

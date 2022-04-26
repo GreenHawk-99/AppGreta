@@ -1,7 +1,7 @@
 package com.cda.contenu_seance.dto;
 
-import com.cda.contenu_seance.models.Competence;
-import com.cda.contenu_seance.models.Reac;
+import com.cda.contenu_seance.models.entities.Competence;
+import com.cda.contenu_seance.models.entities.Reac;
 import lombok.Getter;
 import lombok.Setter;
 

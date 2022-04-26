@@ -1,4 +1,4 @@
-package com.cda.contenu_seance.models;
+package com.cda.contenu_seance.models.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

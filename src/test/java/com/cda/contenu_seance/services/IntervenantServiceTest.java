@@ -1,6 +1,6 @@
 package com.cda.contenu_seance.services;
 
-import com.cda.contenu_seance.repositories.IntervenantRepository;
+import com.cda.contenu_seance.models.repositories.IntervenantRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -15,7 +15,7 @@ public class CentreController {
 
     @GetMapping(value = "/centre")
     public String formCentre(Model model) {
-        model.addAttribute("centres", ficheService.getCentres());
+        model.addAttribute("centres", ficheService.getAllCentres());
         return "formulaire/centre";
     }
 

@@ -26,7 +26,7 @@ public class ReferentielController {
     @GetMapping(value = "/referentiel")
     public String formReferenciel(Model model) {
         model.addAttribute("reacDTO", new ReacDTO());
-        model.addAttribute("formations", ficheService.getFormations());
+        model.addAttribute("formations", ficheService.getAllFormations());
         return "formulaire/referentiel";
     }
 
@@ -40,7 +40,7 @@ public class ReferentielController {
     public String editReferenciel(Model model, @PathVariable(name = "id") long id) {
         model.addAttribute("id", id);
         model.addAttribute("reacForm", new ReacDTO());
-        model.addAttribute("formations", ficheService.getFormations());
+        model.addAttribute("formations", ficheService.getAllFormations());
         return "formulaire/update/referentielUpdate";
     }
 

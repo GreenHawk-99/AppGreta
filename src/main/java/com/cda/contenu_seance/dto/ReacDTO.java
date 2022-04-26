@@ -1,7 +1,7 @@
 package com.cda.contenu_seance.dto;
 
-import com.cda.contenu_seance.models.Activite;
-import com.cda.contenu_seance.models.Formation;
+import com.cda.contenu_seance.models.entities.Activite;
+import com.cda.contenu_seance.models.entities.Formation;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;

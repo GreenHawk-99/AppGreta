@@ -3,8 +3,12 @@ package com.cda.contenu_seance.services;
 import com.cda.contenu_seance.dto.ActiviteDTO;
 import com.cda.contenu_seance.dto.CompetenceDTO;
 import com.cda.contenu_seance.dto.ReacDTO;
-import com.cda.contenu_seance.models.*;
-import com.cda.contenu_seance.repositories.*;
+import com.cda.contenu_seance.models.entities.Activite;
+import com.cda.contenu_seance.models.entities.Competence;
+import com.cda.contenu_seance.models.entities.Reac;
+import com.cda.contenu_seance.models.repositories.ActiviteRepository;
+import com.cda.contenu_seance.models.repositories.CompetenceRepository;
+import com.cda.contenu_seance.models.repositories.ReacRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +31,7 @@ public class ReferentielService {
 
     // Méthodes CRUD Activite
 
-    public List<Activite> getActivites() {
+    public List<Activite> getAllActivites() {
         return activiteRepository.findAll();
     }
 
@@ -64,7 +68,7 @@ public class ReferentielService {
 
     // Méthodes CRUD Competence
 
-    public List<Competence> getCompetences() {
+    public List<Competence> getAllCompetences() {
         return competenceRepository.findAll();
     }
 
@@ -91,7 +95,7 @@ public class ReferentielService {
 
     // Méthodes CRUD Reac
 
-    public List<Reac> getReacs() {
+    public List<Reac> getAllReacs() {
         return reacRepository.findAll();
     }
 

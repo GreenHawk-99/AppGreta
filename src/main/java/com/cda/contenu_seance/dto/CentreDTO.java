@@ -1,7 +1,7 @@
 package com.cda.contenu_seance.dto;
 
-import com.cda.contenu_seance.models.Coordinateur;
-import com.cda.contenu_seance.models.Session;
+import com.cda.contenu_seance.models.entities.Coordinateur;
+import com.cda.contenu_seance.models.entities.Session;
 import lombok.Getter;
 import lombok.Setter;
 
