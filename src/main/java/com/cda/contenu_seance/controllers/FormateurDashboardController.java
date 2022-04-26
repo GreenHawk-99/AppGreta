@@ -29,14 +29,7 @@ public class FormateurDashboardController implements WebMvcConfigurer {
         this.referentielService = referentielService;
     }
 
-    @GetMapping(value = "/centres")
-    public String dashboardCentres(Model model) {
-        // Tableau
-        model.addAttribute("centres", ficheService.getAllCentres());
-        // Form
-        model.addAttribute("centreForm", new CentreDTO());
-        return "dashboard/dashboardCentres";
-    }
+
 
     @GetMapping(value = "/fiches")
     public String dashboardFiches(Model model) {
@@ -46,17 +39,9 @@ public class FormateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("ficheForm", new SeanceDTO());
         model.addAttribute("competences", referentielService.getAllCompetences());
         model.addAttribute("sessions", ficheService.getAllSessions());
-        return "dashboard/dashboardFiches";
+        return "dashboardFormateur/dashboardFiches";
     }
 
-    @GetMapping(value = "/formateurs")
-    public String dashboardFormateurs(Model model) {
-        // Tableau
-        model.addAttribute("formateurs", intervenantService.getAllFormateurs());
-        // Form
-        model.addAttribute("formateurForm", new IntervenantDTO());
-        return "dashboard/dashboardFormateurs";
-    }
 
     @GetMapping(value = "/formations")
     public String dashboardFormations(Model model) {
@@ -64,7 +49,7 @@ public class FormateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("formations", ficheService.getAllFormations());
         // Form
         model.addAttribute("formationForm", new FormationDTO());
-        return "dashboard/dashboardFormations";
+        return "dashboardFormateur/dashboardFormations";
     }
 
     @GetMapping(value = "/sessions")
@@ -77,38 +62,6 @@ public class FormateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("formateurs", intervenantService.getAllFormateurs());
         // Form
         model.addAttribute("sessionForm", new SessionDTO());
-        return "dashboard/dashboardSessions";
-    }
-
-    @GetMapping(value = "/activites")
-    public String dashboardActivites(Model model) {
-        // Tableau
-        model.addAttribute("activites", referentielService.getAllActivites());
-        // Form
-        model.addAttribute("activiteForm", new ActiviteDTO());
-        model.addAttribute("reacs", referentielService.getAllReacs());
-        return "dashboard/dashboardActivites";
-    }
-
-    @GetMapping(value = "/competences")
-    public String dashboardCompetences(Model model) {
-        // Tableau
-        model.addAttribute("competences", referentielService.getAllCompetences());
-        // Form
-        model.addAttribute("competenceForm", new CompetenceDTO());
-        model.addAttribute("activites", referentielService.getAllActivites());
-        return "dashboard/dashboardCompetences";
-    }
-
-    @GetMapping(value = "/referentiels")
-    public String dashboardReac(Model model) {
-        // Tableau
-        model.addAttribute("reacs", referentielService.getAllReacs());
-        model.addAttribute("activites", referentielService.getAllActivites());
-        model.addAttribute("competences", referentielService.getAllCompetences());
-        // Form
-        model.addAttribute("reacForm", new ReacDTO());
-        model.addAttribute("formations", ficheService.getAllFormations());
-        return "dashboard/dashboardReferentiels";
+        return "dashboardFormateur/dashboardSessions";
     }
 }

@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Page Index</title>
-    <div th:replace="fragments/header :: header-css (title='Dashboard Competences')"/>
+    <div th:replace="fragments/header :: header-css (title='Dashboard Sessions')"/>
 </head>
 <body>
 <div th:replace="fragments/header :: header-nav"/>
@@ -26,7 +25,7 @@
                 <h1 class="h2">Dashboard</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-                        <a th:href="@{'/formulaire/competence'}" type="button" class="btn btn-sm btn-outline-success">Ajouter</a>
+                        <a th:href="@{'/formulaire/session'}" type="button" class="btn btn-sm btn-outline-success">Ajouter</a>
                         <a type="button" class="btn btn-sm btn-outline-success">Export</a>
                     </div>
                     <button type="button" class="btn btn-sm btn-outline-success dropdown-toggle">
@@ -50,58 +49,87 @@
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                         <div class="container">
                             <div class="py-4 text-center">
-                                <h2 class="text-primary">Création d'une Compétence</h2>
+                                <h2 class="text-primary">Création de Session</h2>
                             </div>
 
                             <div class="row g-6">
-                                <h4 class="mb-4">Compétence</h4>
-                                <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
-                                      th:action="@{'/formulaire/competence/save'}"
-                                      th:object="${competenceForm}">
+                                <form class="needs-validation" novalidate="" method="post" action="*"
+                                      th:action="@{'/formulaire/session/save'}"
+                                      th:object="${sessionForm}">
                                     <div class="row g-4">
                                         <div class="col-sm-6">
-                                            <label for="competenceProfessionel" class="form-label">Nom de la
-                                                compétence</label>
+                                            <label for="debutSession" class="form-label">Début de la session</label>
                                             <div th:each="anError : ${errorForm}" th:if="errorForm">
                                                 <p class="alert alert-danger"
                                                    th:text="${anError.defaultMessage}"></p>
                                             </div>
-                                            <input th:field="*{competenceProfessionel}"
-                                                   type="text" class="form-control" id="competenceProfessionel"
-                                                   placeholder="Veuillez saisir un nom d'une compétence" value=""
-                                            >
+                                            <input th:field="*{dateDebut}" type="date" class="form-control"
+                                                   id="debutSession"
+                                                   placeholder="Date du début de la session" value="">
                                         </div>
 
-                                        <div class="col-sm-2">
-                                            <label for="numCP" class="form-label">Numéro de l'activité</label>
+                                        <div class="col-sm-6">
+                                            <label for="finSession" class="form-label">Fin de la session</label>
                                             <div th:each="anError : ${errorForm}" th:if="errorForm">
                                                 <p class="alert alert-danger"
                                                    th:text="${anError.defaultMessage}"></p>
                                             </div>
-                                            <input th:field="*{numCP}" type="text" class="form-control"
-                                                   id="numCP" placeholder="Veuillez saisir un numéro de l'activité"
-                                                   value="">
+                                            <input th:field="*{dateFin}" type="date" class="form-control"
+                                                   id="finSession"
+                                                   placeholder="Date de la fin de la session" value="">
                                         </div>
 
-                                        <div class="col-4">
-                                            <label for="activite" class="form-label">Activité</label>
-                                            <select th:field="*{activite}" class="form-select" id="activite">
-                                                <option selected class="disable" value="" disabled>Choisissez
-                                                    l'activité
+                                        <div class="col-md-6">
+                                            <label for="formation" class="form-label">Formation de la session</label>
+                                            <select th:field="*{formation}" class="form-select" id="formation">
+                                                <option selected value="" class="disable" disabled>Choisissez la formation
                                                 </option>
-                                                <option th:each="uneActivite:${activites}"
-                                                        th:text="${uneActivite.activitesTypes}"
-                                                        th:value="${uneActivite.id}">Liste des activités
+                                                <option th:each="uneFormation:${formations}"
+                                                        th:text="${uneFormation.typeFormation}"
+                                                        th:value="${uneFormation.id}">Formation
                                                 </option>
                                             </select>
                                         </div>
-                                    </div>
 
-                                    <hr class="my-4">
-                                    <div class="text-center">
-                                        <button class="w-50 btn btn-primary btn-lg" type="submit">Envoyer le
-                                            formulaire
-                                        </button>
+                                        <div class="col-md-6">
+                                            <label for="centre" class="form-label">Centre de la session</label>
+                                            <select th:field="*{centre}" class="form-select" id="centre">
+                                                <option selected value="" class="disable" disabled>Choisissez le centre</option>
+                                                <option th:each="unCentre:${centres}"
+                                                        th:text="${unCentre.nomCentre}"
+                                                        th:value="${unCentre.id}">Centre
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="coordinateur" class="form-label">Coordonateur de la session</label>
+                                            <select th:field="*{coordinateur}" class="form-select" id="coordinateur">
+                                                <option selected value="" class="disable" disabled>Choisissez le coordonateur</option>
+                                                <option th:each="unCoordinateur:${coordinateurs}"
+                                                        th:text="${unCoordinateur.nom}+' '+${unCoordinateur.prenom}"
+                                                        th:value="${unCoordinateur.id}">Coordonateur
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="formateurs" class="form-label">Formateur de la session</label>
+                                            <select th:field="*{formateurs}" class="form-select" id="formateurs">
+                                                <option selected value="" class="disable" disabled>Choisissez le formateur</option>
+                                                <option th:each="unFormateur:${formateurs}"
+                                                        th:text="${unFormateur.nom}+' '+${unFormateur.prenom}"
+                                                        th:value="${unFormateur.id}">Formateur
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <hr class="my-4">
+                                        <div class="text-center">
+                                            <button class="w-50 btn btn-primary btn-lg" type="submit">Envoyer le
+                                                formulaire
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -112,27 +140,29 @@
 
             <!--  Tableau  -->
 
-            <h2>Compétences</h2>
+            <h2>Sessions</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">N° CP</th>
-                        <th scope="col">Nom de la compétence</th>
-                        <th scope="col">Nom de l'activite</th>
+                        <th scope="col">Date de debut de session</th>
+                        <th scope="col">Date de fin de session</th>
+                        <th scope="col">Formation</th>
+                        <th scope="col">Centre</th>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="uneCompetence:${competences}">
-                        <td th:text="${uneCompetence.id}">Id</td>
-                        <td th:text="${uneCompetence.numCP}">N° CP</td>
-                        <td th:text="${uneCompetence.competenceProfessionel}">Nom de la compétence</td>
-                        <td th:text="${uneCompetence.activite.activitesTypes}">Nom de l'activite</td>
+                    <tr th:each="uneSession:${sessionsGRETA}">
+                        <td th:text="${uneSession.id}">Id</td>
+                        <td th:text="${uneSession.dateDebut}">Date de debut de session</td>
+                        <td th:text="${uneSession.dateFin}">Date de fin de session</td>
+                        <td th:text="${uneSession.formation.typeFormation}">Formation</td>
+                        <td th:text="${uneSession.centre.nomCentre}">Centre</td>
                         <td>
                             <a class="btn btn-outline-success" href="#"
-                               th:href="@{'/formulaire/competence/edit/'+${uneCompetence.id}}">
+                               th:href="@{'/formulaire/session/edit/'+${uneSession.id}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-gear"
                                      viewBox="0 0 16 16">
@@ -141,7 +171,7 @@
                                 </svg>
                             </a>
                             <a class="btn btn-outline-danger" href="#"
-                               th:href="@{'/formulaire/competence/delete/'+${uneCompetence.id}}">
+                               th:href="@{'/formulaire/session/delete/'+${uneSession.id}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-x-lg"
                                      viewBox="0 0 16 16">

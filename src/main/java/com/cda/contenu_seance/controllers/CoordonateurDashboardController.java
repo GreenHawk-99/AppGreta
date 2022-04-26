@@ -35,7 +35,7 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("centres", ficheService.getAllCentres());
         // Form
         model.addAttribute("centreForm", new CentreDTO());
-        return "dashboard/dashboardCentres";
+        return "dashboardCoordonateur/dashboardCentres";
     }
 
     @GetMapping(value = "/fiches")
@@ -46,7 +46,7 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("ficheForm", new SeanceDTO());
         model.addAttribute("competences", referentielService.getAllCompetences());
         model.addAttribute("sessions", ficheService.getAllSessions());
-        return "dashboard/dashboardFiches";
+        return "dashboardCoordonateur/dashboardFiches";
     }
 
     @GetMapping(value = "/formateurs")
@@ -55,7 +55,7 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("formateurs", intervenantService.getAllFormateurs());
         // Form
         model.addAttribute("formateurForm", new IntervenantDTO());
-        return "dashboard/dashboardFormateurs";
+        return "dashboardCoordonateur/dashboardFormateurs";
     }
 
     @GetMapping(value = "/formations")
@@ -64,7 +64,7 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("formations", ficheService.getAllFormations());
         // Form
         model.addAttribute("formationForm", new FormationDTO());
-        return "dashboard/dashboardFormations";
+        return "dashboardCoordonateur/dashboardFormations";
     }
 
     @GetMapping(value = "/sessions")
@@ -77,7 +77,7 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("formateurs", intervenantService.getAllFormateurs());
         // Form
         model.addAttribute("sessionForm", new SessionDTO());
-        return "dashboard/dashboardSessions";
+        return "dashboardCoordonateur/dashboardSessions";
     }
 
     @GetMapping(value = "/activites")
@@ -87,7 +87,7 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         // Form
         model.addAttribute("activiteForm", new ActiviteDTO());
         model.addAttribute("reacs", referentielService.getAllReacs());
-        return "dashboard/dashboardActivites";
+        return "dashboardCoordonateur/dashboardActivites";
     }
 
     @GetMapping(value = "/competences")
@@ -97,7 +97,7 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         // Form
         model.addAttribute("competenceForm", new CompetenceDTO());
         model.addAttribute("activites", referentielService.getAllActivites());
-        return "dashboard/dashboardCompetences";
+        return "dashboardCoordonateur/dashboardCompetences";
     }
 
     @GetMapping(value = "/referentiels")
@@ -109,6 +109,6 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         // Form
         model.addAttribute("reacForm", new ReacDTO());
         model.addAttribute("formations", ficheService.getAllFormations());
-        return "dashboard/dashboardReferentiels";
+        return "dashboardCoordonateur/dashboardReferentiels";
     }
 }

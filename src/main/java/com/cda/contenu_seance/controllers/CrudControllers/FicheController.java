@@ -1,4 +1,4 @@
-package com.cda.contenu_seance.controllers;
+package com.cda.contenu_seance.controllers.CrudControllers;
 
 import com.cda.contenu_seance.dto.SeanceDTO;
 import com.cda.contenu_seance.services.*;
