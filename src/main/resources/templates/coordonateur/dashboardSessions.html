@@ -84,9 +84,9 @@
                                             <select th:field="*{formation}" class="form-select" id="formation">
                                                 <option selected class="disable" disabled>Choisissez la formation
                                                 </option>
-                                                <option th:each="uneFormation:${formations}"
-                                                        th:text="${uneFormation.typeFormation}"
-                                                        th:value="${uneFormation.id}">Formation
+                                                <option th:each="sessionGRETA:${sessionsGRETA}"
+                                                        th:text="${sessionGRETA.formation.typeFormation}"
+                                                        th:value="${unCoordinateur.id}">Formation
                                                 </option>
                                             </select>
                                         </div>

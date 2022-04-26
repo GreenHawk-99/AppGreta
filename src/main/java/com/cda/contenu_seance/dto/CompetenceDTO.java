@@ -1,7 +1,7 @@
 package com.cda.contenu_seance.dto;
 
-import com.cda.contenu_seance.model.Activite;
-import com.cda.contenu_seance.model.Seance;
+import com.cda.contenu_seance.models.Activite;
+import com.cda.contenu_seance.models.Seance;
 import lombok.Getter;
 import lombok.Setter;
 
