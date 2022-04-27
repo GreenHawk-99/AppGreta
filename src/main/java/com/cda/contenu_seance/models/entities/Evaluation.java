@@ -5,21 +5,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Competence {
+public class Evaluation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String competenceProfessionel;
-    private int numCP;
+    private String modalite;
 
-    @ManyToOne
-    private Activite activite;
     @OneToMany
-    private List<SavoirFaire> savoirFaires;
+    private List<Seance> seances;
 }

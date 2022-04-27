@@ -111,4 +111,13 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("formations", ficheService.getAllFormations());
         return "dashboardCoordonateur/dashboardReferentiels";
     }
+
+    @GetMapping(value="/evaluation")
+    public String dashboardEvaluation(Model model) {
+        // Tableau
+        model.addAttribute("evaluations", ficheService.getAllEvaluations());
+        //Form
+        model.addAttribute("evaluationForm", new EvaluationDTO());
+        return "dashboardEvaluation";
+    }
 }

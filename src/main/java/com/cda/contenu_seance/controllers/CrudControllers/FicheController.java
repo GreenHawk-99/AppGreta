@@ -30,9 +30,9 @@ public class FicheController {
     }
 
     @GetMapping(value = "/fiche/edit/{id}")
-    public String editFiche(Model model, @PathVariable(name = "id") long id) {
+    public String editFiche(@PathVariable(name = "id") long id, Model model, SeanceDTO seanceDTO) {
         model.addAttribute("id", id);
-        model.addAttribute("ficheForm", new SeanceDTO());
+        model.addAttribute("ficheForm", seanceDTO);
         model.addAttribute("competences", referentielService.getAllCompetences());
         model.addAttribute("sessions", ficheService.getAllSessions());
         return "formulaire/update/ficheUpdate";

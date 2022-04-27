@@ -22,6 +22,7 @@ public class Session {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateFin;
+    private int dureeTotal;
 
     @ManyToOne
     private Centre centre;

@@ -27,6 +27,8 @@ public class Seance {
     private Formateur formateurs;
     @ManyToOne
     private Session session;
+    @ManyToMany
+    private List<SavoirFaire> savoirFaires;
     @ManyToOne
-    private Competence competence;
+    private Evaluation evaluation;
 }
