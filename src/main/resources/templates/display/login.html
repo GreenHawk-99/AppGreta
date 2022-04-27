@@ -4,59 +4,49 @@
     <div th:replace="fragments/header :: header-css (title='Log in')"/>
 </head>
 <body>
-<div th:replace="fragments/header :: header-nav"/>
-
 <main>
-    <div class="container">
-        <div class="py-4 text-center">
+    <div class="container-fluid text-center">
+        <div class="col col-6 mx-auto">
+            <div class="flex-box">
+                <form>
+                    <h1 class="h3 m-4 fw-normal">Connectez-vous</h1>
 
-            <form>
-                <h1 class="h3 m-4 fw-normal">Connectez-vous</h1>
+                    <div class="form-floating m-4">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Adresse Email</label>
+                    </div>
+                    <div class="form-floating m-4">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
+                        <label for="floatingPassword">Mot de passe</label>
+                    </div>
 
-                <div class="form-floating m-4">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Adresse Email</label>
-                </div>
-                <div class="form-floating m-4">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
-                    <label for="floatingPassword">Mot de passe</label>
-                </div>
+                    <div class="form-floating m-4">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Formateur
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Cordonateur
+                            </label>
+                        </div>
+                    </div>
 
-                <div class="form-floating m-4">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Formateur
+                    <div class="checkbox m-4">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Se souvnir de moi
                         </label>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Cordonateur
-                        </label>
-                    </div>
-                </div>
-
-                <!--<div class="form-floating m-4">
-                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option selected class="disable" disabled>Selectionez votre rôle</option>
-                        <option value="Formateur">Formateur</option>
-                        <option value="Coordinateur">Coordinateur</option>
-                    </select>
-                    <label for="floatingSelect">Formateur ou Coordinateur</label>
-                </div>-->
-
-                <div class="checkbox m-4">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Se souvnir de moi
-                    </label>
-                </div>
-                <button class="w-50 btn btn-lg btn-primary" type="submit">Se connecter</button>
-            </form>
+                    <button class="w-50 btn btn-lg btn-primary" type="submit">Se connecter</button>
+                </form>
+            </div>
         </div>
     </div>
 </main>
 <!-- /.container -->
-<div th:replace="fragments/footer:: footer"/>
+
 </body>
 </html>
