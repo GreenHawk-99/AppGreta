@@ -1,15 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="fragments/header :: header-css (title='Dashboard Activites')"/>
+    <div th:replace="fragments/headerCoordonateur :: header-css (title='Dashboard Activites')"/>
 </head>
 <body>
-<div th:replace="fragments/header :: header-nav"/>
+<div th:replace="fragments/headerCoordonateur :: header-nav"/>
 
 <div class="container-fluid">
     <div class="row">
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div th:replace="fragments/sidebar :: sidebar-nav"/>
+            <div th:replace="fragments/sidebarCoordonateur :: sidebar-nav"/>
         </nav>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -25,7 +25,7 @@
                 <h1 class="h2">Dashboard</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-                        <a th:href="@{'/formulaire/activite'}" type="button" class="btn btn-sm btn-outline-success">Ajouter</a>
+                        <a th:href="@{'/coordonateur/dashboard/activite'}" type="button" class="btn btn-sm btn-outline-success">Ajouter</a>
                         <a type="button" class="btn btn-sm btn-outline-success">Export</a>
                     </div>
                     <button type="button" class="btn btn-sm btn-outline-success dropdown-toggle">

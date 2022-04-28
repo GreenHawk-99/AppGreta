@@ -1,4 +1,4 @@
-package com.cda.contenu_seance.controllers.CrudControllers;
+package com.cda.contenu_seance.controllers.CoordonateurControllers;
 
 import com.cda.contenu_seance.dto.CompetenceDTO;
 import com.cda.contenu_seance.models.entities.Competence;
@@ -9,10 +9,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(value = "/formulaire")
+@RequestMapping(value = "/coordonateur/dashboard")
 public class CompetenceController {
     @Autowired
     ReferentielService referentielService;
+
+    @GetMapping(value = "/competences")
+    public String dashboardCompetences(Model model) {
+        // Tableau
+        model.addAttribute("competences", referentielService.getAllCompetences());
+        // Form
+        model.addAttribute("competenceForm", new CompetenceDTO());
+        model.addAttribute("activites", referentielService.getAllActivites());
+        return "dashboardCoordonateur/dashboardCompetences";
+    }
 
     @GetMapping(value = "/competence")
     public String formCompetence(Model model) {
@@ -24,7 +34,7 @@ public class CompetenceController {
     @PostMapping(value = "/competence/save")
     public String addCompetence(@ModelAttribute(name = "competence") CompetenceDTO competenceDTO){
         referentielService.saveCompetence(competenceDTO);
-        return "redirect:/dashboard/competences";
+        return "redirect:/coordonateur/dashboard/competences";
     }
 
     @GetMapping(value = "/competence/edit/{id}")
@@ -38,6 +48,6 @@ public class CompetenceController {
     @GetMapping(value = "/competence/delete/{id}")
     public String deleteCompetence(@PathVariable(name = "id") long id){
         referentielService.deleteCompetence(id);
-        return "redirect:/dashboard/competences";
+        return "redirect:/coordonateur/dashboard/competences";
     }
 }

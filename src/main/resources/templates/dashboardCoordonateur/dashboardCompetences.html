@@ -2,15 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Page Index</title>
-    <div th:replace="fragments/header :: header-css (title='Dashboard Competences')"/>
+    <div th:replace="fragments/headerCoordonateur :: header-css (title='Dashboard Competences')"/>
 </head>
 <body>
-<div th:replace="fragments/header :: header-nav"/>
+<div th:replace="fragments/headerCoordonateur :: header-nav"/>
 
 <div class="container-fluid">
     <div class="row">
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div th:replace="fragments/sidebar :: sidebar-nav"/>
+            <div th:replace="fragments/sidebarCoordonateur :: sidebar-nav"/>
         </nav>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -26,7 +26,7 @@
                 <h1 class="h2">Dashboard</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-                        <a th:href="@{'/formulaire/competence'}" type="button" class="btn btn-sm btn-outline-success">Ajouter</a>
+                        <a th:href="@{'/coordonateur/dashboard/competence'}" type="button" class="btn btn-sm btn-outline-success">Ajouter</a>
                         <a type="button" class="btn btn-sm btn-outline-success">Export</a>
                     </div>
                     <button type="button" class="btn btn-sm btn-outline-success dropdown-toggle">
@@ -56,7 +56,7 @@
                             <div class="row g-6">
                                 <h4 class="mb-4">Compétence</h4>
                                 <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
-                                      th:action="@{'/formulaire/competence/save'}"
+                                      th:action="@{'/coordonateur/dashboard/competence/save'}"
                                       th:object="${competenceForm}">
                                     <div class="row g-4">
                                         <div class="col-sm-6">

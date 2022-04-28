@@ -19,7 +19,7 @@ public class SavoirFaire {
 
     @ManyToOne
     private Competence competence;
-    @ManyToMany
+    @ManyToMany(mappedBy = "savoirFaires")
     private List<Seance> seances;
 
     //public String getHeurSession(){}

@@ -77,10 +77,12 @@ public class FicheService {
         seanceDb.setDateDuJour(seanceDTO.getDateDuJour());
         seanceDb.setDuree(seanceDTO.getDuree());
         seanceDb.setObjectifPeda(seanceDTO.getObjectifPeda().trim());
+        seanceDb.setMethodeEnvisage(seanceDTO.getMethodeEnvisage().trim());
         seanceDb.setSupport(seanceDTO.getSupport().trim());
         seanceDb.setDeroulement(seanceDTO.getDeroulement().trim());
         seanceDb.setFormateurs(seanceDTO.getFormateur());
         seanceDb.setSession(seanceDTO.getSession());
+        seanceDb.setEvaluation(seanceDTO.getEvaluation());
         seanceRepository.save(seanceDb);
     }
 
@@ -128,7 +130,8 @@ public class FicheService {
         if (null==centreDTO.getId()){
             centreDb = new Centre();
         } else{
-            centreDb = centreRepository.findById(centreDTO.getId()).orElse(new Centre());
+            centreDb = getCentre(centreDTO.getId());
+            //centreDb = centreRepository.findById(centreDTO.getId()).orElse(new Centre());
         }
         centreDb.setNomCentre(centreDTO.getNomCentre().trim());
         centreDb.setAdresseCentre(centreDTO.getAdresseCentre().trim());
@@ -157,6 +160,9 @@ public class FicheService {
         sessionDb.setDateDebut(sessionDTO.getDateDebut());
         sessionDb.setDateFin(sessionDTO.getDateFin());
         sessionDb.setDureeTotal(sessionDTO.getDureeTotal());
+        sessionDb.setSeances(sessionDTO.getSeances());
+        sessionDb.setCentre(sessionDTO.getCentre());
+        //TODO
         sessionRepository.save(sessionDb);
     }
 
@@ -185,4 +191,12 @@ public class FicheService {
     public void deleteEvaluation (long id){
         evaluationRepository.deleteById(id);
     }
+
+    // Méthodes CRUD SavoirFaire
+
+    public List<SavoirFaire> getAllSavoirFaires(){
+        return  savoirFaireRepository.findAll();
+    }
+
+
 }

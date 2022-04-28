@@ -20,6 +20,6 @@ public class Competence {
 
     @ManyToOne
     private Activite activite;
-    @OneToMany
+    @OneToMany(mappedBy = "competence")
     private List<SavoirFaire> savoirFaires;
 }

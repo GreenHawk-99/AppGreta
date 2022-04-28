@@ -1,4 +1,4 @@
-package com.cda.contenu_seance.controllers.CrudControllers;
+package com.cda.contenu_seance.controllers.CoordonateurControllers;
 
 import com.cda.contenu_seance.dto.CentreDTO;
 import com.cda.contenu_seance.services.FicheService;
@@ -8,10 +8,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(value = "/formulaire")
+@RequestMapping(value = "/coordonateur/dashboard")
 public class CentreController {
     @Autowired
     FicheService ficheService;
+
+    @GetMapping(value = "/centres")
+    public String dashboardCentres(Model model) {
+        // Tableau
+        model.addAttribute("centres", ficheService.getAllCentres());
+        // Form
+        model.addAttribute("centreForm", new CentreDTO());
+        return "dashboardCoordonateur/dashboardCentres";
+    }
 
     @GetMapping(value = "/centre")
     public String formCentre(Model model) {
@@ -22,7 +31,7 @@ public class CentreController {
     @PostMapping(value = "/centre/save")
     public String addCentre(@ModelAttribute(name = "centre") CentreDTO centreDTO) {
         ficheService.saveCentre(centreDTO);
-        return "redirect:/dashboard/centres";
+        return "redirect:/coordonateur/dashboard/centres";
     }
 
     @GetMapping(value = "/centre/edit/{id}")
@@ -34,6 +43,6 @@ public class CentreController {
     @GetMapping(value = "/centre/delete/{id}")
     public String deleteCentre(@PathVariable(name = "id") long id) {
         ficheService.deleteCentre(id);
-        return "redirect:/dashboard/centres";
+        return "redirect:/coordonateur/dashboard/centres";
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ReacDTO {
     @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
     private String lien;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateDebut;
+    private LocalDate dateDebut;
     @NotNull(message = "Le champ ne doit pas être null")
     @NotEmpty(message = "Le champ ne peut pas être vide")
     private int duree;

@@ -1,4 +1,4 @@
-package com.cda.contenu_seance.controllers.CrudControllers;
+package com.cda.contenu_seance.controllers.CoordonateurControllers;
 
 import com.cda.contenu_seance.dto.IntervenantDTO;
 import com.cda.contenu_seance.services.IntervenantService;
@@ -8,10 +8,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(value = "/formulaire")
+@RequestMapping(value = "/coordonateur/dashboard")
 public class FormateurController {
     @Autowired
     IntervenantService intervenantService;
+
+    @GetMapping(value = "/formateurs")
+    public String dashboardFormateurs(Model model) {
+        // Tableau
+        model.addAttribute("formateurs", intervenantService.getAllFormateurs());
+        // Form
+        model.addAttribute("formateurForm", new IntervenantDTO());
+        return "dashboardCoordonateur/dashboardFormateurs";
+    }
 
     @GetMapping(value = "/formateur")
     public String formFormateur(Model model) {
@@ -22,7 +31,7 @@ public class FormateurController {
     @PostMapping(value = "/formateur/save")
     public String addFormateur(@ModelAttribute(name = "formateur") IntervenantDTO intervenantDTO) {
         intervenantService.saveFormateur(intervenantDTO);
-        return "redirect:/dashboard/formateurs";
+        return "redirect:/coordonateur/dashboard/formateurs";
     }
 
     @GetMapping(value = "/formateur/edit/{id}")
@@ -35,6 +44,6 @@ public class FormateurController {
     @GetMapping(value = "/formateur/delete/{id}")
     public String deleteFormateur(@PathVariable(name = "id") long id) {
         intervenantService.deleteFormateur(id);
-        return "redirect:/dashboard/formateurs";
+        return "redirect:/coordonateur/dashboard/formateurs";
     }
 }

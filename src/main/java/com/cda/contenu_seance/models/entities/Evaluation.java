@@ -17,6 +17,6 @@ public class Evaluation {
     private Long id;
     private String modalite;
 
-    @OneToMany
+    @OneToMany(mappedBy = "evaluation")
     private List<Seance> seances;
 }

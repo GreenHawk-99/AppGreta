@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -15,9 +16,9 @@ import java.util.List;
 public class SessionDTO {
     private Long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateDebut;
+    private LocalDate dateDebut;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateFin;
+    private LocalDate dateFin;
     @NotNull(message = "Le champ ne doit pas être null")
     @NotEmpty(message = "Le champ ne peut pas être vide")
     private int dureeTotal;
