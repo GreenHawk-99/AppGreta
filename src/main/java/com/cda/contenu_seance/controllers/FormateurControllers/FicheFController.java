@@ -1,38 +1,34 @@
-package com.cda.contenu_seance.controllers.CoordonateurControllers;
+package com.cda.contenu_seance.controllers.FormateurControllers;
 
 import com.cda.contenu_seance.dto.SeanceDTO;
-import com.cda.contenu_seance.services.*;
+import com.cda.contenu_seance.services.FicheService;
+import com.cda.contenu_seance.services.IntervenantService;
+import com.cda.contenu_seance.services.ReferentielService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.time.LocalDate;
 
 @Controller
-@RequestMapping(value = "/coordonateur/dashboard")
-public class FicheController {
+@RequestMapping(value = "/formateur/dashboard")
+public class FicheFController {
     FicheService ficheService;
     ReferentielService referentielService;
     IntervenantService intervenantService;
 
     @Autowired
-    public FicheController(FicheService ficheService, ReferentielService referentielService, IntervenantService intervenantService) {
+    public FicheFController(FicheService ficheService, ReferentielService referentielService, IntervenantService intervenantService) {
         this.ficheService = ficheService;
         this.referentielService = referentielService;
         this.intervenantService = intervenantService;
     }
 
-    @GetMapping(value = {"/fiches", "/fiche/edit/{id}"})
-    public String dashboardFiches(@PathVariable(required = false) Long id, SeanceDTO seanceDTO, Model model) {
+    @GetMapping(value = "/fiches")
+    public String dashboardFiches(Model model) {
         // Tableau
         model.addAttribute("fiches", ficheService.getAllFiches());
         // Form
-        model.addAttribute("id", id);
-        model.addAttribute("ficheForm", seanceDTO);
+        model.addAttribute("ficheForm", new SeanceDTO());
         model.addAttribute("evaluations", ficheService.getAllEvaluations());
         model.addAttribute("sessions", ficheService.getAllSessions());
         model.addAttribute("formateurs", intervenantService.getAllFormateurs());
@@ -48,26 +44,12 @@ public class FicheController {
     }
 
     @PostMapping(value = "/fiche/save")
-    public String saveFiche(@Validated SeanceDTO seanceDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
-            if (null==seanceDTO.getId()){
-                model.addAttribute("fiches", ficheService.getAllFiches());
-                return "redirect:/coordonateur/dashboard/fiches";
-            } else {
-                Long id = seanceDTO.getId();
-                model.addAttribute("id", id);
-                model.addAttribute("fiches", ficheService.getAllFiches());
-                return "redirect:/coordonateur/dashboard/fiches";
-            }
-        }
-        LocalDate dateDuJour = seanceDTO.getDateDuJour();
-        redirectAttributes.addFlashAttribute("message", "La fiche de suivi du '"+dateDuJour+"' a bien été créée/modifiée");
+    public String saveFiche(@ModelAttribute(name = "fiche") SeanceDTO seanceDTO) {
         ficheService.saveFiche(seanceDTO);
         return "redirect:/coordonateur/dashboard/fiches";
     }
 
-    /*@GetMapping(value = "/fiche/edit/{id}")
+    @GetMapping(value = "/fiche/edit/{id}")
     public String editFiche(@PathVariable(name = "id") long id, Model model, SeanceDTO seanceDTO) {
         model.addAttribute("id", id);
         model.addAttribute("ficheForm", seanceDTO);
@@ -75,9 +57,9 @@ public class FicheController {
         model.addAttribute("sessions", ficheService.getAllSessions());
         model.addAttribute("formateurs", intervenantService.getAllFormateurs());
         return "formulaire/update/ficheUpdate";
-    }*/
+    }
 
-    @PostMapping(value = "/fiche/delete/{id}")
+    @GetMapping(value = "/fiche/delete/{id}")
     public String deleteFiche(@PathVariable(name = "id") long id) {
         ficheService.deleteFiche(id);
         return "redirect:/coordonateur/dashboard/fiches";

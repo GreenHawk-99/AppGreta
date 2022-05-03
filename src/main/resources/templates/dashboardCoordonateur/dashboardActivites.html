@@ -48,15 +48,28 @@
                 <div class="card border-primary col col-lg-6 col-md-12">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                         <div class="container">
-                            <div class="py-4 text-center">
+                            <div th:if="!${id}" class="py-4 text-center">
                                 <h2 class="text-primary">Création d'une Activité</h2>
+                            </div>
+                            <div th:if="${id}" class="py-4 text-center">
+                                <h2 class="text-primary">Modification d'une Activité</h2>
+                            </div>
+
+                            <div class="row justify-content-center g-6">
+                                <div th:if="${message}" class="alert alert-success col-sm-6" role="alert">
+                                    <p th:text="${message}" class="text-center"></p>
+                                </div>
                             </div>
 
                             <div class="row g-6">
                                 <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
                                       th:action="@{'/coordonateur/dashboard/activite/save'}"
                                       th:object="${activiteForm}">
-                                    <div class="row g-4">
+                                    <div class="row justify-content-center g-4">
+                                        <div th:if="${id}">
+                                            <p th:text="'Modification de l\'élement: '+${id}"></p>
+                                        </div>
+                                        <input name="id" type="hidden" th:value="${id}">
                                         <div class="col-sm-6">
                                             <label for="activitesTypes" class="form-label">Nom de l'activité</label>
                                             <div th:each="anError : ${errorForm}" th:if="errorForm">
@@ -66,9 +79,6 @@
                                             <input th:field="*{activitesTypes}" name="activitesTypes" type="text"
                                                    class="form-control" id="activitesTypes"
                                                    placeholder="Veuillez saisir un nom d'une activité" value="">
-                                            <div class="invalid-feedback">
-                                                Please select a valid country.
-                                            </div>
                                         </div>
 
                                         <div class="col-sm-2">
@@ -80,13 +90,14 @@
                                             <input th:field="*{numAT}" name="numAT" type="text" class="form-control"
                                                    id="numAT" placeholder="Veuillez saisir un numéro de l'activité"
                                                    value="">
-                                            <div class="invalid-feedback">
-                                                Please select a valid country.
-                                            </div>
                                         </div>
 
                                         <div class="col-4">
                                             <label for="reac" class="form-label">Référentiel</label>
+                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
+                                                <p class="alert alert-danger"
+                                                   th:text="${anError.defaultMessage}"></p>
+                                            </div>
                                             <select th:field="*{reac}" class="form-select" id="reac">
                                                 <option selected class="disable" value="" disabled>Choisissez le
                                                     référentiel
@@ -104,6 +115,9 @@
                                         <button class="w-50 btn btn-primary btn-lg" type="submit">Envoyer le
                                             formulaire
                                         </button>
+                                        <div th:if="${id}">
+                                            <a class="w-25 btn btn-danger btn-sm mt-2" href="/coordonateur/dashboard/formations">Retour creation</a>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -134,7 +148,7 @@
                         <td th:text="${uneActivite.reac.nom}">Nom REAC</td>
                         <td>
                             <a class="btn btn-outline-success" href="#"
-                               th:href="@{'/formulaire/activite/edit/'+${uneActivite.id}}">
+                               th:href="@{'/coordonateur/activite/edit/'+${uneActivite.id}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-gear"
                                      viewBox="0 0 16 16">
@@ -143,7 +157,7 @@
                                 </svg>
                             </a>
                             <a class="btn btn-outline-danger" href="#"
-                               th:href="@{'/formulaire/activite/delete/'+${uneActivite.id}}">
+                               th:href="@{'/coordonateur/dash/activite/delete/'+${uneActivite.id}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-x-lg"
                                      viewBox="0 0 16 16">

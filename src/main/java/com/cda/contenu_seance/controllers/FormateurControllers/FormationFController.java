@@ -1,4 +1,4 @@
-package com.cda.contenu_seance.controllers.CoordonateurControllers;
+package com.cda.contenu_seance.controllers.FormateurControllers;
 
 import com.cda.contenu_seance.dto.FormationDTO;
 import com.cda.contenu_seance.models.entities.Formation;
@@ -8,13 +8,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping(value = "/coordonateur/dashboard")
-public class FormationController implements WebMvcConfigurer {
+@RequestMapping(value = "/formateur/dashboard")
+public class FormationFController implements WebMvcConfigurer {
 
     @Autowired
     FicheService ficheService;
@@ -36,19 +39,28 @@ public class FormationController implements WebMvcConfigurer {
     }
 
     @PostMapping(value = "/formation/save")
-    public String saveFormation(@Validated FormationDTO formationDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-        String action="";
-        if (null==formationDTO.getId()){
-            action="créée";
-        }
-        else {
-            action="modifiée";
-        }
+    public String saveFormation(@Validated FormationDTO formationDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            model.addAttribute("formations", ficheService.getAllFormations());
+            model.addAttribute("formationForm", formationDTO);
+            model.addAttribute("errorForm", bindingResult.getAllErrors());
+            if (null==formationDTO.getId()){
+                model.addAttribute("formations", ficheService.getAllFormations());
+                return "dashboardCoordonateur/dashboardFormations";
+            } else {
+                Long id = formationDTO.getId();
+                model.addAttribute("formations", ficheService.getAllFormations());
+                model.addAttribute("id", id);
+                return "dashboardCoordonateur/dashboardFormations";
+            }
+            //model.addAttribute("formations", ficheService.getAllFormations());
+            //model.addAttribute("formationForm", new FormationDTO());
+            //model.addAttribute("errorForm", bindingResult.getAllErrors());
+            //return "dashboardCoordonateur/dashboardFormations";
+
         }
         String typeFormation = formationDTO.getTypeFormation();
-        redirectAttributes.addFlashAttribute("message", "La formation '"+typeFormation+"' a bien été "+action);
+        redirectAttributes.addFlashAttribute("message", "La formation '"+typeFormation+"' a bien été créer/modifier");
         ficheService.saveFormation(formationDTO);
         return "redirect:/coordonateur/dashboard/formations";
     }
@@ -72,7 +84,7 @@ public class FormationController implements WebMvcConfigurer {
         return "formulaire/update/formationUpdate";
     }*/
 
-    @PostMapping(value = "/formation/delete/{id}")
+    @GetMapping(value = "/formation/delete/{id}")
     public String deleteFormation(@PathVariable(name = "id") long id) {
         ficheService.deleteFormation(id);
         return "redirect:/coordonateur/dashboard/formations";

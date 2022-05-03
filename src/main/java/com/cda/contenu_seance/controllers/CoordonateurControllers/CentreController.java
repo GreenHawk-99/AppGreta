@@ -5,7 +5,10 @@ import com.cda.contenu_seance.services.FicheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/coordonateur/dashboard")
@@ -13,12 +16,13 @@ public class CentreController {
     @Autowired
     FicheService ficheService;
 
-    @GetMapping(value = "/centres")
-    public String dashboardCentres(Model model) {
+    @GetMapping(value = {"/centres", "/centre/edit/{id}"})
+    public String dashboardCentres(@PathVariable(required = false) Long id, CentreDTO centreDTO, Model model) {
         // Tableau
         model.addAttribute("centres", ficheService.getAllCentres());
         // Form
-        model.addAttribute("centreForm", new CentreDTO());
+        model.addAttribute("id", id);
+        model.addAttribute("centreForm", centreDTO);
         return "dashboardCoordonateur/dashboardCentres";
     }
 
@@ -29,18 +33,32 @@ public class CentreController {
     }
 
     @PostMapping(value = "/centre/save")
-    public String addCentre(@ModelAttribute(name = "centre") CentreDTO centreDTO) {
+    public String addCentre(@Validated CentreDTO centreDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            if (null==centreDTO.getId()){
+                model.addAttribute("centres", ficheService.getAllCentres());
+                return "redirect:/coordonateur/dashboard/centres";
+            } else {
+                Long id = centreDTO.getId();
+                model.addAttribute("id", id);
+                model.addAttribute("centres", ficheService.getAllCentres());
+                return "redirect:/coordonateur/dashboard/centres";
+            }
+        }
+        String nomCentre = centreDTO.getNomCentre();
+        redirectAttributes.addFlashAttribute("message", "Le centre '"+nomCentre+"' a bien été créée/modifiée");
         ficheService.saveCentre(centreDTO);
         return "redirect:/coordonateur/dashboard/centres";
     }
 
-    @GetMapping(value = "/centre/edit/{id}")
+    /*@GetMapping(value = "/centre/edit/{id}")
     public String editCentre(Model model, @PathVariable(name = "id") long id) {
         model.addAttribute("id", id);
         return "formulaire/update/centreUpdate";
-    }
+    }*/
 
-    @GetMapping(value = "/centre/delete/{id}")
+    @PostMapping(value = "/centre/delete/{id}")
     public String deleteCentre(@PathVariable(name = "id") long id) {
         ficheService.deleteCentre(id);
         return "redirect:/coordonateur/dashboard/centres";

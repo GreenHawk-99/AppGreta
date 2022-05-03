@@ -55,20 +55,23 @@
                                 <h2 class="text-primary">Modification d'une Formation</h2>
                             </div>
 
+                            <div class="row justify-content-center g-6">
+                                <div th:if="${message}" class="alert alert-success col-sm-6" role="alert">
+                                    <p th:text="${message}" class="text-center"></p>
+                                </div>
+                            </div>
+
                             <div class="row g-6">
                                 <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
                                       th:action="@{'/coordonateur/dashboard/formation/save'}"
                                       th:object="${formationForm}">
                                     <div class="row justify-content-center g-4">
-                                        <div class="col-sm-5">
-                                            <div th:if="${id}">
-                                                <p th:text="'Modification de l\'élement: '+${id}"></p>
-                                            </div>
-                                            <input name="id" type="hidden" th:value="${id}">
+                                        <div th:if="${id}">
+                                            <p th:text="'Modification de l\'élement: '+${id}"></p>
+                                        </div>
+                                        <input name="id" type="hidden" th:value="${id}">
+                                        <div class="col-sm-6">
                                             <label for="nomFormation" class="form-label">Nom de la Formation</label>
-                                            <div th:if="${message}" class="alert alert-success" role="alert">
-                                                <p th:text="${message}" class="text-center"></p>
-                                            </div>
                                             <div th:each="anError : ${errorForm}" th:if="errorForm">
                                                 <p class="alert alert-danger"
                                                    th:text="${anError.defaultMessage}"></p>
@@ -81,11 +84,11 @@
 
                                     <hr class="my-4">
                                     <div class="text-center">
-                                        <button class="w-50 btn btn-primary btn-lg mb-2" type="submit">Envoyer le
+                                        <button class="w-50 btn btn-primary btn-lg" type="submit">Envoyer le
                                             formulaire
                                         </button>
                                         <div th:if="${id}">
-                                            <a class="w-25 btn btn-danger btn-sm" href="/coordonateur/dashboard/formations">Retour creation</a>
+                                            <a class="w-25 btn btn-danger btn-sm mt-2" href="/coordonateur/dashboard/formations">Retour creation</a>
                                         </div>
                                     </div>
                                 </form>

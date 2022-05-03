@@ -6,8 +6,10 @@ import com.cda.contenu_seance.services.ReferentielService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/coordonateur/dashboard")
@@ -16,23 +18,24 @@ public class ReferentielController {
     ReferentielService referentielService;
     FicheService ficheService;
 
-    @GetMapping(value = "/referentiels")
-    public String dashboardReac(Model model) {
-        // Tableau
-        model.addAttribute("reacs", referentielService.getAllReacs());
-        model.addAttribute("activites", referentielService.getAllActivites());
-        model.addAttribute("competences", referentielService.getAllCompetences());
-        // Form
-        model.addAttribute("reacForm", new ReacDTO());
-        model.addAttribute("formations", ficheService.getAllFormations());
-        return "dashboardCoordonateur/dashboardReferentiels";
-    }
-
     @Autowired
     public ReferentielController(ReferentielService referentielService,
                                  FicheService ficheService) {
         this.referentielService = referentielService;
         this.ficheService = ficheService;
+    }
+
+    @GetMapping(value = {"/referentiels", "/referentiel/edit/{id}"})
+    public String dashboardReac(@PathVariable(required = false) Long id, ReacDTO reacDTO, Model model) {
+        // Tableau
+        model.addAttribute("reacs", referentielService.getAllReacs());
+        model.addAttribute("activites", referentielService.getAllActivites());
+        model.addAttribute("competences", referentielService.getAllCompetences());
+        // Form
+        model.addAttribute("id", id);
+        model.addAttribute("reacForm", reacDTO);
+        model.addAttribute("formations", ficheService.getAllFormations());
+        return "dashboardCoordonateur/dashboardReferentiels";
     }
 
     @GetMapping(value = "/referentiel")
@@ -43,20 +46,34 @@ public class ReferentielController {
     }
 
     @PostMapping(value = "/referentiel/save")
-    public String addReferenciel(@Validated @ModelAttribute(name = "referentiel") ReacDTO reacDTO) {
+    public String addReferenciel(@Validated ReacDTO reacDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            if (null==reacDTO.getId()){
+                model.addAttribute("reacs", referentielService.getAllReacs());
+                return "redirect:/coordonateur/dashboard/referentiels";
+            } else {
+                Long id = reacDTO.getId();
+                model.addAttribute("id", id);
+                model.addAttribute("reacs", referentielService.getAllReacs());
+                return "redirect:/coordonateur/dashboard/referentiels";
+            }
+        }
+        String nom = reacDTO.getNom();
+        redirectAttributes.addFlashAttribute("message", "Le REAC '"+nom+"' a bien été créée/modifiée");
         referentielService.saveReac(reacDTO);
         return "redirect:/coordonateur/dashboard/referentiels";
     }
 
-    @GetMapping(value = "/referentiel/edit/{id}")
+    /*@GetMapping(value = "/referentiel/edit/{id}")
     public String editReferenciel(Model model, @PathVariable(name = "id") long id) {
         model.addAttribute("id", id);
         model.addAttribute("reacForm", new ReacDTO());
         model.addAttribute("formations", ficheService.getAllFormations());
         return "formulaire/update/referentielUpdate";
-    }
+    }*/
 
-    @GetMapping(value = "/referentiel/delete/{id}")
+    @PostMapping(value = "/referentiel/delete/{id}")
     public String deleteReferenciel(@PathVariable(name = "id") long id) {
         referentielService.deleteReac(id);
         return "redirect:/coordonateur/dashboard/referentiels";

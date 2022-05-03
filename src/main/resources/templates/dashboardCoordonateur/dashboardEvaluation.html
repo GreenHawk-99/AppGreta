@@ -48,15 +48,28 @@
                 <div class="card border-primary col col-lg-6 col-md-12">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                         <div class="container">
-                            <div class="py-4 text-center">
-                                <h2 class="text-primary">Création d'une Activité</h2>
+                            <div th:if="!${id}" class="py-4 text-center">
+                                <h2 class="text-primary">Création d'une Évaluation</h2>
+                            </div>
+                            <div th:if="${id}" class="py-4 text-center">
+                                <h2 class="text-primary">Modification d'une Évaluation</h2>
+                            </div>
+
+                            <div class="row justify-content-center g-6">
+                                <div th:if="${message}" class="alert alert-success col-sm-6" role="alert">
+                                    <p th:text="${message}" class="text-center"></p>
+                                </div>
                             </div>
 
                             <div class="row g-6">
                                 <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
                                       th:action="@{'/formulaire/activite/save'}"
                                       th:object="${activiteForm}">
-                                    <div class="row g-4">
+                                    <div class="row justify-content-center g-4">
+                                        <div th:if="${id}">
+                                            <p th:text="'Modification de l\'élement: '+${id}"></p>
+                                        </div>
+                                        <input name="id" type="hidden" th:value="${id}">
                                         <div class="col-sm-6">
                                             <label for="activitesTypes" class="form-label">Nom de l'activité</label>
                                             <div th:each="anError : ${errorForm}" th:if="errorForm">
@@ -104,6 +117,9 @@
                                         <button class="w-50 btn btn-primary btn-lg" type="submit">Envoyer le
                                             formulaire
                                         </button>
+                                        <div th:if="${id}">
+                                            <a class="w-25 btn btn-danger btn-sm mt-2" href="/coordonateur/dashboard/formations">Retour creation</a>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

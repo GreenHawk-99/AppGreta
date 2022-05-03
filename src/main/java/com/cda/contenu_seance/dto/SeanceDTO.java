@@ -18,8 +18,7 @@ public class SeanceDTO {
     private Long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDuJour;
-    @NotNull
-    @NotEmpty(message = "Le champ ne peut pas être vide")
+    @NotNull(message = "Le champ ne doit pas être null")
     @Min(value = 3, message = "La durée du cours ne peut pas être inférieur à 3 heures")
     @Max(value = 4, message = "La durée du cours ne peut pas être sipérieur à 4 heures")
     private int duree;

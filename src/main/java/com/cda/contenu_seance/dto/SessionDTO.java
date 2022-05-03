@@ -20,7 +20,6 @@ public class SessionDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateFin;
     @NotNull(message = "Le champ ne doit pas être null")
-    @NotEmpty(message = "Le champ ne peut pas être vide")
     private int dureeTotal;
 
     private Centre centre;
