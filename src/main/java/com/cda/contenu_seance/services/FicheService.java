@@ -160,9 +160,9 @@ public class FicheService {
         sessionDb.setDateDebut(sessionDTO.getDateDebut());
         sessionDb.setDateFin(sessionDTO.getDateFin());
         sessionDb.setDureeTotal(sessionDTO.getDureeTotal());
-        sessionDb.setSeances(sessionDTO.getSeances());
         sessionDb.setCentre(sessionDTO.getCentre());
-        //TODO
+        sessionDb.setCoordinateur(sessionDTO.getCoordinateur());
+        sessionDb.setFormation(sessionDTO.getFormation());
         sessionRepository.save(sessionDb);
     }
 
