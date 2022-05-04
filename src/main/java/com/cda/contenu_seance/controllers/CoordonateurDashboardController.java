@@ -9,12 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Validated
-@Controller
-@RequestMapping(value = "/coordonateur/dashboard")
+//@Validated
+//@Controller
+//@RequestMapping(value = "/coordonateur/dashboard")
 public class CoordonateurDashboardController implements WebMvcConfigurer {
     FicheService ficheService;
     IntervenantService intervenantService;
@@ -44,8 +45,9 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("fiches", ficheService.getAllFiches());
         // Form
         model.addAttribute("ficheForm", new SeanceDTO());
-        model.addAttribute("competences", referentielService.getAllCompetences());
+        model.addAttribute("evaluations", ficheService.getAllEvaluations());
         model.addAttribute("sessions", ficheService.getAllSessions());
+        model.addAttribute("formateurs", intervenantService.getAllFormateurs());
         return "dashboardCoordonateur/dashboardFiches";
     }
 
@@ -58,12 +60,13 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         return "dashboardCoordonateur/dashboardFormateurs";
     }
 
-    @GetMapping(value = "/formations")
-    public String dashboardFormations(Model model) {
+    @GetMapping(value = {"/formations", "/formation/edit/{id}"})
+    public String dashboardFormations(@PathVariable(required = false) Long id, FormationDTO formationDTO, Model model) {
         // Tableau
         model.addAttribute("formations", ficheService.getAllFormations());
         // Form
-        model.addAttribute("formationForm", new FormationDTO());
+        model.addAttribute("id", id);
+        model.addAttribute("formationForm", formationDTO);
         return "dashboardCoordonateur/dashboardFormations";
     }
 
@@ -110,5 +113,14 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("reacForm", new ReacDTO());
         model.addAttribute("formations", ficheService.getAllFormations());
         return "dashboardCoordonateur/dashboardReferentiels";
+    }
+
+    @GetMapping(value="/evaluations")
+    public String dashboardEvaluation(Model model) {
+        // Tableau
+        model.addAttribute("evaluations", ficheService.getAllEvaluations());
+        //Form
+        model.addAttribute("evaluationForm", new EvaluationDTO());
+        return "dashboardEvaluation";
     }
 }

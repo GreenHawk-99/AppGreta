@@ -1,7 +1,6 @@
 package com.cda.contenu_seance.dto;
 
-import com.cda.contenu_seance.models.entities.Competence;
-import com.cda.contenu_seance.models.entities.Reac;
+import com.cda.contenu_seance.models.entities.Seance;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,14 +11,11 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ActiviteDTO {
+public class EvaluationDTO {
     private Long id;
     @NotEmpty(message = "Le champ ne peut pas être vide")
     @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
-    private String activitesTypes;
-    @NotNull(message = "Le champ ne doit pas être null")
-    private int numAT;
+    private String modalite;
 
-    private List<Competence> competences;
-    private Reac reac;
+    private List<Seance> seances;
 }

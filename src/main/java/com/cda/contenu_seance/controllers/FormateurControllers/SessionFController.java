@@ -1,17 +1,33 @@
-package com.cda.contenu_seance.controllers.CrudControllers;
+package com.cda.contenu_seance.controllers.FormateurControllers;
 
 import com.cda.contenu_seance.dto.SessionDTO;
 import com.cda.contenu_seance.services.FicheService;
+import com.cda.contenu_seance.services.IntervenantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(value = "/formulaire")
-public class SessionController {
+@RequestMapping(value = "/formateur/dashboard")
+public class SessionFController {
     @Autowired
     FicheService ficheService;
+    @Autowired
+    IntervenantService intervenantService;
+
+    @GetMapping(value = "/sessions")
+    public String dashboardSessions(Model model) {
+        // Tableau
+        model.addAttribute("sessionsGRETA", ficheService.getAllSessions());
+        model.addAttribute("formations", ficheService.getAllFormations());
+        model.addAttribute("centres", ficheService.getAllCentres());
+        model.addAttribute("coordinateurs", intervenantService.getAllCoordinateurs());
+        model.addAttribute("formateurs", intervenantService.getAllFormateurs());
+        // Form
+        model.addAttribute("sessionForm", new SessionDTO());
+        return "dashboardCoordonateur/dashboardSessions";
+    }
 
     @GetMapping(value = "/session")
     public String formSession(Model model) {
@@ -22,7 +38,7 @@ public class SessionController {
     @PostMapping(value = "/session/save")
     public String addSession(@ModelAttribute(name = "session") SessionDTO sessionDTO) {
         ficheService.saveSession(sessionDTO);
-        return "redirect:/dashboard/sessions";
+        return "redirect:/coordonateur/dashboard/sessions";
     }
 
     @GetMapping(value = "/session/edit/{id}")
@@ -35,6 +51,6 @@ public class SessionController {
     @GetMapping(value = "/session/delete/{id}")
     public String deleteSession(@PathVariable(name = "id") long id) {
         ficheService.deleteSession(id);
-        return "redirect:/dashboard/sessions";
+        return "redirect:/coordonateur/dashboard/sessions";
     }
 }

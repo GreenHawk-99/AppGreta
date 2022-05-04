@@ -1,17 +1,8 @@
 package com.cda.contenu_seance.services;
 
-import com.cda.contenu_seance.dto.CentreDTO;
-import com.cda.contenu_seance.dto.FormationDTO;
-import com.cda.contenu_seance.dto.SeanceDTO;
-import com.cda.contenu_seance.dto.SessionDTO;
-import com.cda.contenu_seance.models.entities.Centre;
-import com.cda.contenu_seance.models.entities.Formation;
-import com.cda.contenu_seance.models.entities.Seance;
-import com.cda.contenu_seance.models.entities.Session;
-import com.cda.contenu_seance.models.repositories.CentreRepository;
-import com.cda.contenu_seance.models.repositories.FormationRepository;
-import com.cda.contenu_seance.models.repositories.SeanceRepository;
-import com.cda.contenu_seance.models.repositories.SessionRepository;
+import com.cda.contenu_seance.dto.*;
+import com.cda.contenu_seance.models.entities.*;
+import com.cda.contenu_seance.models.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,19 +14,25 @@ public class FicheService {
     SessionRepository sessionRepository;
     FormationRepository formationRepository;
     CentreRepository centreRepository;
+    EvaluationRepository evaluationRepository;
+    SavoirFaireRepository savoirFaireRepository;
 
     @Autowired
     public FicheService(SeanceRepository seanceRepository,
                         SessionRepository sessionRepository,
                         FormationRepository formationRepository,
-                        CentreRepository centreRepository){
+                        CentreRepository centreRepository,
+                        EvaluationRepository evaluationRepository,
+                        SavoirFaireRepository savoirFaireRepository){
         this.centreRepository = centreRepository;
         this.seanceRepository = seanceRepository;
         this.sessionRepository = sessionRepository;
         this.formationRepository = formationRepository;
+        this.evaluationRepository = evaluationRepository;
+        this.savoirFaireRepository = savoirFaireRepository;
     }
 
-    /*private SeanceDTO convertSEtoSDTO(Seance seance){
+    /*private SeanceDTO convertSeanceEntityToSeanceDTO(Seance seance){
         SeanceDTO seanceDTO = new SeanceDTO();
         seanceDTO.setId(seance.getId());
         seanceDTO.setDateDuJour(seance.getDateDuJour());
@@ -80,10 +77,12 @@ public class FicheService {
         seanceDb.setDateDuJour(seanceDTO.getDateDuJour());
         seanceDb.setDuree(seanceDTO.getDuree());
         seanceDb.setObjectifPeda(seanceDTO.getObjectifPeda().trim());
+        seanceDb.setMethodeEnvisage(seanceDTO.getMethodeEnvisage().trim());
         seanceDb.setSupport(seanceDTO.getSupport().trim());
         seanceDb.setDeroulement(seanceDTO.getDeroulement().trim());
         seanceDb.setFormateurs(seanceDTO.getFormateur());
         seanceDb.setSession(seanceDTO.getSession());
+        seanceDb.setEvaluation(seanceDTO.getEvaluation());
         seanceRepository.save(seanceDb);
     }
 
@@ -131,7 +130,8 @@ public class FicheService {
         if (null==centreDTO.getId()){
             centreDb = new Centre();
         } else{
-            centreDb = centreRepository.findById(centreDTO.getId()).orElse(new Centre());
+            centreDb = getCentre(centreDTO.getId());
+            //centreDb = centreRepository.findById(centreDTO.getId()).orElse(new Centre());
         }
         centreDb.setNomCentre(centreDTO.getNomCentre().trim());
         centreDb.setAdresseCentre(centreDTO.getAdresseCentre().trim());
@@ -159,10 +159,44 @@ public class FicheService {
         }
         sessionDb.setDateDebut(sessionDTO.getDateDebut());
         sessionDb.setDateFin(sessionDTO.getDateFin());
+        sessionDb.setDureeTotal(sessionDTO.getDureeTotal());
+        sessionDb.setCentre(sessionDTO.getCentre());
+        sessionDb.setCoordinateur(sessionDTO.getCoordinateur());
+        sessionDb.setFormation(sessionDTO.getFormation());
         sessionRepository.save(sessionDb);
     }
 
     public void deleteSession(long id){
         sessionRepository.deleteById(id);
     }
+
+    // Méthodes CRUD Evaluation
+
+    public List<Evaluation> getAllEvaluations(){
+        return evaluationRepository.findAll();
+    }
+
+    public void saveEvaluation(EvaluationDTO evaluationDTO){
+        Evaluation evaluationDb;
+        if (null==evaluationDTO.getId()){
+            evaluationDb = new Evaluation();
+        } else {
+            evaluationDb = evaluationRepository.findById(evaluationDTO.getId()).orElse(new Evaluation());
+        }
+        evaluationDb.setModalite(evaluationDTO.getModalite());
+        evaluationDb.setSeances(evaluationDTO.getSeances());
+        evaluationRepository.save(evaluationDb);
+    }
+
+    public void deleteEvaluation (long id){
+        evaluationRepository.deleteById(id);
+    }
+
+    // Méthodes CRUD SavoirFaire
+
+    public List<SavoirFaire> getAllSavoirFaires(){
+        return  savoirFaireRepository.findAll();
+    }
+
+
 }

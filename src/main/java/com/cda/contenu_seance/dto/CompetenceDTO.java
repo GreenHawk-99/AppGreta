@@ -18,7 +18,7 @@ public class CompetenceDTO {
     @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
     private String competenceProfessionel;
     @NotNull(message = "Le champ ne doit pas être null")
-    @NotEmpty(message = "Le champ ne peut pas être vide")
+
     private int numCP;
 
     private Activite activite;
