@@ -21,7 +21,7 @@ public abstract class Intervenant {
     private String nom;
     private String prenom;
     private String email;
-    private String mp;
+    private String mdp;
     private String codePostal;
     private String tel;
 }

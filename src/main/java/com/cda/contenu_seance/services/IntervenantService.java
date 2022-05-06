@@ -8,6 +8,7 @@ import com.cda.contenu_seance.models.repositories.CoordinateurRepository;
 import com.cda.contenu_seance.models.repositories.FormateurRepository;
 import com.cda.contenu_seance.models.repositories.IntervenantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,12 +32,19 @@ public class IntervenantService {
         intervenantDb.setNom(intervenantDTO.getNom().trim().toUpperCase());
         intervenantDb.setPrenom(intervenantDTO.getPrenom().trim());
         intervenantDb.setEmail(intervenantDTO.getEmail().trim());
-        intervenantDb.setMp(intervenantDTO.getMp().trim());
+        intervenantDb.setMdp(intervenantDTO.getMdp().trim());
         intervenantDb.setCodePostal(intervenantDTO.getCodePostal().trim());
         intervenantDb.setTel(intervenantDTO.getTel().trim());
     }
 
     // Méthodes CRUD Coordinateur
+
+    public void registerCoordonateur(String email, String mdp){
+        Coordinateur coordinateur = new Coordinateur();
+        coordinateur.setEmail(email);
+        coordinateur.setMdp("{bcrypt}"+new BCryptPasswordEncoder().encode(mdp));
+        intervenantRepository.save(coordinateur);
+    }
 
     public List<Coordinateur> getAllCoordinateurs() {
         return coordinateurRepository.findAll();
@@ -68,6 +76,13 @@ public class IntervenantService {
     }
 
     // Méthodes CRUD Formateur
+
+    public void registerFormateur(String email, String mdp){
+        Formateur formateur = new Formateur();
+        formateur.setEmail(email);
+        formateur.setMdp("{bcrypt}"+new BCryptPasswordEncoder().encode(mdp));
+        intervenantRepository.save(formateur);
+    }
 
     public List<Formateur> getAllFormateurs() {
         return formateurRepository.findAll();
