@@ -37,7 +37,7 @@ public class CompetenceController {
 
     @PostMapping(value = "/competence/save")
     public String addCompetence(@Validated CompetenceDTO competenceDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
-        String action="";
+        String action;
         if (null==competenceDTO.getId()){
             action="créée";
         }
@@ -46,7 +46,6 @@ public class CompetenceController {
         }
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
-           return "redirect:/coordonateur/dashboard/competences";
         }
         String competenceProfessionel = competenceDTO.getCompetenceProfessionel();
         redirectAttributes.addFlashAttribute("message", "La compétence '"+competenceProfessionel+"' a bien été "+action);

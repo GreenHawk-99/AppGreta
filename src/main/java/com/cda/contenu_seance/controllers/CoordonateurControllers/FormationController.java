@@ -37,7 +37,7 @@ public class FormationController implements WebMvcConfigurer {
 
     @PostMapping(value = "/formation/save")
     public String saveFormation(@Validated FormationDTO formationDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-        String action="";
+        String action;
         if (null==formationDTO.getId()){
             action="créée";
         }

@@ -28,20 +28,18 @@ public class EvaluationController {
 
     @PostMapping(value = "/evaluation/save")
     public String saveEvaluation(@Validated EvaluationDTO evaluationDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+        String action;
+        if (null==evaluationDTO.getId()){
+            action="créée";
+        }
+        else {
+            action="modifiée";
+        }
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
-            if (null==evaluationDTO.getId()){
-                model.addAttribute("evaluations", ficheService.getAllEvaluations());
-                return "redirect:/coordonateur/dashboard/evaluation";
-            } else {
-                Long id = evaluationDTO.getId();
-                model.addAttribute("id", id);
-                model.addAttribute("evaluations", ficheService.getAllEvaluations());
-                return "redirect:/coordonateur/dashboard/evaluation";
-            }
         }
         String modalite = evaluationDTO.getModalite();
-        redirectAttributes.addFlashAttribute("message", "L'évaluation '"+modalite+"' a bien été créée/modifiée");
+        redirectAttributes.addFlashAttribute("message", "L'évaluation '"+modalite+"' a bien été "+action);
         ficheService.saveEvaluation(evaluationDTO);
         return "redirect:/coordonateur/dashboard/evaluation";
     }
