@@ -43,17 +43,15 @@ public class SessionController {
 
     @PostMapping(value = "/session/save")
     public String addSession(@Validated SessionDTO sessionDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+        String action="";
+        if (null==sessionDTO.getId()){
+            action="créée";
+        }
+        else {
+            action="modifiée";
+        }
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
-            if (null==sessionDTO.getId()){
-                model.addAttribute("sessionsGRETA", ficheService.getAllSessions());
-                return "redirect:/coordonateur/dashboard/sessions";
-            } else {
-                Long id = sessionDTO.getId();
-                model.addAttribute("id", id);
-                model.addAttribute("sessionsGRETA", ficheService.getAllSessions());
-                return "redirect:/coordonateur/dashboard/sessions";
-            }
         }
         LocalDate dateDebut = sessionDTO.getDateDebut();
         LocalDate dateFin = sessionDTO.getDateFin();
