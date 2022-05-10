@@ -72,28 +72,27 @@
                                         <input name="id" type="hidden" th:value="${id}">
                                         <div class="col-sm-6">
                                             <label for="nom" class="form-label">Nom du formateur</label>
-<!--                                            <div th:if="!${errorForm}" th:each="anError : ${errorForm.getFieldErrors('nom')}">-->
-<!--                                                <p class="alert alert-danger"-->
-<!--                                                   th:text="${anError.defaultMessage}"></p>-->
-<!--&lt;!&ndash;                                                <p th:if="${errorForm}" class="alert alert-danger" th:text="${errorForm.getFieldError('nom').getDefaultMessage()}"></p>&ndash;&gt;-->
-<!--                                            </div>-->
-                                            <p class="alert alert-info"th:errors="*{nom}" th:text="${errors}"></p>
-
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('nom')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{nom}" type="text" class="form-control" id="nom"
-                                                   placeholder="Veuillez saisir le nom du formateur" value="">
+                                                   placeholder="Veuillez saisir le nom du formateur" value="" >
                                         </div>
 
                                         <div class="col-sm-6">
                                             <label for="prenom" class="form-label">Prénom du formateur</label>
-                                            <p th:if="${errorForm}" class="alert alert-danger" th:text="${errorForm.getFieldError('prenom').getDefaultMessage()}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('prenom')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{prenom}" type="text" class="form-control" id="prenom"
-                                                   placeholder="Veuillez saisir le prénom du formateur" value=""
-                                            >
+                                                   placeholder="Veuillez saisir le prénom du formateur" value="">
                                         </div>
 
                                         <div class="col-sm-7">
                                             <label for="email" class="form-label">Adresse email</label>
-                                            <p th:if="${errorForm}" class="alert alert-danger" th:text="${errorForm.getFieldError('email').getDefaultMessage()}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('email')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{email}" type="text" class="form-control" id="email"
                                                    placeholder="Veuillez saisir l'adresse email du formateur" value=""
                                             >
@@ -101,7 +100,9 @@
 
                                         <div class="col-5">
                                             <label for="mp" class="form-label">Mot de passe temporaire</label>
-                                            <p th:if="${errorForm}" class="alert alert-danger" th:text="${errorForm.getFieldError('mp').getDefaultMessage()}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('mp')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{mp}" type="text" class="form-control" id="mp"
                                                    placeholder="Veuillez saisir le mot de passe temporaire du formateur"
                                             >
@@ -109,7 +110,9 @@
 
                                         <div class="col-5">
                                             <label for="codePostal" class="form-label">Code postal</label>
-                                            <p th:if="${errorForm}" class="alert alert-danger" th:text="${errorForm.getFieldError('codePostal').getDefaultMessage()}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('codePostal')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{codePostal}" type="text" class="form-control"
                                                    id="codePostal"
                                                    placeholder="Veuillez saisir le code postal du formateur">
@@ -117,7 +120,9 @@
 
                                         <div class="col-7">
                                             <label for="tel" class="form-label">Numéro de téléphone</label>
-                                            <p th:if="${errorForm}" class="alert alert-danger" th:text="${errorForm.getFieldError('tel').getDefaultMessage()}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('tel')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{tel}" type="text" class="form-control" id="tel"
                                                    placeholder="Veuillez saisir le numéro de téléphone du formateur"
                                             >

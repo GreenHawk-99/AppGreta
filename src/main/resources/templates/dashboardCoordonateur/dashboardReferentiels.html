@@ -72,43 +72,43 @@
                                         <input name="id" type="hidden" th:value="${id}">
                                         <div class="col-sm-6">
                                             <label for="nom" class="form-label">Nom du REAC</label>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('nom')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{nom}" name="nom" type="text" class="form-control"
                                                    id="nom"
                                                    placeholder="Nom du REAC est demandé" value="">
-                                            <div class="invalid-feedback">
-                                                Nom de REAC valide est demandé.
-                                            </div>
                                         </div>
 
                                         <div class="col-sm-6">
                                             <label for="lien" class="form-label">Lien du référentiel</label>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('nom')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{lien}" name="lien" type="text" class="form-control"
                                                    id="lien"
                                                    placeholder="Lien du référentiel est demandé" value="">
-                                            <div class="invalid-feedback">
-                                                Lien du référentiel valide est demandé.
-                                            </div>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <label for="dateDebut" class="form-label">Date d'application du REAC</label>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('nom')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{dateDebut}" name="dateDebut" type="date"
                                                    class="form-control" id="dateDebut"
                                                    placeholder="Veuillez saisir une date d'application du REAC" value=""
                                             >
-                                            <div class="invalid-feedback">
-                                                Veuillez saisir une date d'application du REAC valide.
-                                            </div>
                                         </div>
 
                                         <div class="col-sm-2">
                                             <label for="duree" class="form-label">Durée applicative du REAC</label>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('nom')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{duree}" name="duree" type="number" class="form-control"
                                                    id="duree"
                                                    placeholder="Veuillez saisir une durée applicative du REAC">
-                                            <div class="invalid-feedback">
-                                                Veuillez saisir une durée applicative du REAC valide.
-                                            </div>
                                         </div>
 
                                         <div class="col-sm-6">

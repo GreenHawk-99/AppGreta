@@ -72,9 +72,8 @@
                                         <input name="id" type="hidden" th:value="${id}">
                                         <div class="col-sm-6">
                                             <label for="nomFormation" class="form-label">Nom de la Formation</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('nom')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
                                             </div>
                                             <input th:field="*{typeFormation}" type="text" class="form-control"
                                                    id="nomFormation"
