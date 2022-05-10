@@ -48,7 +48,7 @@ public class FicheController {
     }
 
     @PostMapping(value = "/fiche/save")
-    public String saveFiche(@Validated SeanceDTO seanceDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+    public String saveFiche(@Validated SeanceDTO seanceDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         String action="";
         if (null==seanceDTO.getId()){
             action="créée";
@@ -60,7 +60,7 @@ public class FicheController {
             redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
         }
         LocalDate dateDuJour = seanceDTO.getDateDuJour();
-        redirectAttributes.addFlashAttribute("message", "La fiche de suivi du '"+dateDuJour+"' a bien été créée/modifiée");
+        redirectAttributes.addFlashAttribute("message", "La fiche de suivi du '"+dateDuJour+"' a bien été "+action);
         ficheService.saveFiche(seanceDTO);
         return "redirect:/coordonateur/dashboard/fiches";
     }

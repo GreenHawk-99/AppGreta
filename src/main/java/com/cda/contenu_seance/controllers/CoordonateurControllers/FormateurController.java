@@ -33,7 +33,7 @@ public class FormateurController {
     }
 
     @PostMapping(value = "/formateur/save")
-    public String addFormateur(@Validated IntervenantDTO intervenantDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+    public String addFormateur(@Validated IntervenantDTO intervenantDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         String action="";
         if (null==intervenantDTO.getId()){
             action="créée";
@@ -46,7 +46,7 @@ public class FormateurController {
         }
         String nom = intervenantDTO.getNom();
         String prenom = intervenantDTO.getPrenom();
-        redirectAttributes.addFlashAttribute("message", "Le formateur '"+nom+" "+prenom+"' a bien été créée/modifiée");
+        redirectAttributes.addFlashAttribute("message", "Le formateur '"+nom+" "+prenom+"' a bien été "+action);
         intervenantService.saveFormateur(intervenantDTO);
         return "redirect:/coordonateur/dashboard/formateurs";
     }

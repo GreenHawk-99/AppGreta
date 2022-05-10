@@ -36,7 +36,7 @@ public class CompetenceController {
     }
 
     @PostMapping(value = "/competence/save")
-    public String addCompetence(@Validated CompetenceDTO competenceDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
+    public String addCompetence(@Validated CompetenceDTO competenceDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         String action="";
         if (null==competenceDTO.getId()){
             action="créée";

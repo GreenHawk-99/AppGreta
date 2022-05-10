@@ -198,5 +198,21 @@ public class FicheService {
         return  savoirFaireRepository.findAll();
     }
 
+    public void saveSavoirFaire(SavoirFaireDTO savoirFaireDTO){
+        SavoirFaire savoirFaireDb;
+        if (null==savoirFaireDTO.getId()){
+            savoirFaireDb = new SavoirFaire();
+        } else {
+            savoirFaireDb = savoirFaireRepository.findById(savoirFaireDTO.getId()).orElse(new SavoirFaire());
+        }
+        savoirFaireDb.setNom(savoirFaireDTO.getNom());
+        savoirFaireDb.setCompetence(savoirFaireDTO.getCompetence());
+        savoirFaireDb.setSeances(savoirFaireDTO.getSeances());
+        savoirFaireRepository.save(savoirFaireDb);
+    }
+
+    public void deleteSavoirFaire(long id){
+        savoirFaireRepository.deleteById(id);
+    }
 
 }

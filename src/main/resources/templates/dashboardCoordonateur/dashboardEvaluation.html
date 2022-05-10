@@ -64,51 +64,21 @@
                             <div class="row g-6">
                                 <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
                                       th:action="@{'/formulaire/activite/save'}"
-                                      th:object="${activiteForm}">
+                                      th:object="${evaluationForm}">
                                     <div class="row justify-content-center g-4">
                                         <div class="text-center" th:if="${id}">
                                             <p th:text="'Modification de l\'élement: '+${id}"></p>
                                         </div>
                                         <input name="id" type="hidden" th:value="${id}">
                                         <div class="col-sm-6">
-                                            <label for="activitesTypes" class="form-label">Nom de l'activité</label>
+                                            <label for="modalite" class="form-label">Nom de l'évaluation</label>
                                             <div th:each="anError : ${errorForm}" th:if="errorForm">
                                                 <p class="alert alert-danger"
                                                    th:text="${anError.defaultMessage}"></p>
                                             </div>
-                                            <input th:field="*{activitesTypes}" name="activitesTypes" type="text"
-                                                   class="form-control" id="activitesTypes"
+                                            <input th:field="*{modalite}" type="text"
+                                                   class="form-control" id="modalite"
                                                    placeholder="Veuillez saisir un nom d'une activité" value="">
-                                            <div class="invalid-feedback">
-                                                Please select a valid country.
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-2">
-                                            <label for="numAT" class="form-label">Numéro de l'activité</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
-                                            </div>
-                                            <input th:field="*{numAT}" name="numAT" type="text" class="form-control"
-                                                   id="numAT" placeholder="Veuillez saisir un numéro de l'activité"
-                                                   value="">
-                                            <div class="invalid-feedback">
-                                                Please select a valid country.
-                                            </div>
-                                        </div>
-
-                                        <div class="col-4">
-                                            <label for="reac" class="form-label">Référentiel</label>
-                                            <select th:field="*{reac}" class="form-select" id="reac">
-                                                <option selected class="disable" value="" disabled>Choisissez le
-                                                    référentiel
-                                                </option>
-                                                <option th:each="unReac:${reacs}"
-                                                        th:text="${unReac.nom}"
-                                                        th:value="${unReac.id}">Liste des REAC
-                                                </option>
-                                            </select>
                                         </div>
                                     </div>
 

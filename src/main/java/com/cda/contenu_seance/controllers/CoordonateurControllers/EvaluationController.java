@@ -23,11 +23,11 @@ public class EvaluationController {
         //Form
         model.addAttribute("id", id);
         model.addAttribute("evaluationForm", evaluationDTO);
-        return "dashboardEvaluation";
+        return "dashboardCoordonateur/dashboardEvaluation";
     }
 
     @PostMapping(value = "/evaluation/save")
-    public String saveEvaluation(@Validated EvaluationDTO evaluationDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+    public String saveEvaluation(@Validated EvaluationDTO evaluationDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         String action="";
         if (null==evaluationDTO.getId()){
             action="créée";
@@ -39,17 +39,10 @@ public class EvaluationController {
             redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
         }
         String modalite = evaluationDTO.getModalite();
-        redirectAttributes.addFlashAttribute("message", "L'évaluation '"+modalite+"' a bien été créée/modifiée");
+        redirectAttributes.addFlashAttribute("message", "L'évaluation '"+modalite+"' a bien été "+action);
         ficheService.saveEvaluation(evaluationDTO);
         return "redirect:/coordonateur/dashboard/evaluation";
     }
-
-    /*@GetMapping(value = "/evaluation/edit/{id}")
-    public String editEvaluation(@PathVariable(name = "id") long id, Model model, EvaluationDTO evaluationDTO) {
-        model.addAttribute("id", id);
-        model.addAttribute("evaluationForm", evaluationDTO);
-        return "formulaire/update/evaluationUpdate";
-    }*/
 
     @PostMapping(value = "/evaluation/delete/{id}")
     public String deleteEvaluation(@PathVariable(name = "id") long id) {

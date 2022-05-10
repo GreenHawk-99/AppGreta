@@ -42,7 +42,7 @@ public class SessionController {
     }
 
     @PostMapping(value = "/session/save")
-    public String addSession(@Validated SessionDTO sessionDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+    public String addSession(@Validated SessionDTO sessionDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         String action="";
         if (null==sessionDTO.getId()){
             action="créée";
@@ -55,7 +55,7 @@ public class SessionController {
         }
         LocalDate dateDebut = sessionDTO.getDateDebut();
         LocalDate dateFin = sessionDTO.getDateFin();
-        redirectAttributes.addFlashAttribute("message", "La session du '"+dateDebut+" "+dateFin+"' a bien été créée/modifiée");
+        redirectAttributes.addFlashAttribute("message", "La session du '"+dateDebut+" "+dateFin+"' a bien été "+action);
         ficheService.saveSession(sessionDTO);
         return "redirect:/coordonateur/dashboard/sessions";
     }
