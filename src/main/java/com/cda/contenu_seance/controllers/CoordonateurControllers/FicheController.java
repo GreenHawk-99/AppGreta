@@ -58,6 +58,7 @@ public class FicheController {
         }
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            return "redirect:/coordonateur/dashboard/fiches";
         }
         LocalDate dateDuJour = seanceDTO.getDateDuJour();
         redirectAttributes.addFlashAttribute("message", "La fiche de suivi du '"+dateDuJour+"' a bien été "+action);

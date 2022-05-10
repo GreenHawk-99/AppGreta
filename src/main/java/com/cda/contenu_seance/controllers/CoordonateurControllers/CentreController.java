@@ -43,6 +43,7 @@ public class CentreController {
         }
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            return "redirect:/coordonateur/dashboard/centres";
         }
         String nomCentre = centreDTO.getNomCentre();
         redirectAttributes.addFlashAttribute("message", "Le centre '"+nomCentre+"' a bien été "+action);

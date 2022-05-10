@@ -37,6 +37,7 @@ public class EvaluationController {
         }
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            return "redirect:/coordonateur/dashboard/evaluation";
         }
         String modalite = evaluationDTO.getModalite();
         redirectAttributes.addFlashAttribute("message", "L'évaluation '"+modalite+"' a bien été "+action);

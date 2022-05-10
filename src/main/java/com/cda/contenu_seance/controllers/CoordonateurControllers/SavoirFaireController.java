@@ -41,6 +41,7 @@ public class SavoirFaireController {
         }
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            return "redirect:/coordonateur/dashboard/savoirfaire";
         }
         String modalite = savoirFaireDTO.getNom();
         redirectAttributes.addFlashAttribute("message", "Le savoir faire '"+modalite+"' a bien été "+action);

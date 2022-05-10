@@ -46,6 +46,7 @@ public class FormationController implements WebMvcConfigurer {
         }
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            return "redirect:/coordonateur/dashboard/formations";
         }
         String typeFormation = formationDTO.getTypeFormation();
         redirectAttributes.addFlashAttribute("message", "La formation '"+typeFormation+"' a bien été "+action);

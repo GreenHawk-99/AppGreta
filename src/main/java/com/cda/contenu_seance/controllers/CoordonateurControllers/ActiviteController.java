@@ -46,6 +46,7 @@ public class ActiviteController {
         }
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            return "redirect:/coordonateur/dashboard/activites";
         }
         String activitesTypes = activiteDTO.getActivitesTypes();
         redirectAttributes.addFlashAttribute("message", "L'activité '"+activitesTypes+"' a bien été "+action);

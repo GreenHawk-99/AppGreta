@@ -46,7 +46,7 @@ public class CompetenceController {
         }
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
-           return "redirect:/coordonateur/dashboard/competences";
+            return "redirect:/coordonateur/dashboard/competences";
         }
         String competenceProfessionel = competenceDTO.getCompetenceProfessionel();
         redirectAttributes.addFlashAttribute("message", "La compétence '"+competenceProfessionel+"' a bien été "+action);
