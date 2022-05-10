@@ -29,7 +29,8 @@ public class JPAUserDetailService implements UserDetailsService {
     @Autowired
     private IntervenantRepository intervenantRepository;
 
-    @Bean
+// A LEDAI
+    /*@Bean
     public PasswordEncoder delegatingPasswordEncoder() {
         PasswordEncoder defaultEncoder = new BCryptPasswordEncoder();
         Map<String, PasswordEncoder> encoders = new HashMap<>();
@@ -39,7 +40,7 @@ public class JPAUserDetailService implements UserDetailsService {
         passworEncoder.setDefaultPasswordEncoderForMatches(defaultEncoder);
 
         return passworEncoder;
-    }
+    }*/
 
     @Override
     @Transactional
@@ -48,15 +49,16 @@ public class JPAUserDetailService implements UserDetailsService {
         if(null==intervenant){
             throw  new UsernameNotFoundException("Intervenant introuvable");
         }
-        Coordinateur coordinateur = new Coordinateur();
-        Formateur formateur = new Formateur();
+
         Set<GrantedAuthority> listeDePermissions = new HashSet<GrantedAuthority>();
-        listeDePermissions.add(new SimpleGrantedAuthority(coordinateur.getClass().getSimpleName()));
-        listeDePermissions.add(new SimpleGrantedAuthority(formateur.getClass().getSimpleName()));
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        String role = intervenant.getClass().getSimpleName().toLowerCase();
+
+        listeDePermissions.add(new SimpleGrantedAuthority(role));
+/*        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String password = encoder.encode("123");
             System.out.println(password);
-            System.out.println("PASSWORD = "+encoder.encode(intervenant.getMdp()));;
+            System.out.println("PASSWORD = "+encoder.encode(intervenant.getMdp()));;*/
         return new User(intervenant.getEmail(),intervenant.getMdp(),listeDePermissions);
 
     }

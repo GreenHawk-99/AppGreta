@@ -32,19 +32,12 @@ public class IntervenantService {
         intervenantDb.setNom(intervenantDTO.getNom().trim().toUpperCase());
         intervenantDb.setPrenom(intervenantDTO.getPrenom().trim());
         intervenantDb.setEmail(intervenantDTO.getEmail().trim());
-        intervenantDb.setMdp(intervenantDTO.getMdp().trim());
+        intervenantDb.setMdp("{bcrypt}"+new BCryptPasswordEncoder().encode(intervenantDTO.getMdp().trim()));
         intervenantDb.setCodePostal(intervenantDTO.getCodePostal().trim());
         intervenantDb.setTel(intervenantDTO.getTel().trim());
     }
 
     // Méthodes CRUD Coordinateur
-
-    public void registerCoordonateur(String email, String mdp){
-        Coordinateur coordinateur = new Coordinateur();
-        coordinateur.setEmail(email);
-        coordinateur.setMdp("{bcrypt}"+new BCryptPasswordEncoder().encode(mdp));
-        intervenantRepository.save(coordinateur);
-    }
 
     public List<Coordinateur> getAllCoordinateurs() {
         return coordinateurRepository.findAll();
@@ -77,13 +70,6 @@ public class IntervenantService {
 
     // Méthodes CRUD Formateur
 
-    public void registerFormateur(String email, String mdp){
-        Formateur formateur = new Formateur();
-        formateur.setEmail(email);
-        formateur.setMdp("{bcrypt}"+new BCryptPasswordEncoder().encode(mdp));
-        intervenantRepository.save(formateur);
-    }
-
     public List<Formateur> getAllFormateurs() {
         return formateurRepository.findAll();
     }
@@ -99,12 +85,6 @@ public class IntervenantService {
         } else {
             intervenantDb = intervenantRepository.findById(intervenantDTO.getId()).orElse(new Formateur());
         }
-        /*intervenantDb.setNom(intervenantDTO.getNom().trim().toUpperCase());
-        intervenantDb.setPrenom(intervenantDTO.getPrenom().trim());
-        intervenantDb.setEmail(intervenantDTO.getEmail().trim());
-        intervenantDb.setMp(intervenantDTO.getMp().trim());
-        intervenantDb.setCodePostal(intervenantDTO.getCodePostal().trim());
-        intervenantDb.setTel(intervenantDTO.getTel().trim());*/
         intervenantMain(intervenantDTO,intervenantDb);
         intervenantRepository.save(intervenantDb);
     }
