@@ -14,7 +14,6 @@ public class FicheService {
     SessionRepository sessionRepository;
     FormationRepository formationRepository;
     CentreRepository centreRepository;
-    EvaluationRepository evaluationRepository;
     SavoirFaireRepository savoirFaireRepository;
 
     @Autowired
@@ -22,13 +21,11 @@ public class FicheService {
                         SessionRepository sessionRepository,
                         FormationRepository formationRepository,
                         CentreRepository centreRepository,
-                        EvaluationRepository evaluationRepository,
                         SavoirFaireRepository savoirFaireRepository){
         this.centreRepository = centreRepository;
         this.seanceRepository = seanceRepository;
         this.sessionRepository = sessionRepository;
         this.formationRepository = formationRepository;
-        this.evaluationRepository = evaluationRepository;
         this.savoirFaireRepository = savoirFaireRepository;
     }
 
@@ -67,6 +64,10 @@ public class FicheService {
         return seanceRepository.findById(id).orElse(new Seance());
     }
 
+    public List<Seance> getEmptyFiche(){
+        return seanceRepository.seanceEmptyDOMSOrderByDate();
+    }
+
     public void saveFiche(SeanceDTO seanceDTO){
         Seance seanceDb;
         if (null==seanceDTO.getId()) {
@@ -80,9 +81,9 @@ public class FicheService {
         seanceDb.setMethodeEnvisage(seanceDTO.getMethodeEnvisage().trim());
         seanceDb.setSupport(seanceDTO.getSupport().trim());
         seanceDb.setDeroulement(seanceDTO.getDeroulement().trim());
+        seanceDb.setEvaluation(seanceDTO.getEvaluation().trim());
         seanceDb.setFormateurs(seanceDTO.getFormateur());
         seanceDb.setSession(seanceDTO.getSession());
-        seanceDb.setEvaluation(seanceDTO.getEvaluation());
         seanceRepository.save(seanceDb);
     }
 
@@ -170,33 +171,27 @@ public class FicheService {
         sessionRepository.deleteById(id);
     }
 
-    // Méthodes CRUD Evaluation
-
-    public List<Evaluation> getAllEvaluations(){
-        return evaluationRepository.findAll();
-    }
-
-    public void saveEvaluation(EvaluationDTO evaluationDTO){
-        Evaluation evaluationDb;
-        if (null==evaluationDTO.getId()){
-            evaluationDb = new Evaluation();
-        } else {
-            evaluationDb = evaluationRepository.findById(evaluationDTO.getId()).orElse(new Evaluation());
-        }
-        evaluationDb.setModalite(evaluationDTO.getModalite());
-        evaluationDb.setSeances(evaluationDTO.getSeances());
-        evaluationRepository.save(evaluationDb);
-    }
-
-    public void deleteEvaluation (long id){
-        evaluationRepository.deleteById(id);
-    }
-
     // Méthodes CRUD SavoirFaire
 
     public List<SavoirFaire> getAllSavoirFaires(){
-        return  savoirFaireRepository.findAll();
+        return savoirFaireRepository.findAll();
     }
 
+    public void saveSavoirFaire(SavoirFaireDTO savoirFaireDTO){
+        SavoirFaire savoirFaireDb;
+        if (null==savoirFaireDTO.getId()){
+            savoirFaireDb = new SavoirFaire();
+        } else {
+            savoirFaireDb = savoirFaireRepository.findById(savoirFaireDTO.getId()).orElse(new SavoirFaire());
+        }
+        savoirFaireDb.setNom(savoirFaireDTO.getNom());
+        savoirFaireDb.setCompetence(savoirFaireDTO.getCompetence());
+        savoirFaireDb.setSeances(savoirFaireDTO.getSeances());
+        savoirFaireRepository.save(savoirFaireDb);
+    }
+
+    public void deleteSavoirFaire(long id){
+        savoirFaireRepository.deleteById(id);
+    }
 
 }

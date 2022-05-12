@@ -36,8 +36,8 @@ public class ActiviteController {
     }
 
     @PostMapping(value = "/activite/save")
-    public String addActivite(@Validated ActiviteDTO activiteDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
-        String action;
+    public String addActivite(@Validated ActiviteDTO activiteDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+        String action="";
         if (null==activiteDTO.getId()){
             action="créée";
         }
@@ -45,7 +45,8 @@ public class ActiviteController {
             action="modifiée";
         }
         if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            redirectAttributes.addFlashAttribute("errorForm", bindingResult);
+            return "redirect:/coordonateur/dashboard/activites";
         }
         String activitesTypes = activiteDTO.getActivitesTypes();
         redirectAttributes.addFlashAttribute("message", "L'activité '"+activitesTypes+"' a bien été "+action);

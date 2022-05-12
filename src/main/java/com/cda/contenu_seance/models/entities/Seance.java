@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -25,13 +26,30 @@ public class Seance {
     private String methodeEnvisage;
     private String support;
     private String deroulement;
+    private String evaluation;
 
+    @Nullable
     @ManyToOne(fetch = FetchType.LAZY)
     private Formateur formateurs;
+    @Nullable
     @ManyToOne
     private Session session;
+    @Nullable
     @ManyToMany
     private List<SavoirFaire> savoirFaires;
-    @ManyToOne
-    private Evaluation evaluation;
+
+    @Nullable
+    public boolean getFormateurFicheVide(){
+        return this.objectifPeda.isEmpty() ||
+                this.methodeEnvisage.isEmpty() ||
+                this.support.isEmpty() ||
+                this.deroulement.isEmpty();
+    }
+    /*private boolean getFormateurFicheVide(){
+        if (objectifPeda.isEmpty() || methodeEnvisage.isEmpty() || support.isEmpty() || deroulement.isEmpty()){
+            return true;
+        }else {
+            return false;
+        }
+    }*/
 }

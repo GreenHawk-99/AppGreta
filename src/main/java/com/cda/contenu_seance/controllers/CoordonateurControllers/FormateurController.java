@@ -1,20 +1,27 @@
 package com.cda.contenu_seance.controllers.CoordonateurControllers;
 
 import com.cda.contenu_seance.dto.IntervenantDTO;
+import com.cda.contenu_seance.services.FicheService;
 import com.cda.contenu_seance.services.IntervenantService;
+//import org.hibernate.validator.internal.properties.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.lang.reflect.Array;
 
 @Controller
 @RequestMapping(value = "/coordonateur/dashboard")
 public class FormateurController {
     @Autowired
     IntervenantService intervenantService;
+    @Autowired
+    FicheService ficheService;
 
     @GetMapping(value = {"/formateurs", "/formateur/edit/{id}"})
     public String dashboardFormateurs(@PathVariable(required = false) Long id, IntervenantDTO intervenantDTO, Model model) {
@@ -23,6 +30,7 @@ public class FormateurController {
         // Form
         model.addAttribute("id", id);
         model.addAttribute("formateurForm", intervenantDTO);
+        model.addAttribute("sessionsList", ficheService.getAllSessions());
         return "dashboardCoordonateur/dashboardFormateurs";
     }
 
@@ -33,8 +41,8 @@ public class FormateurController {
     }
 
     @PostMapping(value = "/formateur/save")
-    public String addFormateur(@Validated IntervenantDTO intervenantDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-        String action;
+    public String addFormateur(@Validated IntervenantDTO intervenantDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        String action="";
         if (null==intervenantDTO.getId()){
             action="créée";
         }
@@ -42,7 +50,8 @@ public class FormateurController {
             action="modifiée";
         }
         if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            redirectAttributes.addFlashAttribute("errorForm", bindingResult);
+            return "redirect:/coordonateur/dashboard/formateurs";
         }
         String nom = intervenantDTO.getNom();
         String prenom = intervenantDTO.getPrenom();

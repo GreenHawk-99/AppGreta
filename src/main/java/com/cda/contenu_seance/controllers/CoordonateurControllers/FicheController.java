@@ -33,10 +33,15 @@ public class FicheController {
         // Form
         model.addAttribute("id", id);
         model.addAttribute("ficheForm", seanceDTO);
-        model.addAttribute("evaluations", ficheService.getAllEvaluations());
         model.addAttribute("sessions", ficheService.getAllSessions());
         model.addAttribute("formateurs", intervenantService.getAllFormateurs());
         return "dashboardCoordonateur/dashboardFiches";
+    }
+
+    @GetMapping(value = "/fiches-vide")
+    public String dashboardEmptyFiche(Model model){
+        model.addAttribute("fiches", ficheService.getEmptyFiche());
+        return "dashboardCoordonateur/dashboardEmptyFiches";
     }
 
     @GetMapping(value = {"/fiche"})
@@ -48,8 +53,8 @@ public class FicheController {
     }
 
     @PostMapping(value = "/fiche/save")
-    public String saveFiche(@Validated SeanceDTO seanceDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-        String action;
+    public String saveFiche(@Validated SeanceDTO seanceDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        String action="";
         if (null==seanceDTO.getId()){
             action="créée";
         }
@@ -57,7 +62,8 @@ public class FicheController {
             action="modifiée";
         }
         if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            redirectAttributes.addFlashAttribute("errorForm", bindingResult);
+            return "redirect:/coordonateur/dashboard/fiches";
         }
         LocalDate dateDuJour = seanceDTO.getDateDuJour();
         redirectAttributes.addFlashAttribute("message", "La fiche de suivi du '"+dateDuJour+"' a bien été "+action);

@@ -46,8 +46,8 @@ public class ReferentielController {
     }
 
     @PostMapping(value = "/referentiel/save")
-    public String addReferenciel(@Validated ReacDTO reacDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-        String action;
+    public String addReferenciel(@Validated ReacDTO reacDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        String action="";
         if (null==reacDTO.getId()){
             action="créée";
         }
@@ -55,7 +55,8 @@ public class ReferentielController {
             action="modifiée";
         }
         if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            redirectAttributes.addFlashAttribute("errorForm", bindingResult);
+            return "redirect:/coordonateur/dashboard/referentiels";
         }
         String nom = reacDTO.getNom();
         redirectAttributes.addFlashAttribute("message", "Le REAC '"+nom+"' a bien été "+action);

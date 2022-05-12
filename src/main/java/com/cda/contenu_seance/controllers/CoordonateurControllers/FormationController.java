@@ -36,8 +36,8 @@ public class FormationController implements WebMvcConfigurer {
     }
 
     @PostMapping(value = "/formation/save")
-    public String saveFormation(@Validated FormationDTO formationDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-        String action;
+    public String saveFormation(@Validated FormationDTO formationDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        String action="";
         if (null==formationDTO.getId()){
             action="créée";
         }
@@ -45,7 +45,8 @@ public class FormationController implements WebMvcConfigurer {
             action="modifiée";
         }
         if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            redirectAttributes.addFlashAttribute("errorForm", bindingResult);
+            return "redirect:/coordonateur/dashboard/formations";
         }
         String typeFormation = formationDTO.getTypeFormation();
         redirectAttributes.addFlashAttribute("message", "La formation '"+typeFormation+"' a bien été "+action);

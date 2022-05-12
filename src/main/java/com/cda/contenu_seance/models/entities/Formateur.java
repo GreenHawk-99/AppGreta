@@ -16,6 +16,6 @@ public class Formateur extends Intervenant{
 
     @OneToMany(mappedBy = "formateurs")
     private List<Seance> seances;
-    @ManyToMany(mappedBy = "formateurs")
-    private List<Session> session;
+    @ManyToMany
+    private List<Session> sessions;
 }

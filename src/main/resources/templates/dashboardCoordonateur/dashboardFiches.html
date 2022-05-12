@@ -29,7 +29,7 @@
                            class="btn btn-sm btn-outline-success">Ajouter</a>
                         <a type="button" class="btn btn-sm btn-outline-success">Export</a>
                     </div>
-                    <button type="button" class="btn btn-sm btn-outline-success dropdown-toggle">
+                    <a th:href="@{'/coordonateur/dashboard/fiches-vide'}" type="button" class="btn btn-sm btn-outline-success dropdown-toggle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                              class="feather feather-calendar" aria-hidden="true">
@@ -39,7 +39,7 @@
                             <line x1="3" y1="10" x2="21" y2="10"></line>
                         </svg>
                         This week
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -73,9 +73,8 @@
                                         <input name="id" type="hidden" th:value="${id}">
                                         <div class="col-sm-6">
                                             <label for="dateDuJour" class="form-label">Date de la séance</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('dateDuJour')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
                                             </div>
                                             <input th:field="*{dateDuJour}" type="date"
                                                    class="form-control" id="dateDuJour" placeholder="Date de la séance"
@@ -84,19 +83,29 @@
 
                                         <div class="col-sm-6">
                                             <label for="duree" class="form-label">Durée de la séance</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
-                                            </div>
                                             <input th:field="*{duree}" type="number" class="form-control"
                                                    id="duree" placeholder="Combien d'heure de cours">
                                         </div>
 
-                                        <div class="col-md-5">
-                                            <label for="formation" class="form-label">Session</label>
-                                            <select th:field="*{session}" class="form-select"
-                                                    id="formation">
-                                                <option selected value="" class="disable" disabled>Choisissez la
+                                        <div class="col-md-6">
+                                            <label for="formateur" class="form-label">Liste des Sessions</label>
+                                            <select name="formateur" class="form-select"
+                                                    id="formateur">
+                                                <option selected disabled class="disable">Choisissez le
+                                                    formateur
+                                                </option>
+                                                <option th:each="unFormateur:${formateurs}"
+                                                        th:text="${unFormateur.nom}+' '+${unFormateur.prenom}"
+                                                        th:value="${unFormateur.id}">Liste des sessions
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="session" class="form-label">Liste des Sessions</label>
+                                            <select name="session" class="form-select"
+                                                    id="session">
+                                                <option selected disabled class="disable">Choisissez la
                                                     session
                                                 </option>
                                                 <option th:each="uneSession:${sessions}"
@@ -109,10 +118,6 @@
                                         <div class="col-12">
                                             <label for="objectifPeda" class="form-label">Contenus pédagogique de la
                                                 séance</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
-                                            </div>
                                             <input th:field="*{objectifPeda}" type="text"
                                                    class="form-control" id="objectifPeda"
                                                    placeholder="Base de l'informatique, Bureautique, Développement Web, Communication écrite et orale..."
@@ -121,42 +126,26 @@
 
                                         <div class="col-4">
                                             <label for="evaluation" class="form-label">Évaluation</label>
-                                            <select th:field="*{evaluation}" class="form-select" id="evaluation">
-                                                <option selected value="" class="disable" disabled>Choisissez l'évaluation
-                                                </option>
-                                                <option th:each="uneEvaluation:${evaluations}"
-                                                        th:text="${uneEvaluation.modalite}"
-                                                        th:value="${uneEvaluation.id}">Liste de competences
-                                                </option>
-                                            </select>
+                                            <input th:field="*{evaluation}" type="text"
+                                                   class="form-control" id="evaluation"
+                                                   placeholder="Base de l'informatique, Bureautique, Développement Web, Communication écrite et orale..."
+                                            >
                                         </div>
 
                                         <div class="col-4">
                                             <label for="methodeEnvisage" class="form-label">Méthode Envisagé</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
-                                            </div>
                                             <input th:field="*{methodeEnvisage}" type="text" class="form-control"
                                                    id="methodeEnvisage" placeholder="Méthode Envisagé">
                                         </div>
 
                                         <div class="col-4">
                                             <label for="support" class="form-label">Support<span class="text-muted">(Optional)</span></label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
-                                            </div>
                                             <input th:field="*{support}" type="text" class="form-control"
                                                    id="support" placeholder="Support utilisé">
                                         </div>
 
                                         <div class="col-12">
                                             <label for="deroulement" class="form-label">Deroulement</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
-                                            </div>
                                             <div class="form-floating">
                                                 <textarea th:field="*{deroulement}" name="deroulement"
                                                           class="form-control" id="deroulement"
@@ -174,7 +163,7 @@
                                             formulaire
                                         </button>
                                         <div th:if="${id}">
-                                            <a class="w-25 btn btn-danger btn-sm mt-2" href="/coordonateur/dashboard/formations">Retour creation</a>
+                                            <a class="w-25 btn btn-danger btn-sm mt-2" href="/coordonateur/dashboard/fiches">Retour creation</a>
                                         </div>
                                     </div>
                                 </form>
@@ -207,13 +196,15 @@
                     <tbody>
                     <tr th:each="uneFiche:${fiches}">
                         <td th:text="${uneFiche.id}">Id</td>
-                        <td th:text="${uneFiche.formateurs.nom}+' '+${uneFiche.formateurs.prenom}">Formateur</td>
+                        <td th:with="concatNPFormateur = ${uneFiche.formateurs?.nom}+' '+${uneFiche.formateurs?.prenom}"
+                            th:text="${uneFiche.formateurs?.nom}? ${concatNPFormateur} : '' "
+                            th:classappend="${uneFiche.getFormateurFicheVide()}? 'bg-danger' : 'bg-success' ">Formateur</td>
                         <td th:text="${uneFiche.dateDuJour}">Date</td>
-                        <td th:text="${uneFiche.session.formation.typeFormation}">Session</td>
+                        <td th:text="${uneFiche?.session?.formation?.typeFormation}">Session</td>
                         <td th:text="${uneFiche.objectifPeda}">Contenue pédagogique</td>
                         <td th:text="${uneFiche.deroulement}">Déroulement</td>
                         <td th:text="${uneFiche.support}">Support</td>
-                        <td th:text="${uneFiche.evaluation.modalite}">Évaluation</td>
+                        <td th:text="${uneFiche.evaluation}">Évaluation</td>
                         <td th:text="${uneFiche.duree}">Durée de la séance en heure</td>
                         <td th:text="${uneFiche.methodeEnvisage}">Méthode Envisagé</td>
                         <td>
@@ -226,16 +217,19 @@
                                     <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
                                 </svg>
                             </a>
-                            <a class="btn btn-outline-danger" th:href="@{'/coordonateur/dashboard/fiche/edit/'+${uneFiche.id}}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     class="bi bi-x-lg"
-                                     viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                          d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-                                    <path fill-rule="evenodd"
-                                          d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
-                                </svg>
-                            </a>
+                            <form method="post"
+                                  th:action="@{'/coordonateur/dashboard/fiche/delete/'+${uneFiche.id}}">
+                                <button class="btn btn-outline-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-x-lg"
+                                         viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                    </svg>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     </tbody>

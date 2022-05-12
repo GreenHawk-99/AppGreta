@@ -1,9 +1,15 @@
 package com.cda.contenu_seance.dto;
 
+import com.cda.contenu_seance.models.entities.Centre;
+import com.cda.contenu_seance.models.entities.Seance;
+import com.cda.contenu_seance.models.entities.Session;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,6 +35,12 @@ public class IntervenantDTO {
     @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
     private String codePostal;
     @NotEmpty(message = "Le champ ne peut pas être vide")
-    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
+    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide last")
     private String tel;
+
+
+    private List<Centre> centres;
+    private List<Session> sessionsCoordonateur;
+    private List<Seance> seances;
+    private List<Session> sessionsFomateur;
 }

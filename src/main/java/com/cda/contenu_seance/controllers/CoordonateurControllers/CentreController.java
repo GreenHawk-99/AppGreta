@@ -33,8 +33,8 @@ public class CentreController {
     }
 
     @PostMapping(value = "/centre/save")
-    public String addCentre(@Validated CentreDTO centreDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-        String action;
+    public String addCentre(@Validated CentreDTO centreDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        String action="";
         if (null==centreDTO.getId()){
             action="créée";
         }
@@ -42,7 +42,8 @@ public class CentreController {
             action="modifiée";
         }
         if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            redirectAttributes.addFlashAttribute("errorForm", bindingResult);
+            return "redirect:/coordonateur/dashboard/centres";
         }
         String nomCentre = centreDTO.getNomCentre();
         redirectAttributes.addFlashAttribute("message", "Le centre '"+nomCentre+"' a bien été "+action);

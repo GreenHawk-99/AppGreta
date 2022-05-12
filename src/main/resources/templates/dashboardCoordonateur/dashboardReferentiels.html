@@ -72,47 +72,50 @@
                                         <input name="id" type="hidden" th:value="${id}">
                                         <div class="col-sm-6">
                                             <label for="nom" class="form-label">Nom du REAC</label>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('nom')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{nom}" name="nom" type="text" class="form-control"
                                                    id="nom"
                                                    placeholder="Nom du REAC est demandé" value="">
-                                            <div class="invalid-feedback">
-                                                Nom de REAC valide est demandé.
-                                            </div>
                                         </div>
 
                                         <div class="col-sm-6">
                                             <label for="lien" class="form-label">Lien du référentiel</label>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('lien')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{lien}" name="lien" type="text" class="form-control"
                                                    id="lien"
                                                    placeholder="Lien du référentiel est demandé" value="">
-                                            <div class="invalid-feedback">
-                                                Lien du référentiel valide est demandé.
-                                            </div>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <label for="dateDebut" class="form-label">Date d'application du REAC</label>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('dateDebut')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{dateDebut}" name="dateDebut" type="date"
                                                    class="form-control" id="dateDebut"
                                                    placeholder="Veuillez saisir une date d'application du REAC" value=""
                                             >
-                                            <div class="invalid-feedback">
-                                                Veuillez saisir une date d'application du REAC valide.
-                                            </div>
                                         </div>
 
                                         <div class="col-sm-2">
                                             <label for="duree" class="form-label">Durée applicative du REAC</label>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('duree')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <input th:field="*{duree}" name="duree" type="number" class="form-control"
                                                    id="duree"
                                                    placeholder="Veuillez saisir une durée applicative du REAC">
-                                            <div class="invalid-feedback">
-                                                Veuillez saisir une durée applicative du REAC valide.
-                                            </div>
                                         </div>
 
                                         <div class="col-sm-6">
                                             <label for="formation" class="form-label">Formation</label>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('formation')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
+                                            </div>
                                             <select th:field="*{formation}" class="form-select" id="formation"
                                             >
                                                 <option selected class="disable" value="" disabled>Choisissez la
@@ -132,7 +135,7 @@
                                             formulaire
                                         </button>
                                         <div th:if="${id}">
-                                            <a class="w-25 btn btn-danger btn-sm mt-2" href="/coordonateur/dashboard/formations">Retour creation</a>
+                                            <a class="w-25 btn btn-danger btn-sm mt-2" href="/coordonateur/dashboard/referentiels">Retour creation</a>
                                         </div>
                                     </div>
                                 </form>
@@ -176,17 +179,19 @@
                                     <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
                                 </svg>
                             </a>
-                            <a class="btn btn-outline-danger"
-                               th:href="@{'/coordonateur/dashboard/referentiel/delete/'+${unReac.id}}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     class="bi bi-x-lg"
-                                     viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                          d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-                                    <path fill-rule="evenodd"
-                                          d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
-                                </svg>
-                            </a>
+                            <form method="post"
+                                  th:action="@{'/coordonateur/dashboard/referentiel/delete/'+${unReac.id}}">
+                                <button class="btn btn-outline-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-x-lg"
+                                         viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                    </svg>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     </tbody>
