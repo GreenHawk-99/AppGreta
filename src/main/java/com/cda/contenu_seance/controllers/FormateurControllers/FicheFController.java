@@ -29,7 +29,6 @@ public class FicheFController {
         model.addAttribute("fiches", ficheService.getAllFiches());
         // Form
         model.addAttribute("ficheForm", new SeanceDTO());
-        model.addAttribute("evaluations", ficheService.getAllEvaluations());
         model.addAttribute("sessions", ficheService.getAllSessions());
         model.addAttribute("formateurs", intervenantService.getAllFormateurs());
         return "dashboardCoordonateur/dashboardFiches";
@@ -53,7 +52,6 @@ public class FicheFController {
     public String editFiche(@PathVariable(name = "id") long id, Model model, SeanceDTO seanceDTO) {
         model.addAttribute("id", id);
         model.addAttribute("ficheForm", seanceDTO);
-        model.addAttribute("evaluations", ficheService.getAllEvaluations());
         model.addAttribute("sessions", ficheService.getAllSessions());
         model.addAttribute("formateurs", intervenantService.getAllFormateurs());
         return "formulaire/update/ficheUpdate";

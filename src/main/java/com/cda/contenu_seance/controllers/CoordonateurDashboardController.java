@@ -45,7 +45,6 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("fiches", ficheService.getAllFiches());
         // Form
         model.addAttribute("ficheForm", new SeanceDTO());
-        model.addAttribute("evaluations", ficheService.getAllEvaluations());
         model.addAttribute("sessions", ficheService.getAllSessions());
         model.addAttribute("formateurs", intervenantService.getAllFormateurs());
         return "dashboardCoordonateur/dashboardFiches";
@@ -113,14 +112,5 @@ public class CoordonateurDashboardController implements WebMvcConfigurer {
         model.addAttribute("reacForm", new ReacDTO());
         model.addAttribute("formations", ficheService.getAllFormations());
         return "dashboardCoordonateur/dashboardReferentiels";
-    }
-
-    @GetMapping(value="/evaluations")
-    public String dashboardEvaluation(Model model) {
-        // Tableau
-        model.addAttribute("evaluations", ficheService.getAllEvaluations());
-        //Form
-        model.addAttribute("evaluationForm", new EvaluationDTO());
-        return "dashboardEvaluation";
     }
 }

@@ -51,7 +51,7 @@ public class SessionController {
             action="modifiée";
         }
         if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            redirectAttributes.addFlashAttribute("errorForm", bindingResult);
             return "redirect:/coordonateur/dashboard/sessions";
         }
         LocalDate dateDebut = sessionDTO.getDateDebut();

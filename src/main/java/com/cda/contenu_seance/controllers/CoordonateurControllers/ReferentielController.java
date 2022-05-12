@@ -55,7 +55,7 @@ public class ReferentielController {
             action="modifiée";
         }
         if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            redirectAttributes.addFlashAttribute("errorForm", bindingResult);
             return "redirect:/coordonateur/dashboard/referentiels";
         }
         String nom = reacDTO.getNom();

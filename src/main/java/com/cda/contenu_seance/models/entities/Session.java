@@ -31,7 +31,7 @@ public class Session {
     private Formation formation;
     @OneToMany(mappedBy = "session")
     private List<Seance> seances;
-    @ManyToMany
+    @ManyToMany(mappedBy = "sessions")
     private List<Formateur> formateurs;
     @ManyToOne
     private Coordinateur coordinateur;

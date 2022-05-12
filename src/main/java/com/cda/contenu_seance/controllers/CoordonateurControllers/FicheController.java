@@ -33,10 +33,15 @@ public class FicheController {
         // Form
         model.addAttribute("id", id);
         model.addAttribute("ficheForm", seanceDTO);
-        model.addAttribute("evaluations", ficheService.getAllEvaluations());
         model.addAttribute("sessions", ficheService.getAllSessions());
         model.addAttribute("formateurs", intervenantService.getAllFormateurs());
         return "dashboardCoordonateur/dashboardFiches";
+    }
+
+    @GetMapping(value = "/fiches-vide")
+    public String dashboardEmptyFiche(Model model){
+        model.addAttribute("fiches", ficheService.getEmptyFiche());
+        return "dashboardCoordonateur/dashboardEmptyFiches";
     }
 
     @GetMapping(value = {"/fiche"})
@@ -57,7 +62,7 @@ public class FicheController {
             action="modifiée";
         }
         if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("errorForm", bindingResult.getAllErrors());
+            redirectAttributes.addFlashAttribute("errorForm", bindingResult);
             return "redirect:/coordonateur/dashboard/fiches";
         }
         LocalDate dateDuJour = seanceDTO.getDateDuJour();

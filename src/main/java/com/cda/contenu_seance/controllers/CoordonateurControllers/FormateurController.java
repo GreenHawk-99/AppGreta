@@ -1,6 +1,7 @@
 package com.cda.contenu_seance.controllers.CoordonateurControllers;
 
 import com.cda.contenu_seance.dto.IntervenantDTO;
+import com.cda.contenu_seance.services.FicheService;
 import com.cda.contenu_seance.services.IntervenantService;
 //import org.hibernate.validator.internal.properties.Field;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import java.lang.reflect.Array;
 public class FormateurController {
     @Autowired
     IntervenantService intervenantService;
+    @Autowired
+    FicheService ficheService;
 
     @GetMapping(value = {"/formateurs", "/formateur/edit/{id}"})
     public String dashboardFormateurs(@PathVariable(required = false) Long id, IntervenantDTO intervenantDTO, Model model) {
@@ -27,6 +30,7 @@ public class FormateurController {
         // Form
         model.addAttribute("id", id);
         model.addAttribute("formateurForm", intervenantDTO);
+        model.addAttribute("sessionsList", ficheService.getAllSessions());
         return "dashboardCoordonateur/dashboardFormateurs";
     }
 
@@ -37,7 +41,7 @@ public class FormateurController {
     }
 
     @PostMapping(value = "/formateur/save")
-    public String addFormateur(@Validated IntervenantDTO intervenantDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, Long id, Model model) {
+    public String addFormateur(@Validated IntervenantDTO intervenantDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         String action="";
         if (null==intervenantDTO.getId()){
             action="créée";

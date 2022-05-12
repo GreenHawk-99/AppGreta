@@ -11,8 +11,18 @@ public class IndexController {
         return "display/index";
     }
 
+    @GetMapping(value = "welcome")
+    public String welcome(){
+        return "display/welcome";
+    }
+
     @GetMapping(value = {"/login"})
     public String login(){
         return "display/login";
+    }
+
+    @GetMapping(value = "/help")
+    public String help(){
+        return "display/help";
     }
 }

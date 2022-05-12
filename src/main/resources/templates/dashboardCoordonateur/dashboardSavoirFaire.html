@@ -49,10 +49,10 @@
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                         <div class="container">
                             <div th:if="!${id}" class="py-4 text-center">
-                                <h2 class="text-primary">Création d'une Évaluation</h2>
+                                <h2 class="text-primary">Création d'un Savoir Faire</h2>
                             </div>
                             <div th:if="${id}" class="py-4 text-center">
-                                <h2 class="text-primary">Modification d'une Évaluation</h2>
+                                <h2 class="text-primary">Modification d'un Savoir Faire</h2>
                             </div>
 
                             <div class="row justify-content-center g-6">
@@ -63,22 +63,47 @@
 
                             <div class="row g-6">
                                 <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
-                                      th:action="@{'/formulaire/activite/save'}"
+                                      th:action="@{'/coordonateur/dashboard/savoirfaire/save'}"
                                       th:object="${savoirfaireForm}">
                                     <div class="row justify-content-center g-4">
                                         <div class="text-center" th:if="${id}">
                                             <p th:text="'Modification de l\'élement: '+${id}"></p>
                                         </div>
                                         <input name="id" type="hidden" th:value="${id}">
-                                        <div class="col-sm-6">
-                                            <label for="modalite" class="form-label">Nom de l'évaluation</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
+                                        <div class="col-sm-8">
+                                            <label for="modalite" class="form-label">Nom du savoir faire</label>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('nom')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
                                             </div>
-                                            <input th:field="*{}" type="text"
+                                            <input th:field="*{nom}" type="text"
                                                    class="form-control" id="modalite"
-                                                   placeholder="Veuillez saisir un nom d'une activité" value="">
+                                                   placeholder="Veuillez saisir un nom d'un savoir faire" value="">
+                                        </div>
+
+                                        <div class="col-6">
+                                            <label for="seances" class="form-label">Séances</label>
+                                            <select th:field="*{seances}" class="form-select" id="seances">
+                                                <option selected class="disable" value="" disabled>Choisissez
+                                                    les séances
+                                                </option>
+                                                <option th:each="uneSeance:${fiches}"
+                                                        th:text="${uneSeance.id}"
+                                                        th:value="${uneSeance.id}">Liste des séances
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <label for="competence" class="form-label">Compétence</label>
+                                            <select th:field="*{competence}" class="form-select" id="competence">
+                                                <option selected class="disable" value="" disabled>Choisissez
+                                                    la compétence
+                                                </option>
+                                                <option th:each="uneCompetence:${competences}"
+                                                        th:text="${uneCompetence.competenceProfessionel}"
+                                                        th:value="${uneCompetence.id}">Liste des compétences
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -88,7 +113,7 @@
                                             formulaire
                                         </button>
                                         <div th:if="${id}">
-                                            <a class="w-25 btn btn-danger btn-sm mt-2" href="/coordonateur/dashboard/formations">Retour creation</a>
+                                            <a class="w-25 btn btn-danger btn-sm mt-2" href="/coordonateur/dashboard/savoirfaires">Retour creation</a>
                                         </div>
                                     </div>
                                 </form>
@@ -106,21 +131,31 @@
                     <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">N° AT</th>
-                        <th scope="col">Activité</th>
-                        <th scope="col">Nom REAC</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">ID Séances</th>
+                        <th scope="col">Séances</th>
+                        <th scope="col">Compétences</th>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="uneActivite:${activites}">
-                        <td th:text="${uneActivite.id}">Id</td>
-                        <td th:text="${uneActivite.numAT}">N° AT</td>
-                        <td th:text="${uneActivite.activitesTypes}">Activité</td>
-                        <td th:text="${uneActivite.reac.nom}">Nom REAC</td>
+                    <tr th:each="unSavoirfaire:${savoirfaires}">
+                        <td th:text="${unSavoirfaire.id}">Id</td>
+                        <td th:text="${unSavoirfaire.nom}">Nom</td>
+                        <td>
+                            <div th:each="unSFSeance:${unSavoirfaire.seances}">
+                                <li th:text="${unSFSeance.id}"></li>
+                            </div>
+                        </td>
+                        <td>
+                            <div th:each="unSFSeance:${unSavoirfaire.seances}">
+                                <li th:text="${unSFSeance.dateDuJour}"></li>
+                            </div>
+                        </td>
+                        <td th:text="${unSavoirfaire.competence.competenceProfessionel}">Compétences</td>
                         <td>
                             <a class="btn" th:classappend="${id} ? 'disabled' : 'btn-outline-success'"
-                               th:href="@{'/coordonateur/dashboard/activite/edit/'+${uneActivite.id}}">
+                               th:href="@{'/coordonateur/dashboard/savoirfaire/edit/'+${unSavoirfaire.id}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-gear"
                                      viewBox="0 0 16 16">
@@ -128,17 +163,19 @@
                                     <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
                                 </svg>
                             </a>
-                            <a class="btn btn-outline-danger"
-                               th:href="@{'/coordonateur/dashboard/activite/delete/'+${uneActivite.id}}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     class="bi bi-x-lg"
-                                     viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                          d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-                                    <path fill-rule="evenodd"
-                                          d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
-                                </svg>
-                            </a>
+                            <form method="post"
+                                  th:action="@{'/coordonateur/dashboard/savoirfaire/delete/'+${unSavoirfaire.id}}">
+                                <button class="btn btn-outline-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-x-lg"
+                                         viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                    </svg>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     </tbody>

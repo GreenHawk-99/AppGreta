@@ -21,6 +21,4 @@ public class SavoirFaire {
     private Competence competence;
     @ManyToMany(mappedBy = "savoirFaires")
     private List<Seance> seances;
-
-    //public String getHeurSession(){}
 }
