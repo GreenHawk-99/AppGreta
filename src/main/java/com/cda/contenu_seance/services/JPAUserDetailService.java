@@ -16,8 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -29,7 +29,6 @@ public class JPAUserDetailService implements UserDetailsService {
     @Autowired
     private IntervenantRepository intervenantRepository;
 
-// A LEDAI
     /*@Bean
     public PasswordEncoder delegatingPasswordEncoder() {
         PasswordEncoder defaultEncoder = new BCryptPasswordEncoder();
@@ -43,7 +42,7 @@ public class JPAUserDetailService implements UserDetailsService {
     }*/
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Intervenant intervenant = intervenantRepository.findByEmail(email);
         if(null==intervenant){

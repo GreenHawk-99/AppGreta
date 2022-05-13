@@ -14,12 +14,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
+    /*@Bean
     public BCryptPasswordEncoder bCryptPE(){
         return  new BCryptPasswordEncoder();
-    }
+    }*/
 
-    @Override
+    /*@Override
     protected void configure(AuthenticationManagerBuilder authBuilder)
         throws Exception {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -27,26 +27,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("eric.sejourne@ac-creteil.fr")
                 .password(encoder.encode("123"))
                 .authorities("coordonateur");
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/home", "/h2-console", "/h2-console/**").permitAll()
-                .antMatchers("/formateur/**").hasAnyAuthority("formateur","coordonateur","admin")
-                .antMatchers("/coordonateur/**").hasAnyAuthority("coordonateur","admin")
-                .antMatchers("/admin/**").hasAnyAuthority("coordonateur", "admin")
+                .antMatchers("/formateur/**").hasAnyAuthority("formateur","coordonateur")
+                .antMatchers("/coordonateur/**").hasAnyAuthority("coordonateur")
+                .antMatchers("/admin/**").hasAnyAuthority("coordonateur")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
+                /*.csrf().ignoringAntMatchers("/h2-console/**")
+                .and()*/
+                /*.formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/welcome")
                 .permitAll()
-                .and()
+                .and()*/
                 .logout()
                 .permitAll();
-        http.csrf().ignoringAntMatchers("/h2-console/**");
+        http.csrf().disable();
         http.headers().frameOptions().disable();
     }
 }
