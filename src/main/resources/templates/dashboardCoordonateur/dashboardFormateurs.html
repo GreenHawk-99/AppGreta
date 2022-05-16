@@ -103,7 +103,7 @@
                                             <div th:each="truc : ${errorForm?.getFieldErrors('mp')}">
                                                 <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
                                             </div>
-                                            <input th:field="*{mp}" type="text" class="form-control" id="mp"
+                                            <input th:field="*{mdp}" type="text" class="form-control" id="mp"
                                                    placeholder="Veuillez saisir le mot de passe temporaire du formateur"
                                             >
                                         </div>

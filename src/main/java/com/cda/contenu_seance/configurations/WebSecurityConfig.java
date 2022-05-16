@@ -33,22 +33,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/home", "/h2-console", "/h2-console/**").permitAll()
-                .antMatchers("/formateur/**").hasAnyAuthority("formateur","coordonateur")
-                .antMatchers("/coordonateur/**").hasAnyAuthority("coordonateur")
-                .antMatchers("/admin/**").hasAnyAuthority("coordonateur")
+                .antMatchers("/home", "/h2-console", "/h2-console/**", "/webjars/bootstrap/5.1.3/**").permitAll()
+                .antMatchers("/formateur/**", "/welcome").hasAnyAuthority("Formateur","Coordinateur")
+                .antMatchers("/coordonateur/**", "/formateur/**", "/welcome").hasAnyAuthority("Coordinateur")
+                .antMatchers("/admin/**", "/welcome").hasAnyAuthority("Coordinateur")
                 .anyRequest().authenticated()
                 .and()
-                /*.csrf().ignoringAntMatchers("/h2-console/**")
-                .and()*/
-                /*.formLogin()
+                .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/welcome")
                 .permitAll()
-                .and()*/
-                .logout()
-                .permitAll();
-        http.csrf().disable();
+                .and()
+                .logout().logoutUrl("/logout")
+                .permitAll()
+                .and()
+                .csrf().ignoringAntMatchers("/h2-console/**");
         http.headers().frameOptions().disable();
     }
 }

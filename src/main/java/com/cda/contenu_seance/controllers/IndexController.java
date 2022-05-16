@@ -15,9 +15,7 @@ public class IndexController {
     IntervenantRepository intervenantRepository;
 
     @GetMapping(value = {"home"})
-    public String index(Model model){
-        List<Intervenant> intervenants = intervenantRepository.findAll();
-        model.addAttribute("caca", intervenants);
+    public String index(){
         return "display/index";
     }
 
@@ -28,14 +26,12 @@ public class IndexController {
 
     @GetMapping(value = "admin")
     public String admin(){
-        return "admin";
+        return "display/admin";
     }
 
     @GetMapping(value = {"login"})
-    public String login(Model model){
-        List<Intervenant> intervenants = intervenantRepository.findAll();
-        model.addAttribute("caca", intervenants);
-        return "login";
+    public String login(){
+        return "display/login";
     }
 
     @GetMapping(value = "help")

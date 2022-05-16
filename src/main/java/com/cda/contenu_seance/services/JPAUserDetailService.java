@@ -43,15 +43,15 @@ public class JPAUserDetailService implements UserDetailsService {
 
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Intervenant intervenant = intervenantRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Intervenant intervenant = intervenantRepository.findByEmail(username);
         if(null==intervenant){
             throw  new UsernameNotFoundException("Intervenant introuvable");
         }
 
         Set<GrantedAuthority> listeDePermissions = new HashSet<GrantedAuthority>();
 
-        String role = intervenant.getClass().getSimpleName().toLowerCase();
+        String role = intervenant.getClass().getSimpleName();
 
         listeDePermissions.add(new SimpleGrantedAuthority(role));
 /*        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
