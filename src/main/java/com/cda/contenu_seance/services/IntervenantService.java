@@ -97,4 +97,10 @@ public class IntervenantService {
     public void deleteFormateur(long id) {
         formateurRepository.deleteById(id);
     }
+
+    // Méthodes CRUD Intervenant
+
+    public List<Intervenant> getAllIntervenants(){
+        return intervenantRepository.findAll();
+    }
 }

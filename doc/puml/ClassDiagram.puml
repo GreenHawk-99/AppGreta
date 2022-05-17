@@ -49,6 +49,10 @@ class Competence {
 -id: Long
 -nom: String
 }
+class SavoirFaire {
+-id: Long
+-nom: String
+}
 
 Intervenant <|- Coordinateur :"\t\t\t"
 Intervenant <|-- Formateur :"\t\t\t"

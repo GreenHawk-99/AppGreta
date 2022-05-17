@@ -8,10 +8,13 @@
 
 <main>
     <div class="px-4 py-5 my-5 text-center">
-        <h1 class="display-5 fw-bold">Application de gestion du GRETA</h1>
         <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4" th:text="Bonjour "></p>
-
+            <div th:each="unIntervenant : ${intervenantsListe}" th:if="${unIntervenant.email} == ${#authentication.name}">
+                <p class="display-3 mb-4" th:text="'Bonjour ' + ${unIntervenant.prenom}+' '+${unIntervenant.nom}"></p>
+            </div>
+            <div th:each="uneAutority : ${#authentication.getAuthorities()}">
+                <p class="display-5 mb-4" th:text="'Vous êtes un '+${uneAutority.authority}"></p>
+            </div>
         </div>
     </div>
 </main>

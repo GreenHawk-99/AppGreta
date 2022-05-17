@@ -4,6 +4,10 @@ import com.cda.contenu_seance.dto.*;
 import com.cda.contenu_seance.models.entities.*;
 import com.cda.contenu_seance.models.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -89,6 +93,22 @@ public class FicheService {
 
     public void deleteFiche(long id){
          seanceRepository.deleteById(id);
+    }
+
+    public Page<Seance> listAllFiches(int pageNum) {
+        int pageSize = 10;
+
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+
+
+        return seanceRepository.findAll(pageable);
+    }
+    public Page<Seance> findPaginatedFiches(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        return this.seanceRepository.findAll(pageable);
     }
 
     // Méthodes CRUD Formation

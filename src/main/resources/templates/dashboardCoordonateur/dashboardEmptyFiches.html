@@ -1,15 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="fragments/headerCoordonateur :: header-css (title='Dashboard Fiches')"/>
+    <div th:replace="fragments/header :: header-css (title='Dashboard Fiches')"/>
 </head>
 <body>
-<div th:replace="fragments/headerCoordonateur :: header-nav"/>
+<div th:replace="fragments/header :: header-nav"/>
 
 <div class="container-fluid">
     <div class="row">
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div th:replace="fragments/sidebarCoordonateur :: sidebar-nav"/>
+            <div th:replace="fragments/sidebar :: sidebar-nav"/>
         </nav>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -25,11 +25,11 @@
                 <h1 class="h2">Dashboard</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-                        <a th:href="@{'/coordonateur/dashboard/fiche'}" type="button"
+                        <a th:href="@{'/formateur/dashboard/fiche'}" type="button"
                            class="btn btn-sm btn-outline-success">Ajouter</a>
                         <a type="button" class="btn btn-sm btn-outline-success">Export</a>
                     </div>
-                    <a th:href="@{'/coordonateur/dashboard/fiches '}" type="button" class="btn btn-sm btn-outline-success dropdown-toggle">
+                    <a th:href="@{'/formateur/dashboard/fiches '}" type="button" class="btn btn-sm btn-outline-success dropdown-toggle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                              class="feather feather-calendar" aria-hidden="true">

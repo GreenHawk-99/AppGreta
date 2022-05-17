@@ -2,6 +2,8 @@ package com.cda.contenu_seance.controllers;
 
 import com.cda.contenu_seance.models.entities.Intervenant;
 import com.cda.contenu_seance.models.repositories.IntervenantRepository;
+import com.cda.contenu_seance.services.IntervenantService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +14,8 @@ import java.util.List;
 @Controller
 public class IndexController {
 
-    IntervenantRepository intervenantRepository;
+    @Autowired
+    IntervenantService intervenantService;
 
     @GetMapping(value = {"home"})
     public String index(){
@@ -20,7 +23,8 @@ public class IndexController {
     }
 
     @GetMapping(value = "welcome")
-    public String welcome(){
+    public String welcome(Model model){
+        model.addAttribute("intervenantsListe", intervenantService.getAllIntervenants());
         return "display/welcome";
     }
 
