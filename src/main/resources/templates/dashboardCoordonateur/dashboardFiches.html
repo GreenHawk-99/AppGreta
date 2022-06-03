@@ -119,7 +119,7 @@
                             <ul class="pagination">
                                 <li class="page-item">
                                     <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/formateur/dashboard/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Page Suivante</a>
-                                    <span th:unless="${currentPage < totalPages}">Page Suivante</span>
+                                    <span th:unless="${currentPage < totalPages}">Page Précedente</span>
                                 </li>
                                 <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
                                     <a class="page-link" th:if="${currentPage != i}" th:href="@{'/formateur/dashboard/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
@@ -127,7 +127,7 @@
                                 </li>
                                 <li class="page-item">
                                     <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/formateur/dashboard/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Dernière page</a>
-                                    <span th:unless="${currentPage < totalPages}">Dernière page</span>
+                                    <span th:unless="${currentPage < totalPages}">Page Suivant</span>
                                 </li>
                             </ul>
                         </nav>

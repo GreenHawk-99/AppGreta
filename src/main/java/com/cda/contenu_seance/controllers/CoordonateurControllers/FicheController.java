@@ -32,7 +32,7 @@ public class FicheController {
         this.intervenantService = intervenantService;
     }
 
-    @GetMapping(value = {"/fiches", "/fiche/edit/{id}"})
+    /*@GetMapping(value = {"/fiches", "/fiche/edit/{id}"})
     public String dashboardFiches(@PathVariable(required = false) Long id, SeanceDTO seanceDTO, Model model) {
         // Tableau
         model.addAttribute("fiches", ficheService.getAllFiches());
@@ -42,6 +42,11 @@ public class FicheController {
         model.addAttribute("sessions", ficheService.getAllSessions());
         model.addAttribute("formateurs", intervenantService.getAllFormateurs());
         return "dashboardCoordonateur/dashboardFiches";
+    }*/
+
+    @GetMapping(value = {"/fiches"})
+    public String listeFormations( Model model, Pageable pageable){
+        return findPaginated(1, "id", "asc", model);
     }
 
     @GetMapping(value = "/fiches-vide")
@@ -75,7 +80,7 @@ public class FicheController {
         LocalDate dateDuJour = seanceDTO.getDateDuJour();
         redirectAttributes.addFlashAttribute("message", "La fiche de suivi du '"+dateDuJour+"' a bien été "+action);
         ficheService.saveFiche(seanceDTO);
-        return "redirect:/coordonateur/dashboard/fiches";
+        return "redirect:/formateur/dashboard/fiches";
     }
 
     /*@GetMapping(value = "/fiche/edit/{id}")
@@ -91,16 +96,9 @@ public class FicheController {
     @PostMapping(value = "/fiche/delete/{id}")
     public String deleteFiche(@PathVariable(name = "id") long id) {
         ficheService.deleteFiche(id);
-        return "redirect:/coordonateur/dashboard/fiches";
+        return "redirect:/formateur/dashboard/fiches";
     }
 
-    @GetMapping(value = {"/fiches-liste"})
-    public String listeFormations( Model model, Pageable pageable){
-        model.addAttribute("fiches", ficheService.getAllFiches());
-
-
-        return findPaginated(1, "dateDuJour", "asc", model);
-    }
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable (value = "pageNo") int pageNo,
                                 @RequestParam("sortField") String sortField,

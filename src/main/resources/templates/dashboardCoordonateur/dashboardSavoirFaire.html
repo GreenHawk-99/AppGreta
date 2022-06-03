@@ -70,7 +70,7 @@
                                             <p th:text="'Modification de l\'élement: '+${id}"></p>
                                         </div>
                                         <input name="id" type="hidden" th:value="${id}">
-                                        <div class="col-sm-8">
+                                        <div class="col-6">
                                             <label for="modalite" class="form-label">Nom du savoir faire</label>
                                             <div th:each="truc : ${errorForm?.getFieldErrors('nom')}">
                                                 <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
@@ -78,19 +78,6 @@
                                             <input th:field="*{nom}" type="text"
                                                    class="form-control" id="modalite"
                                                    placeholder="Veuillez saisir un nom d'un savoir faire" value="">
-                                        </div>
-
-                                        <div class="col-6">
-                                            <label for="seances" class="form-label">Séances</label>
-                                            <select th:field="*{seances}" class="form-select" id="seances">
-                                                <option selected class="disable" value="" disabled>Choisissez
-                                                    les séances
-                                                </option>
-                                                <option th:each="uneSeance:${fiches}"
-                                                        th:text="${uneSeance.id}"
-                                                        th:value="${uneSeance.id}">Liste des séances
-                                                </option>
-                                            </select>
                                         </div>
 
                                         <div class="col-6">
@@ -125,7 +112,7 @@
 
             <!--  Tableau  -->
 
-            <h2>Activités</h2>
+            <h2>Savoir faire</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
