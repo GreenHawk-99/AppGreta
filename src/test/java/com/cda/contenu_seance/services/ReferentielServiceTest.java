@@ -21,7 +21,6 @@ class ReferentielServiceTest {
     @Test
     void getCompetence() {
         competenceRepository.findById(10L);
-        assertEquals();
     }
 
     @Test

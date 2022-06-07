@@ -45,7 +45,7 @@ public class Seance {
                 this.support.isEmpty() ||
                 this.deroulement.isEmpty();
     }
-    /*private boolean getFormateurFicheVide(){
+    /*public boolean getFormateurFicheVide(){
         if (objectifPeda.isEmpty() || methodeEnvisage.isEmpty() || support.isEmpty() || deroulement.isEmpty()){
             return true;
         }else {

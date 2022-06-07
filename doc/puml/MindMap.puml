@@ -6,11 +6,15 @@ title Application GRETA de suivi
 * <&globe>Home
 ** <&people>Login
 *** <&flag> Formateur
-**** Formulaire de suivi
+**** Dashboard fiche de suivi
+**** Formulaire de fiche de suivi
 *** <&flag> Coordinateur
 **** Dashboard des formulaire de suivi
-**** Formulaire de reac
-**** Formualire de centre
-**** Formualire de session
+**** Dashboard de reac
+**** Dashboard de centre
+**** Dashboard de session
+**** Dashboard de activitée
+**** Dashboard de compétences
+**** Dashboard de savoir faires
 
 @endmindmap
