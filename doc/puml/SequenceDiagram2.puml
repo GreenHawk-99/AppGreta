@@ -1,0 +1,36 @@
+@startuml
+
+actor Coordinateur
+boundary "View" as V
+control "CompetenceController" as CC
+participant "CompetenceRepository" as CR
+entity "Competence" as C
+database "BDD" as BDD
+
+Coordinateur -> CC: GET/coordonateur/competences
+activate CC #FFBBBB
+
+CC -> CR: getAllCompetences()
+activate CC #DarkSalmon
+activate CR #FFBBBB
+
+CR -> BDD: select * from competence
+activate BDD #FFBBBB
+BDD --> CR: return
+deactivate BDD
+
+CR --> CC: return
+deactivate CC
+deactivate CR
+
+CC -> V: dispose dans le template
+deactivate CC
+
+activate V #FFBBBB
+V -> V: affiche l'HTML
+V --> CC: return
+deactivate V
+
+CC --> Coordinateur: return
+
+@enduml

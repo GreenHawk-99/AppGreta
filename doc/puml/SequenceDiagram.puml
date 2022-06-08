@@ -1,20 +1,20 @@
 @startuml
 
 actor Coordinateur
-control "DashboardController" as DC
-participant "centreRepository" as CR
-entity "Centre" as C
+control "CompetenceController" as DC
+participant "CompetenceRepository" as CR
+entity "Competence" as C
 database "BDD" as BDD
 boundary "View" as V
 
-Coordinateur -> DC: GET/dashboard/centre
+Coordinateur -> DC: GET/coordonateur/competences
 activate DC #FFBBBB
 
-DC -> CR: findAll()
+DC -> CR: getAllCompetences()
 activate DC #DarkSalmon
 activate CR #FFBBBB
 
-CR -> BDD: select * from centre
+CR -> BDD: select * from competence
 activate BDD #FFBBBB
 BDD --> CR: return
 deactivate BDD
