@@ -138,6 +138,28 @@
                                             <div th:each="truc : ${errorForm?.getFieldErrors('formateurs')}">
                                                 <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
                                             </div>
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                                                    First checkbox
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                                                    Second checkbox
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                                                    Third checkbox
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                                                    Fourth checkbox
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                                                    Fifth checkbox
+                                                </li>
+                                            </ul>
                                             <select th:field="*{formateurs}" class="form-select" id="formateurs">
                                                 <option selected value="" class="disable" disabled>Choisissez le formateur</option>
                                                 <option th:each="unFormateur:${formateurs}"

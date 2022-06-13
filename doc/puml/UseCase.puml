@@ -3,22 +3,26 @@
 
 left to right direction
 skinparam actorStyle awesome
+note top of AppGreta: test
 actor "Formateur" as forma
 actor "Coordinateur" as coor
+actor "Visiteur" as vis
 rectangle AppGreta {
   usecase "Renseigner une fiche de séance" as UC1
   usecase "Se connecter" as UC2
   usecase "Export format specifique" as UC3
-  usecase "Gerer session" as UC4
-  usecase "Gerer Reac" as UC5
-  usecase "Gerer formateur" as UC6
-  usecase "Gerer formation" as UC10
-  usecase "Gerer utilisateur" as UC11
-  usecase "Gerer centre" as UC12
+  usecase "Consulter les sessions" as UC4
+  usecase "Consulter les Reac" as UC5
+  usecase "Consulter les formateurs" as UC6
+  usecase "Consulter les formations" as UC10
+  usecase "Consulter les utilisateurs" as UC11
+  usecase "Consulter les centres" as UC12
+  usecase "Import format specifique" as UC13
 }
+vis - UC2
 forma <|- coor
-forma -- UC1
-UC1 .> UC2 :include
+forma - UC1
+UC1 ..> UC2 :include
 coor -- UC3
 coor -- UC4
 coor -- UC5
@@ -26,5 +30,22 @@ coor -- UC6
 coor -- UC10
 coor -- UC11
 coor -- UC12
+coor -- UC13
 
+UC3 ..> UC2 :include
+UC4 ..> UC2 :include
+UC5 ..> UC2 :include
+UC6 ..> UC2 :include
+UC10 ..> UC2 :include
+UC11 ..> UC2 :include
+UC12 ..> UC2 :include
+UC13 ..> UC2 :include
+
+
+package "Consulter les formations" {
+
+  (Consulter les formations) <. (Modifier les formations) : extends
+  (Ajouter des formations) .> (Consulter les formations) : extends
+(Consulter les formations) <.. (Supprimer les formations) : extends
+}
 @enduml

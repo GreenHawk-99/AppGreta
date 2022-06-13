@@ -28,9 +28,7 @@ deactivate CC
 
 activate V #FFBBBB
 V -> V: affiche l'HTML
-V --> CC: return
+V --> Coordinateur: return
 deactivate V
-
-CC --> Coordinateur: return
 
 @enduml

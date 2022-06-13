@@ -18,6 +18,8 @@ class Seance {
 -supportUse: String
 -deroulement: String
 -objetcifPeda: String
+-evaluation: String
++getFormateurFicheVide()
 }
 class Centre {
 -id: String
@@ -44,10 +46,12 @@ class Reac {
 class Activite {
 -id: Long
 -activitesTypes: String
+-numAT: int
 }
 class Competence {
 -id: Long
--nom: String
+-competenceProfessionel: String
+-NumCP: int
 }
 class SavoirFaire {
 -id: Long

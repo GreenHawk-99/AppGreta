@@ -1,0 +1,24 @@
+@startuml
+!theme hacker
+
+start
+floating note left
+L'utilisateur est inscrit
+en tant que Coordianteur
+pour que créer une compétence
+end note
+
+repeat :L'utilisateur entre des données dans le formulaire;
+
+backward: Les données sont invalides;
+note right: Données = tous les éléments replissablent dans le formulaire
+repeat while (Les données sont correctes?) is (Non) not (Oui)
+
+:Le formulaire d'une compétence est créer;
+
+:Les données de cette compétence s'affiche dans le dashboard;
+
+stop
+floating note right: L'utilisateur peut consulter cette compétence dans l'application
+
+@enduml
