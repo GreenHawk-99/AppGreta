@@ -14,9 +14,9 @@ backward: Les données sont invalides;
 note right: Données = tous les éléments replissablent dans le formulaire
 repeat while (Les données sont correctes?) is (Non) not (Oui)
 
-:Le formulaire d'une compétence est créer;
+:Une compétence est créée et enregistrée;
 
-:Les données de cette compétence s'affiche dans le dashboard;
+:Les données de cette compétence s'affichent dans le dashboard;
 
 stop
 floating note right: L'utilisateur peut consulter cette compétence dans l'application
