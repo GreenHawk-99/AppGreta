@@ -87,7 +87,7 @@
                         <td th:text="${uneFiche.methodeEnvisage}">Méthode Envisagé</td>
                         <td>
                             <a class="btn" th:classappend="${id} ? 'disabled' : 'btn-outline-success'"
-                               th:href="@{'/coordonateur/dashboard/fiche/edit/'+${uneFiche.id}}">
+                               th:href="@{'/formateur/dashboard/fiche/edit/'+${uneFiche.id}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-gear"
                                      viewBox="0 0 16 16">
@@ -96,7 +96,7 @@
                                 </svg>
                             </a>
                             <form method="post"
-                                  th:action="@{'/coordonateur/dashboard/fiche/delete/'+${uneFiche.id}}">
+                                  th:action="@{'/formateur/dashboard/fiche/delete/'+${uneFiche.id}}">
                                 <button class="btn btn-outline-danger">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-x-lg"
