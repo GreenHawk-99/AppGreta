@@ -12,6 +12,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @DiscriminatorValue(value = "Coordinateur")
+//Cette anotation permet de differencier
+// dans la colone TYPE de la table INTERVENANT
+// si l'entité est un coordianteur ou formateur
 public class Coordinateur extends Intervenant{
 
     @ManyToMany(mappedBy = "coordinateurs")

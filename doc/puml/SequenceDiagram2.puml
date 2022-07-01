@@ -27,7 +27,7 @@ CC -> V: dispose dans le template
 deactivate CC
 
 activate V #FFBBBB
-V -> V: affiche l'HTML
+V -> V: genère l'HTML
 V --> Coordinateur: return
 deactivate V
 

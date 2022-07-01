@@ -13,8 +13,9 @@ import static javax.persistence.DiscriminatorType.STRING;
 @Setter
 @NoArgsConstructor
 /*
-L'annotation @Inheritance permet de choisir le type d'heritage que la classe va effectuer dans la database
-Le type ici présent est single table ce qui signifie que une classe apparaitra dans la base de données avec colonne nommée TYPE
+L'annotation @Inheritance permet de choisir le type d'heritage que la classe va effectuer dans la database.
+Le type ici présent est single table ce qui signifie qu'une classe
+apparaitra dans la base de données avec colonne nommée TYPE
 qui possèdera les discriminants correspondant aux classes via l'annotation @DiscriminatorColumn
  */
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

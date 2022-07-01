@@ -1,5 +1,5 @@
 @startuml
-!theme hacker
+'!theme hacker
 
 abstract class Intervenant {
 -id: Long
