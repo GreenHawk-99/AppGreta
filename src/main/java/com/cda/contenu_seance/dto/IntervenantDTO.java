@@ -29,7 +29,7 @@ public class IntervenantDTO {
     private String email;
     @NotEmpty(message = "Le champ ne peut pas être vide")
     @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
-    @Size(min = 6, max = 20, message = "Le champ doit contenir de 6 à 20 caractère")
+    @Size(min = 3, max = 20, message = "Le champ doit contenir de 3 à 20 caractère")
     private String mdp;
     @NotEmpty(message = "Le champ ne peut pas être vide")
     @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")

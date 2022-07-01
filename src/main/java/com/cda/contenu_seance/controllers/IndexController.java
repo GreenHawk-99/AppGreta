@@ -24,7 +24,8 @@ public class IndexController {
 
     @GetMapping(value = "welcome")
     public String welcome(Model model){
-        model.addAttribute("intervenantsListe", intervenantService.getAllIntervenants());
+        model.addAttribute("intervenantsListe",
+                intervenantService.getAllIntervenants());
         return "display/welcome";
     }
 

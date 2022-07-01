@@ -14,6 +14,8 @@ import java.time.LocalDate;
 @Setter
 public class SeanceDTO {
     private Long id;
+    // L'annotation ci-dessous permet de formaliser
+    // l'affichage de la date en année, mois et jour
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDuJour;
     private int duree;
@@ -26,5 +28,4 @@ public class SeanceDTO {
     private Formateur formateur;
     private Session session;
     private Competence competence;
-
 }
