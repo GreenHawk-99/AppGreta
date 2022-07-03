@@ -1,8 +1,6 @@
 package com.cda.contenu_seance.controllers.CoordonateurControllers;
 
-import com.cda.contenu_seance.dto.FormationDTO;
 import com.cda.contenu_seance.dto.SeanceDTO;
-import com.cda.contenu_seance.models.entities.Formation;
 import com.cda.contenu_seance.models.entities.Seance;
 import com.cda.contenu_seance.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,9 @@ public class FicheController {
     IntervenantService intervenantService;
 
     @Autowired
-    public FicheController(FicheService ficheService, ReferentielService referentielService, IntervenantService intervenantService) {
+    public FicheController(FicheService ficheService,
+                           ReferentielService referentielService,
+                           IntervenantService intervenantService) {
         this.ficheService = ficheService;
         this.referentielService = referentielService;
         this.intervenantService = intervenantService;

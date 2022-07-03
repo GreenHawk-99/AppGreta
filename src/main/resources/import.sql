@@ -7,6 +7,7 @@ INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VA
 INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 7, 'Riane','Djamila', 'djamila.riane2@ac-creteil.fr', '{bcrypt}$2a$10$P7cgM/hCM1MEHDfJHXysUedfo82eKA8t3pJKfy4Jj2tIJTjnlxCDG', '94000', '01 23 45 67 89' );
 INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 8, 'Daffix','Benjamin', 'daffixbenjamin@gmail.com', '{bcrypt}$2a$10$P7cgM/hCM1MEHDfJHXysUedfo82eKA8t3pJKfy4Jj2tIJTjnlxCDG', '92000', '01 23 45 67 89' );
 INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 9, 'Thierry','Golo', 'golo.thierry@gmte94.org', '{bcrypt}$2a$10$P7cgM/hCM1MEHDfJHXysUedfo82eKA8t3pJKfy4Jj2tIJTjnlxCDG', '69420', '01 69 96 69 96' );
+
 INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Coordinateur', 10, 'Bondoux', 'Mathias', 'mathiasbondoux@gmail.com','{bcrypt}$2a$10$Tc1WVkye4rgWkKglNlEkt.EU9pE4chUgM/8ymQUrDjQ2MqDXyabQ.', '94000', '01 23 45 67 89' );
 
 INSERT INTO CENTRE(ID, ADRESSE_CENTRE, CODES_POSTAL, NOM_CENTRE, VILLE) VALUES ( 1, '61 Rue des Bordes', '94430', 'GRETA94 Champlain', 'Chennevières-sur-Marne' );

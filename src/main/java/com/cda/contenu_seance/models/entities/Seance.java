@@ -28,8 +28,9 @@ public class Seance {
     private String deroulement;
     private String evaluation;
 
-    @Nullable
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Nullable // permet d'éviter les exceptions
+    // sur les foreigns keys null
+    @ManyToOne // relation plusieur à un entre Séance/Formateur
     private Formateur formateurs;
     @Nullable
     @ManyToOne
@@ -37,7 +38,8 @@ public class Seance {
     @Nullable
     @ManyToMany
     private List<SavoirFaire> savoirFaires;
-
+    // getFormateurFicheVide() permet de trouver
+    // les fiches de formateur avec les attributs
     @Nullable
     public boolean getFormateurFicheVide(){
         return this.objectifPeda.isEmpty() ||
@@ -46,7 +48,10 @@ public class Seance {
                 this.deroulement.isEmpty();
     }
     /*public boolean getFormateurFicheVide(){
-        if (objectifPeda.isEmpty() || methodeEnvisage.isEmpty() || support.isEmpty() || deroulement.isEmpty()){
+        if (objectifPeda.isEmpty() ||
+         methodeEnvisage.isEmpty() ||
+         support.isEmpty() ||
+         deroulement.isEmpty()){
             return true;
         }else {
             return false;

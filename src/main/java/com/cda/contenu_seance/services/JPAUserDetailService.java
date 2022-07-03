@@ -59,6 +59,5 @@ public class JPAUserDetailService implements UserDetailsService {
             System.out.println(password);
             System.out.println("PASSWORD = "+encoder.encode(intervenant.getMdp()));;*/
         return new User(intervenant.getEmail(),intervenant.getMdp(),listeDePermissions);
-
     }
 }
