@@ -15,8 +15,8 @@ import java.util.List;
 public class FormationDTO {
     private Long id;
     @NotEmpty(message = "Le champ ne peut pas être vide")
-    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
-    @Size(min = 2, max = 20, message = "Le champ doit contenir de 2 à 20 caractère")
+    /*@NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
+    @Size(min = 2, max = 20, message = "Le champ doit contenir de 2 à 20 caractère")*/
     private String typeFormation;
 
     private List<Reac> reac;

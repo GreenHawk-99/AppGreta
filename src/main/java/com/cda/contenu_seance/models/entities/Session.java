@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
 @Entity
@@ -16,12 +17,13 @@ public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateDebut;
-    @Temporal(TemporalType.DATE)
+    private LocalDate dateDebut;
+    //@Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateFin;
+    private LocalDate dateFin;
+    private int dureeTotal;
 
     @ManyToOne
     private Centre centre;
@@ -29,7 +31,7 @@ public class Session {
     private Formation formation;
     @OneToMany(mappedBy = "session")
     private List<Seance> seances;
-    @ManyToMany
+    @ManyToMany(mappedBy = "sessions")
     private List<Formateur> formateurs;
     @ManyToOne
     private Coordinateur coordinateur;

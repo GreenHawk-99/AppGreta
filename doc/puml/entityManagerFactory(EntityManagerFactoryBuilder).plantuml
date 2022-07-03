@@ -1,0 +1,89 @@
+@startuml
+
+
+top to bottom direction
+skinparam linetype ortho
+
+class AbstractAuditable {
+   createdDate:  Date 
+   lastModifiedDate:  Date 
+}
+class AbstractPersistable {
+   id:  PK 
+}
+class Activite {
+   id:  Long 
+   activitesTypes:  String 
+   numAT:  int 
+}
+class Centre {
+   id:  Long 
+   adresseCentre:  String 
+   codesPostal:  String 
+   nomCentre:  String 
+   ville:  String 
+}
+class Competence {
+   id:  Long 
+   competenceProfessionel:  String 
+   numCP:  int 
+}
+class Coordinateur
+class Formateur
+class Formation {
+   id:  Long 
+   typeFormation:  String 
+}
+class Intervenant {
+   id:  Long 
+   codePostal:  String 
+   email:  String 
+   mdp:  String 
+   nom:  String 
+   prenom:  String 
+   tel:  String 
+}
+class Reac {
+   id:  Long 
+   dateDebut:  LocalDate 
+   duree:  int 
+   lien:  String 
+   nom:  String 
+}
+class SavoirFaire {
+   id:  Long 
+   nom:  String 
+}
+class Seance {
+   id:  Long 
+   dateDuJour:  LocalDate 
+   deroulement:  String 
+   duree:  int 
+   evaluation:  String 
+   methodeEnvisage:  String 
+   objectifPeda:  String 
+   support:  String 
+}
+class Session {
+   id:  Long 
+   dateDebut:  LocalDate 
+   dateFin:  LocalDate 
+   dureeTotal:  int 
+}
+
+AbstractAuditable    -[#595959,plain]-^  AbstractPersistable 
+Activite            "0..1" <-[#595959,plain]-> "0..*" Competence          
+Activite            "0..*" <-[#595959,plain]-> "0..1" Reac                
+Centre              "0..*" <-[#595959,plain]-> "0..*" Coordinateur        
+Centre              "0..1" <-[#595959,plain]-> "0..*" Session             
+Competence          "0..1" <-[#595959,plain]-> "0..*" SavoirFaire         
+Coordinateur         -[#595959,plain]-^  Intervenant         
+Coordinateur        "0..1" <-[#595959,plain]-> "0..*" Session             
+Formateur            -[#595959,plain]-^  Intervenant         
+Formateur           "0..1" <-[#595959,plain]-> "0..*" Seance              
+Formateur           "0..*" <-[#595959,plain]-> "0..*" Session             
+Formation           "0..1" <-[#595959,plain]-> "0..*" Reac                
+Formation           "0..1" <-[#595959,plain]-> "0..*" Session             
+Seance              "0..*" <-[#595959,plain]-> "0..*" SavoirFaire         
+Seance              "0..*" <-[#595959,plain]-> "0..1" Session             
+@enduml

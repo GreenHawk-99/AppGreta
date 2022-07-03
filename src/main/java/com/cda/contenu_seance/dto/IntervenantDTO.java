@@ -1,9 +1,15 @@
 package com.cda.contenu_seance.dto;
 
+import com.cda.contenu_seance.models.entities.Centre;
+import com.cda.contenu_seance.models.entities.Seance;
+import com.cda.contenu_seance.models.entities.Session;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,12 +29,18 @@ public class IntervenantDTO {
     private String email;
     @NotEmpty(message = "Le champ ne peut pas être vide")
     @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
-    @Size(min = 10, max = 50, message = "Le champ doit contenir de 10 à 50 caractère")
-    private String mp;
+    @Size(min = 3, max = 20, message = "Le champ doit contenir de 3 à 20 caractère")
+    private String mdp;
     @NotEmpty(message = "Le champ ne peut pas être vide")
     @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
     private String codePostal;
     @NotEmpty(message = "Le champ ne peut pas être vide")
-    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
+    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide last")
     private String tel;
+
+
+    private List<Centre> centres;
+    private List<Session> sessionsCoordonateur;
+    private List<Seance> seances;
+    private List<Session> sessionsFomateur;
 }

@@ -8,6 +8,7 @@ import com.cda.contenu_seance.models.repositories.CoordinateurRepository;
 import com.cda.contenu_seance.models.repositories.FormateurRepository;
 import com.cda.contenu_seance.models.repositories.IntervenantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class IntervenantService {
         intervenantDb.setNom(intervenantDTO.getNom().trim().toUpperCase());
         intervenantDb.setPrenom(intervenantDTO.getPrenom().trim());
         intervenantDb.setEmail(intervenantDTO.getEmail().trim());
-        intervenantDb.setMp(intervenantDTO.getMp().trim());
+        intervenantDb.setMdp("{bcrypt}"+new BCryptPasswordEncoder().encode(intervenantDTO.getMdp().trim()));
         intervenantDb.setCodePostal(intervenantDTO.getCodePostal().trim());
         intervenantDb.setTel(intervenantDTO.getTel().trim());
     }
@@ -43,15 +44,15 @@ public class IntervenantService {
     }
 
     public Coordinateur getCoordinateur(long id) {
-        return coordinateurRepository.findById(id).orElse(null);
+        return coordinateurRepository.findById(id).orElse(new Coordinateur());
     }
 
     public void saveCoordinateur(IntervenantDTO intervenantDTO) {
-        Intervenant intervenantDb;
+        Coordinateur intervenantDb;
         if (null == intervenantDTO.getId()) {
             intervenantDb = new Coordinateur();
         } else {
-            intervenantDb = intervenantRepository.findById(intervenantDTO.getId()).orElse(new Coordinateur());
+            intervenantDb = getCoordinateur(intervenantDTO.getId());
         }
         /*intervenantDb.setNom(intervenantDTO.getNom().trim().toUpperCase());
         intervenantDb.setPrenom(intervenantDTO.getPrenom().trim());
@@ -60,6 +61,8 @@ public class IntervenantService {
         intervenantDb.setCodePostal(intervenantDTO.getCodePostal().trim());
         intervenantDb.setTel(intervenantDTO.getTel().trim());*/
         intervenantMain(intervenantDTO,intervenantDb);
+        intervenantDb.setCentres(intervenantDTO.getCentres());
+        intervenantDb.setSessions(intervenantDTO.getSessionsCoordonateur());
         intervenantRepository.save(intervenantDb);
     }
 
@@ -74,27 +77,30 @@ public class IntervenantService {
     }
 
     public Formateur getFormateur(long id) {
-        return formateurRepository.findById(id).orElse(null);
+        return formateurRepository.findById(id).orElse(new Formateur());
     }
 
     public void saveFormateur(IntervenantDTO intervenantDTO) {
-        Intervenant intervenantDb;
+        Formateur intervenantDb;
         if (null == intervenantDTO.getId()) {
             intervenantDb = new Formateur();
         } else {
-            intervenantDb = intervenantRepository.findById(intervenantDTO.getId()).orElse(new Formateur());
+            intervenantDb = getFormateur(intervenantDTO.getId());
+            //intervenantDb = formateurRepository.findById(intervenantDTO.getId()).orElse(new Formateur());
         }
-        /*intervenantDb.setNom(intervenantDTO.getNom().trim().toUpperCase());
-        intervenantDb.setPrenom(intervenantDTO.getPrenom().trim());
-        intervenantDb.setEmail(intervenantDTO.getEmail().trim());
-        intervenantDb.setMp(intervenantDTO.getMp().trim());
-        intervenantDb.setCodePostal(intervenantDTO.getCodePostal().trim());
-        intervenantDb.setTel(intervenantDTO.getTel().trim());*/
         intervenantMain(intervenantDTO,intervenantDb);
+        intervenantDb.setSeances(intervenantDTO.getSeances());
+        intervenantDb.setSessions(intervenantDTO.getSessionsFomateur());
         intervenantRepository.save(intervenantDb);
     }
 
     public void deleteFormateur(long id) {
         formateurRepository.deleteById(id);
+    }
+
+    // Méthodes CRUD Intervenant
+
+    public List<Intervenant> getAllIntervenants(){
+        return intervenantRepository.findAll();
     }
 }

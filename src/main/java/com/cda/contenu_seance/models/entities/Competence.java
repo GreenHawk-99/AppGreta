@@ -21,5 +21,5 @@ public class Competence {
     @ManyToOne
     private Activite activite;
     @OneToMany(mappedBy = "competence")
-    private Set<Seance> seances;
+    private List<SavoirFaire> savoirFaires;
 }

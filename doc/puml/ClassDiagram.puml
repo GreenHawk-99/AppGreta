@@ -1,5 +1,5 @@
 @startuml
-!theme hacker
+'!theme hacker
 
 abstract class Intervenant {
 -id: Long
@@ -18,6 +18,8 @@ class Seance {
 -supportUse: String
 -deroulement: String
 -objetcifPeda: String
+-evaluation: String
++getFormateurFicheVide()
 }
 class Centre {
 -id: String
@@ -44,8 +46,14 @@ class Reac {
 class Activite {
 -id: Long
 -activitesTypes: String
+-numAT: int
 }
 class Competence {
+-id: Long
+-competenceProfessionel: String
+-NumCP: int
+}
+class SavoirFaire {
 -id: Long
 -nom: String
 }
@@ -62,5 +70,6 @@ Session "*" - "1" Formation :"\t\t\t"
 Formation "1" - "*" Reac :"\t\t\t"
 Reac "1" -- "*" Activite :"\t\t\t"
 Activite "1" -- "*" Competence :"\t\t\t"
-Seance "*" - "1" Competence :"\t\t\t\t\t\t\t\t\t\t\t"
+SavoirFaire "*" - "1" Competence :"\t\t\t"
+Seance "*" - "*" SavoirFaire :"\t\t\t\t"
 @enduml

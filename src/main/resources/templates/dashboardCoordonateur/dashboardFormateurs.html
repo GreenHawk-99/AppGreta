@@ -25,7 +25,7 @@
                 <h1 class="h2">Dashboard</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-                        <a th:href="@{'/formulaire/formateur'}" type="button" class="btn btn-sm btn-outline-success">Ajouter</a>
+                        <a th:href="@{'/coordonateur/dashboard/formateur'}" type="button" class="btn btn-sm btn-outline-success">Ajouter</a>
                         <a type="button" class="btn btn-sm btn-outline-success">Export</a>
                     </div>
                     <button type="button" class="btn btn-sm btn-outline-success dropdown-toggle">
@@ -48,41 +48,50 @@
                 <div class="card border-primary col col-lg-6 col-md-12">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                         <div class="container">
-                            <div class="py-4 text-center">
+                            <div th:if="!${id}" class="py-4 text-center">
                                 <h2 class="text-primary">Création d'un Formateur du GRETA</h2>
+                            </div>
+                            <div th:if="${id}" class="py-4 text-center">
+                                <h2 class="text-primary">Modification d'un Formateur du GRETA</h2>
+                            </div>
+
+                            <div class="row justify-content-center g-6">
+                                <div th:if="${message}" class="alert alert-success col-sm-6" role="alert">
+                                    <p th:text="${message}" class="text-center"></p>
+                                </div>
                             </div>
 
                             <div class="row g-6">
                                 <form name="centre" class="needs-validation" novalidate="" method="post" action="*"
-                                      th:action="@{'/formulaire/formateur/save'}"
+                                      th:action="@{'/coordonateur/dashboard/formateur/save'}"
                                       th:object="${formateurForm}">
-                                    <div class="row g-4">
+                                    <div class="row justify-content-center g-4">
+                                        <div class="text-center" th:if="${id}">
+                                            <p th:text="'Modification de l\'élement: '+${id}"></p>
+                                        </div>
+                                        <input name="id" type="hidden" th:value="${id}">
                                         <div class="col-sm-6">
                                             <label for="nom" class="form-label">Nom du formateur</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('nom')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
                                             </div>
                                             <input th:field="*{nom}" type="text" class="form-control" id="nom"
-                                                   placeholder="Veuillez saisir le nom du formateur" value="">
+                                                   placeholder="Veuillez saisir le nom du formateur" value="" >
                                         </div>
 
                                         <div class="col-sm-6">
                                             <label for="prenom" class="form-label">Prénom du formateur</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('prenom')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
                                             </div>
                                             <input th:field="*{prenom}" type="text" class="form-control" id="prenom"
-                                                   placeholder="Veuillez saisir le prénom du formateur" value=""
-                                            >
+                                                   placeholder="Veuillez saisir le prénom du formateur" value="">
                                         </div>
 
                                         <div class="col-sm-7">
                                             <label for="email" class="form-label">Adresse email</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('email')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
                                             </div>
                                             <input th:field="*{email}" type="text" class="form-control" id="email"
                                                    placeholder="Veuillez saisir l'adresse email du formateur" value=""
@@ -91,20 +100,18 @@
 
                                         <div class="col-5">
                                             <label for="mp" class="form-label">Mot de passe temporaire</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('mdp')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
                                             </div>
-                                            <input th:field="*{mp}" type="text" class="form-control" id="mp"
+                                            <input th:field="*{mdp}" type="text" class="form-control" id="mp"
                                                    placeholder="Veuillez saisir le mot de passe temporaire du formateur"
                                             >
                                         </div>
 
                                         <div class="col-5">
                                             <label for="codePostal" class="form-label">Code postal</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('codePostal')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
                                             </div>
                                             <input th:field="*{codePostal}" type="text" class="form-control"
                                                    id="codePostal"
@@ -113,14 +120,63 @@
 
                                         <div class="col-7">
                                             <label for="tel" class="form-label">Numéro de téléphone</label>
-                                            <div th:each="anError : ${errorForm}" th:if="errorForm">
-                                                <p class="alert alert-danger"
-                                                   th:text="${anError.defaultMessage}"></p>
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('tel')}">
+                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
                                             </div>
                                             <input th:field="*{tel}" type="text" class="form-control" id="tel"
-                                                   placeholder="Veuillez saisir le numéro de téléphone du formateur"
-                                            >
+                                                   placeholder="Veuillez saisir le numéro de téléphone du formateur">
                                         </div>
+
+                                        <div class="col-6">
+                                        <label for="sessionsFomateur" class="form-label">Session</label>
+                                        <select th:field="*{sessionsFomateur}" class="form-select"
+                                                id="sessionsFomateur">
+                                            <option selected value="" class="disable" disabled>Choisissez la
+                                                session
+                                            </option>
+                                            <option th:each="uneSession:${sessionsList}"
+                                                    th:with="dateSession=${#temporals.format(uneSession.dateDebut,'dd-MM-YYYY')}+' | '+${#temporals.format(uneSession.dateFin,'dd-MM-YYYY')}"
+                                                    th:text="${dateSession}"
+                                                    th:value="${uneSession.id}">Liste des sessions
+                                            </option>
+                                        </select>
+                                        </div>
+
+<!--                                        <div class="col-md-6">-->
+<!--                                            <label for="formateurs" class="form-label">Formateur de la session</label>-->
+<!--                                            <div th:each="truc : ${errorForm?.getFieldErrors('formateurs')}">-->
+<!--                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>-->
+<!--                                            </div>-->
+<!--                                            <ul class="list-group">-->
+<!--                                                <li class="list-group-item">-->
+<!--                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">-->
+<!--                                                    First checkbox-->
+<!--                                                </li>-->
+<!--                                                <li class="list-group-item">-->
+<!--                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">-->
+<!--                                                    Second checkbox-->
+<!--                                                </li>-->
+<!--                                                <li class="list-group-item">-->
+<!--                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">-->
+<!--                                                    Third checkbox-->
+<!--                                                </li>-->
+<!--                                                <li class="list-group-item">-->
+<!--                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">-->
+<!--                                                    Fourth checkbox-->
+<!--                                                </li>-->
+<!--                                                <li class="list-group-item">-->
+<!--                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">-->
+<!--                                                    Fifth checkbox-->
+<!--                                                </li>-->
+<!--                                            </ul>-->
+<!--                                            <select th:field="*{sessionsFomateur}" class="form-select" id="formateurs">-->
+<!--                                                <option selected value="" class="disable" disabled>Choisissez le formateur</option>-->
+<!--                                                <option th:each="unFormateur:${formateurs}"-->
+<!--                                                        th:text="${unFormateur.nom}+' '+${unFormateur.prenom}"-->
+<!--                                                        th:value="${unFormateur.id}">Formateur-->
+<!--                                                </option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
                                     </div>
 
                                     <hr class="my-4">
@@ -128,6 +184,9 @@
                                         <button class="w-50 btn btn-primary btn-lg" type="submit">Envoyer le
                                             formulaire
                                         </button>
+                                        <div th:if="${id}">
+                                            <a class="w-25 btn btn-danger btn-sm mt-2" href="/coordonateur/dashboard/formateurs">Retour creation</a>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -161,8 +220,8 @@
                         <td th:text="${unFormateur.codePostal}">Code Postal</td>
                         <td th:text="${unFormateur.tel}">Telephone</td>
                         <td>
-                            <a class="btn btn-outline-success" href="#"
-                               th:href="@{'/formulaire/formateur/edit/'+${unFormateur.id}}">
+                            <a class="btn" th:classappend="${id} ? 'disabled' : 'btn-outline-success'"
+                               th:href="@{'/coordonateur/dashboard/formateur/edit/'+${unFormateur.id}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-gear"
                                      viewBox="0 0 16 16">
@@ -170,17 +229,19 @@
                                     <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
                                 </svg>
                             </a>
-                            <a class="btn btn-outline-danger" href="#"
-                               th:href="@{'/formulaire/formateur/delete/'+${unFormateur.id}}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     class="bi bi-x-lg"
-                                     viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                          d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-                                    <path fill-rule="evenodd"
-                                          d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
-                                </svg>
-                            </a>
+                            <form method="post"
+                                  th:action="@{'/coordonateur/dashboard/formateur/delete/'+${unFormateur.id}}">
+                                <button class="btn btn-outline-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-x-lg"
+                                         viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                    </svg>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     </tbody>

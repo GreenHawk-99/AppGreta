@@ -12,6 +12,12 @@ import static javax.persistence.DiscriminatorType.STRING;
 @Getter
 @Setter
 @NoArgsConstructor
+/*
+L'annotation @Inheritance permet de choisir le type d'heritage que la classe va effectuer dans la database.
+Le type ici présent est single table ce qui signifie qu'une classe
+apparaitra dans la base de données avec colonne nommée TYPE
+qui possèdera les discriminants correspondant aux classes via l'annotation @DiscriminatorColumn
+ */
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE", discriminatorType=STRING)
 public abstract class Intervenant {
@@ -21,7 +27,7 @@ public abstract class Intervenant {
     private String nom;
     private String prenom;
     private String email;
-    private String mp;
+    private String mdp;
     private String codePostal;
     private String tel;
 }

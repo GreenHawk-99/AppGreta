@@ -7,29 +7,23 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
+import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 public class SeanceDTO {
     private Long id;
+    // L'annotation ci-dessous permet de formaliser
+    // l'affichage de la date en année, mois et jour
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateDuJour;
-    @NotNull
-    @NotEmpty(message = "Le champ ne peut pas être vide")
+    private LocalDate dateDuJour;
     private int duree;
-    @NotEmpty(message = "Le champ ne peut pas être vide")
-    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
     private String objectifPeda;
-    @NotEmpty(message = "Le champ ne peut pas être vide")
-    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
+    private String methodeEnvisage;
     private String support;
-    @NotEmpty(message = "Le champ ne peut pas être vide")
-    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
     private String deroulement;
+    private String evaluation;
 
     private Formateur formateur;
     private Session session;

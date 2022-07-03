@@ -1,5 +1,5 @@
 @startuml
-!theme hacker
+'!theme hacker
 
 start
 floating note left: L'utilisateur est inscrit
@@ -12,11 +12,11 @@ repeat while (Les identifiants sont correctes?) is (Non) not (Oui)
 
 :L'utilisateur est connécté;
 
-fork
-  :Formateur;
-fork again
-  :Coordonateur;
-end merge
+if (L'utilisateur est ?) then (Formateur)
+:Prend le role Formateur;
+else (Coordonateur)
+:Prend le role Coordonateur;
+endif
 
 :Affichage et service correspondant;
 

@@ -1,18 +1,13 @@
 package com.cda.contenu_seance.services;
 
-import com.cda.contenu_seance.dto.CentreDTO;
-import com.cda.contenu_seance.dto.FormationDTO;
-import com.cda.contenu_seance.dto.SeanceDTO;
-import com.cda.contenu_seance.dto.SessionDTO;
-import com.cda.contenu_seance.models.entities.Centre;
-import com.cda.contenu_seance.models.entities.Formation;
-import com.cda.contenu_seance.models.entities.Seance;
-import com.cda.contenu_seance.models.entities.Session;
-import com.cda.contenu_seance.models.repositories.CentreRepository;
-import com.cda.contenu_seance.models.repositories.FormationRepository;
-import com.cda.contenu_seance.models.repositories.SeanceRepository;
-import com.cda.contenu_seance.models.repositories.SessionRepository;
+import com.cda.contenu_seance.dto.*;
+import com.cda.contenu_seance.models.entities.*;
+import com.cda.contenu_seance.models.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,19 +18,22 @@ public class FicheService {
     SessionRepository sessionRepository;
     FormationRepository formationRepository;
     CentreRepository centreRepository;
+    SavoirFaireRepository savoirFaireRepository;
 
     @Autowired
     public FicheService(SeanceRepository seanceRepository,
                         SessionRepository sessionRepository,
                         FormationRepository formationRepository,
-                        CentreRepository centreRepository){
+                        CentreRepository centreRepository,
+                        SavoirFaireRepository savoirFaireRepository){
         this.centreRepository = centreRepository;
         this.seanceRepository = seanceRepository;
         this.sessionRepository = sessionRepository;
         this.formationRepository = formationRepository;
+        this.savoirFaireRepository = savoirFaireRepository;
     }
 
-    /*private SeanceDTO convertSEtoSDTO(Seance seance){
+    /*private SeanceDTO convertSeanceEntityToSeanceDTO(Seance seance){
         SeanceDTO seanceDTO = new SeanceDTO();
         seanceDTO.setId(seance.getId());
         seanceDTO.setDateDuJour(seance.getDateDuJour());
@@ -70,6 +68,10 @@ public class FicheService {
         return seanceRepository.findById(id).orElse(new Seance());
     }
 
+    public List<Seance> getEmptyFiche(){
+        return seanceRepository.seanceEmptyDOMSOrderByDate();
+    }
+
     public void saveFiche(SeanceDTO seanceDTO){
         Seance seanceDb;
         if (null==seanceDTO.getId()) {
@@ -80,8 +82,10 @@ public class FicheService {
         seanceDb.setDateDuJour(seanceDTO.getDateDuJour());
         seanceDb.setDuree(seanceDTO.getDuree());
         seanceDb.setObjectifPeda(seanceDTO.getObjectifPeda().trim());
+        seanceDb.setMethodeEnvisage(seanceDTO.getMethodeEnvisage().trim());
         seanceDb.setSupport(seanceDTO.getSupport().trim());
         seanceDb.setDeroulement(seanceDTO.getDeroulement().trim());
+        seanceDb.setEvaluation(seanceDTO.getEvaluation().trim());
         seanceDb.setFormateurs(seanceDTO.getFormateur());
         seanceDb.setSession(seanceDTO.getSession());
         seanceRepository.save(seanceDb);
@@ -89,6 +93,22 @@ public class FicheService {
 
     public void deleteFiche(long id){
          seanceRepository.deleteById(id);
+    }
+
+    public Page<Seance> listAllFiches(int pageNum) {
+        int pageSize = 10;
+
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+
+
+        return seanceRepository.findAll(pageable);
+    }
+    public Page<Seance> findPaginatedFiches(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        return this.seanceRepository.findAll(pageable);
     }
 
     // Méthodes CRUD Formation
@@ -131,7 +151,8 @@ public class FicheService {
         if (null==centreDTO.getId()){
             centreDb = new Centre();
         } else{
-            centreDb = centreRepository.findById(centreDTO.getId()).orElse(new Centre());
+            centreDb = getCentre(centreDTO.getId());
+            //centreDb = centreRepository.findById(centreDTO.getId()).orElse(new Centre());
         }
         centreDb.setNomCentre(centreDTO.getNomCentre().trim());
         centreDb.setAdresseCentre(centreDTO.getAdresseCentre().trim());
@@ -159,10 +180,38 @@ public class FicheService {
         }
         sessionDb.setDateDebut(sessionDTO.getDateDebut());
         sessionDb.setDateFin(sessionDTO.getDateFin());
+        sessionDb.setDureeTotal(sessionDTO.getDureeTotal());
+        sessionDb.setCentre(sessionDTO.getCentre());
+        sessionDb.setCoordinateur(sessionDTO.getCoordinateur());
+        sessionDb.setFormation(sessionDTO.getFormation());
         sessionRepository.save(sessionDb);
     }
 
     public void deleteSession(long id){
         sessionRepository.deleteById(id);
     }
+
+    // Méthodes CRUD SavoirFaire
+
+    public List<SavoirFaire> getAllSavoirFaires(){
+        return savoirFaireRepository.findAll();
+    }
+
+    public void saveSavoirFaire(SavoirFaireDTO savoirFaireDTO){
+        SavoirFaire savoirFaireDb;
+        if (null==savoirFaireDTO.getId()){
+            savoirFaireDb = new SavoirFaire();
+        } else {
+            savoirFaireDb = savoirFaireRepository.findById(savoirFaireDTO.getId()).orElse(new SavoirFaire());
+        }
+        savoirFaireDb.setNom(savoirFaireDTO.getNom());
+        savoirFaireDb.setCompetence(savoirFaireDTO.getCompetence());
+        savoirFaireDb.setSeances(savoirFaireDTO.getSeances());
+        savoirFaireRepository.save(savoirFaireDb);
+    }
+
+    public void deleteSavoirFaire(long id){
+        savoirFaireRepository.deleteById(id);
+    }
+
 }

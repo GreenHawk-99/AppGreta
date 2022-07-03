@@ -3,18 +3,21 @@
     <th:block th:fragment="header-css">
         <link rel="stylesheet" type="text/css"
               href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css"
-              th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" />
+              th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">
         <title th:text="${title ?: 'GRETA'}"></title>
+        <link rel="icon" type="image/x-icon" th:href="@{/img/greta_cfa.ico}">
     </th:block>
 </head>
 <body>
 <div th:fragment="header-nav">
     <header>
         <!-- Bootstrap Navbar  -->
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Third navbar example">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#" th:href="@{'/home'}">GRETA</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03"
+                <p class="navbar-brand my-0 mx-2 greta">GRETA</p>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarsExample03"
                         aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -22,38 +25,41 @@
                 <div class="collapse navbar-collapse" id="navbarsExample03">
                     <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#" th:href="@{'/home'}">Accueil</a>
+                            <a class="nav-link" aria-current="page" href="#" th:href="@{'/welcome'}">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#" th:href="@{'/formateur/dashboard/fiches'}">Fiches</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-bs-toggle="dropdown"
                                aria-expanded="false">Liste</a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdown02">
-                                <li><a class="dropdown-item" href="#" th:href="@{'/dashboard/centres'}">Liste des Centres</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/dashboard/fiches'}">Liste des Fiches</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/dashboard/formateurs'}">Liste des Formateurs</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/dashboard/formations'}">Liste des Formations</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/dashboard/sessions'}">Liste des Sessions</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/dashboard/activites'}">Liste des Activités</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/dashboard/competences'}">Liste des Competences</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/dashboard/referentiels'}">Liste des Referentiel</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown"
-                               aria-expanded="false">Formulaire</a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                                <li><a class="dropdown-item" href="#" th:href="@{'/formulaire/centre'}">Formulaire d'un Centre</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/formulaire/fiche'}">Formulaire d'une Fiche</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/formulaire/formateur'}">Formulaire d'un Formateur</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/formulaire/formation'}">Formulaire d'un Formation</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/formulaire/session'}">Formulaire d'une Session</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/formulaire/activite'}">Formulaire d'une Activité</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/formulaire/competence'}">Formulaire d'une Competence</a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{'/formulaire/referentiel'}">Formulaire d'un Referentiel</a></li>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown02">
+                                <li><a class="dropdown-item" href="#" th:href="@{'/coordonateur/dashboard/centres'}">Liste
+                                    des Centres</a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{'/formateur/dashboard/fiches'}">Liste
+                                    des Fiches</a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{'/coordonateur/dashboard/formateurs'}">Liste
+                                    des Formateurs</a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{'/coordonateur/dashboard/formations'}">Liste
+                                    des Formations</a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{'/coordonateur/dashboard/sessions'}">Liste
+                                    des Sessions</a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{'/coordonateur/dashboard/activites'}">Liste
+                                    des Activités</a></li>
+                                <li><a class="dropdown-item" href="#"
+                                       th:href="@{'/coordonateur/dashboard/competences'}">Liste des Competences</a></li>
+                                <li><a class="dropdown-item" href="#"
+                                       th:href="@{'/coordonateur/dashboard/savoirfaires'}">Liste des Savoir Faires</a></li>
+                                <li><a class="dropdown-item" href="#"
+                                       th:href="@{'/coordonateur/dashboard/referentiels'}">Liste des Referentiel</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
-                    <a class="btn btn-success" href="#">Log out</a>
+                    <p class="text-light my-0 mx-4" th:text="${#authentication.name}"></p>
+                    <form method="post" th:action="@{/logout}">
+                        <button class="btn btn-success m-2" type="submit">Déconnexion</button>
+                    </form>
                 </div>
             </div>
         </nav>

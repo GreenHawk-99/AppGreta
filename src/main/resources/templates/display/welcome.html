@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css (title='Index')"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header-nav"/>
+
+<main>
+    <div class="px-4 py-5 my-5 text-center">
+        <div class="col-lg-6 mx-auto">
+            <div th:each="unIntervenant : ${intervenantsListe}"
+                 th:if="${unIntervenant.email} == ${#authentication.name}">
+                <p class="display-3 mb-4" th:text="'Bonjour ' + ${unIntervenant.prenom}+' '+${unIntervenant.nom}"></p>
+            </div>
+            <div th:each="uneAutority : ${#authentication.getAuthorities()}">
+                <p class="display-5 mb-4" th:text="'Vous êtes un '+${uneAutority.authority}"></p>
+                <div class="row justify-content-center g-6">
+                    <div th:if="${message}" class="alert alert-success col-sm-6" role="alert">
+                        <p th:text="${message}" class="text-center"></p>
+                    </div>
+                </div>
+                <div th:if="${uneAutority.authority} == 'Coordinateur'">
+                    <form th:action="@{/import}" method="post" enctype="multipart/form-data">
+                        <label for="import" th:text="'Fichier à importé:'"></label>
+                        <input type="file" id="import" name="import">
+                        <button type="submit" th:text="'Importer'"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- /.container -->
+<div th:replace="fragments/footer:: footer"/>
+</body>
+</html>
