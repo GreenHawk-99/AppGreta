@@ -1,6 +1,6 @@
 # Application GRETA
 
----
+lien d'origine du projet: https://gitlab.com/floriangtmegmail/contenuSuivie
 
 ### I.    [English summary](#english-sumary)
 
