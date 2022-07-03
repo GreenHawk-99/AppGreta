@@ -100,7 +100,7 @@
 
                                         <div class="col-5">
                                             <label for="mp" class="form-label">Mot de passe temporaire</label>
-                                            <div th:each="truc : ${errorForm?.getFieldErrors('mp')}">
+                                            <div th:each="truc : ${errorForm?.getFieldErrors('mdp')}">
                                                 <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
                                             </div>
                                             <input th:field="*{mdp}" type="text" class="form-control" id="mp"
@@ -142,41 +142,41 @@
                                         </select>
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <label for="formateurs" class="form-label">Formateur de la session</label>
-                                            <div th:each="truc : ${errorForm?.getFieldErrors('formateurs')}">
-                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>
-                                            </div>
-                                            <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                    First checkbox
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                    Second checkbox
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                    Third checkbox
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                    Fourth checkbox
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                    Fifth checkbox
-                                                </li>
-                                            </ul>
-                                            <select th:field="*{sessionsFomateur}" class="form-select" id="formateurs">
-                                                <option selected value="" class="disable" disabled>Choisissez le formateur</option>
-                                                <option th:each="unFormateur:${formateurs}"
-                                                        th:text="${unFormateur.nom}+' '+${unFormateur.prenom}"
-                                                        th:value="${unFormateur.id}">Formateur
-                                                </option>
-                                            </select>
-                                        </div>
+<!--                                        <div class="col-md-6">-->
+<!--                                            <label for="formateurs" class="form-label">Formateur de la session</label>-->
+<!--                                            <div th:each="truc : ${errorForm?.getFieldErrors('formateurs')}">-->
+<!--                                                <p class="alert alert-danger" th:text="${truc.getDefaultMessage()}"></p>-->
+<!--                                            </div>-->
+<!--                                            <ul class="list-group">-->
+<!--                                                <li class="list-group-item">-->
+<!--                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">-->
+<!--                                                    First checkbox-->
+<!--                                                </li>-->
+<!--                                                <li class="list-group-item">-->
+<!--                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">-->
+<!--                                                    Second checkbox-->
+<!--                                                </li>-->
+<!--                                                <li class="list-group-item">-->
+<!--                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">-->
+<!--                                                    Third checkbox-->
+<!--                                                </li>-->
+<!--                                                <li class="list-group-item">-->
+<!--                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">-->
+<!--                                                    Fourth checkbox-->
+<!--                                                </li>-->
+<!--                                                <li class="list-group-item">-->
+<!--                                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">-->
+<!--                                                    Fifth checkbox-->
+<!--                                                </li>-->
+<!--                                            </ul>-->
+<!--                                            <select th:field="*{sessionsFomateur}" class="form-select" id="formateurs">-->
+<!--                                                <option selected value="" class="disable" disabled>Choisissez le formateur</option>-->
+<!--                                                <option th:each="unFormateur:${formateurs}"-->
+<!--                                                        th:text="${unFormateur.nom}+' '+${unFormateur.prenom}"-->
+<!--                                                        th:value="${unFormateur.id}">Formateur-->
+<!--                                                </option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
                                     </div>
 
                                     <hr class="my-4">

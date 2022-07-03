@@ -16,13 +16,16 @@
             <div th:each="uneAutority : ${#authentication.getAuthorities()}">
                 <p class="display-5 mb-4" th:text="'Vous êtes un '+${uneAutority.authority}"></p>
                 <div class="row justify-content-center g-6">
+                    <div th:if="${error}" class="alert alert-danger col-sm-6" role="alert">
+                        <p th:text="${error}" class="text-center"></p>
+                    </div>
                     <div th:if="${message}" class="alert alert-success col-sm-6" role="alert">
                         <p th:text="${message}" class="text-center"></p>
                     </div>
                 </div>
                 <div th:if="${uneAutority.authority} == 'Coordinateur'">
                     <form th:action="@{/import}" method="post" enctype="multipart/form-data">
-                        <label for="import" th:text="'Fichier à importé:'"></label>
+                        <label for="import" th:text="'Fichier a importé:'"></label>
                         <input type="file" id="import" name="import">
                         <button type="submit" th:text="'Importer'"></button>
                     </form>

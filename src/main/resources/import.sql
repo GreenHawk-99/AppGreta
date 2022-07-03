@@ -1,12 +1,12 @@
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Coordinateur', 1, 'Séjourne', 'Éric', 'eric.sejourne@ac-creteil.fr','{bcrypt}$2y$10$BLzp8cDse/.XHHZSOTybH.zBUrjoU6v60j/rzOdCtl3HATFsxQaw2', '94000', '06 19 80 54 34' );
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 2, 'Moulin', 'Timothé', 'timomoulin@msn.com','{bcrypt}$2a$10$Tc1WVkye4rgWkKglNlEkt.EU9pE4chUgM/8ymQUrDjQ2MqDXyabQ.', '94000', '01 23 45 67 89' );
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 3, 'Varni','Fréderic', 'fred.varni@gmte94.org', '{bcrypt}$2y$10$Mt2dMfYx6JOACcyD.lcYjOw8sBfzaVJlsmoIYfyujyxXd0E/g4vdO', '94000', '01 23 45 67 89' );
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 4, 'Capuozzo', 'Olivier', 'okpu@gmte94.org','{bcrypt}$2y$10$Mt2dMfYx6JOACcyD.lcYjOw8sBfzaVJlsmoIYfyujyxXd0E/g4vdO', '94000', '01 23 45 67 89' );
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 5, 'Laplan','Teverte', 'légume@gmail.com', '{bcrypt}$2y$10$uQ67F3/ffszAaN/loYr8bOOC.L2Vu70Aie8JGT5.OblY6sbZg.2OC', '13000', '01 23 45 67 89' );
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 6, 'Rezag','Béatrice', 'beatrice.rezag@gmail.com', '{bcrypt}$2y$10$Mt2dMfYx6JOACcyD.lcYjOw8sBfzaVJlsmoIYfyujyxXd0E/g4vdO', '94000', '01 23 45 67 89' );
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 7, 'Riane','Djamila', 'djamila.riane2@ac-creteil.fr', '{bcrypt}$2y$10$Mt2dMfYx6JOACcyD.lcYjOw8sBfzaVJlsmoIYfyujyxXd0E/g4vdO', '94000', '01 23 45 67 89' );
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 8, 'Daffix','Benjamin', 'daffixbenjamin@gmail.com', '{bcrypt}$2y$10$Mt2dMfYx6JOACcyD.lcYjOw8sBfzaVJlsmoIYfyujyxXd0E/g4vdO', '92000', '01 23 45 67 89' );
-INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 9, 'Thierry','Golo', 'golo.thierry@gmte94.org', '{bcrypt}$2y$10$Mt2dMfYx6JOACcyD.lcYjOw8sBfzaVJlsmoIYfyujyxXd0E/g4vdO', '69420', '01 69 96 69 96' );
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Coordinateur', 1, 'Séjourne', 'Éric', 'eric.sejourne@ac-creteil.fr','{bcrypt}$2a$10$P7cgM/hCM1MEHDfJHXysUedfo82eKA8t3pJKfy4Jj2tIJTjnlxCDG', '94000', '06 19 80 54 34' );
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 2, 'Moulin', 'Timothé', 'timomoulin@msn.com','{bcrypt}$2a$10$P7cgM/hCM1MEHDfJHXysUedfo82eKA8t3pJKfy4Jj2tIJTjnlxCDG', '94000', '01 23 45 67 89' );
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 3, 'Varni','Fréderic', 'fred.varni@gmte94.org', '{bcrypt}$2a$10$P7cgM/hCM1MEHDfJHXysUedfo82eKA8t3pJKfy4Jj2tIJTjnlxCDG', '94000', '01 23 45 67 89' );
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 4, 'Capuozzo', 'Olivier', 'okpu@gmte94.org','{bcrypt}$2a$10$P7cgM/hCM1MEHDfJHXysUedfo82eKA8t3pJKfy4Jj2tIJTjnlxCDG', '94000', '01 23 45 67 89' );
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 5, 'Laplan','Teverte', 'légume@gmail.com', '{bcrypt}$2a$10$P7cgM/hCM1MEHDfJHXysUedfo82eKA8t3pJKfy4Jj2tIJTjnlxCDG', '13000', '01 23 45 67 89' );
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 6, 'Rezag','Béatrice', 'beatrice.rezag@gmail.com', '{bcrypt}$2a$10$P7cgM/hCM1MEHDfJHXysUedfo82eKA8t3pJKfy4Jj2tIJTjnlxCDG', '94000', '01 23 45 67 89' );
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 7, 'Riane','Djamila', 'djamila.riane2@ac-creteil.fr', '{bcrypt}$2a$10$P7cgM/hCM1MEHDfJHXysUedfo82eKA8t3pJKfy4Jj2tIJTjnlxCDG', '94000', '01 23 45 67 89' );
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 8, 'Daffix','Benjamin', 'daffixbenjamin@gmail.com', '{bcrypt}$2a$10$P7cgM/hCM1MEHDfJHXysUedfo82eKA8t3pJKfy4Jj2tIJTjnlxCDG', '92000', '01 23 45 67 89' );
+INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Formateur', 9, 'Thierry','Golo', 'golo.thierry@gmte94.org', '{bcrypt}$2a$10$P7cgM/hCM1MEHDfJHXysUedfo82eKA8t3pJKfy4Jj2tIJTjnlxCDG', '69420', '01 69 96 69 96' );
 INSERT INTO INTERVENANT (TYPE, ID, NOM, PRENOM, EMAIL, MDP, CODE_POSTAL, TEL) VALUES ( 'Coordinateur', 10, 'Bondoux', 'Mathias', 'mathiasbondoux@gmail.com','{bcrypt}$2a$10$Tc1WVkye4rgWkKglNlEkt.EU9pE4chUgM/8ymQUrDjQ2MqDXyabQ.', '94000', '01 23 45 67 89' );
 
 INSERT INTO CENTRE(ID, ADRESSE_CENTRE, CODES_POSTAL, NOM_CENTRE, VILLE) VALUES ( 1, '61 Rue des Bordes', '94430', 'GRETA94 Champlain', 'Chennevières-sur-Marne' );
@@ -19,9 +19,9 @@ INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 2, 'Développeur Web et Web M
 INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 3, 'Technicien Supérieur Système & Réseaux' );
 INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 4, 'Technicien d''Assistance Téchnique' );
 INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 5, 'Découverte des métiers de l’Informatique' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 6, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 7, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 8, 'Plante verte professionel' );
+INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 6, 'Plante verte professionel 1' );
+INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 7, 'Plante verte professionel 2' );
+INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 8, 'Plante verte professionel 3' );
 INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 9, 'Plante verte professionel' );
 INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 10, 'Plante verte professionel' );
 INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 11, 'Plante verte professionel' );
@@ -30,22 +30,6 @@ INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 13, 'Plante verte professione
 INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 14, 'Plante verte professionel' );
 INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 15, 'Plante verte professionel' );
 INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 16, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 17, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 18, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 19, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 20, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 21, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 22, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 23, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 24, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 25, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 26, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 27, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 28, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 29, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 30, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 31, 'Plante verte professionel' );
-INSERT INTO FORMATION(ID, TYPE_FORMATION) VALUES ( 32, 'Plante verte professionel' );
 
 INSERT INTO SESSION(ID, DATE_DEBUT, DATE_FIN, DUREE_TOTAL, CENTRE_ID, COORDINATEUR_ID, FORMATION_ID) VALUES ( 1, '2021-11-01', '2022-06-01', 400, 1, 1, 2 );
 INSERT INTO SESSION(ID, DATE_DEBUT, DATE_FIN, DUREE_TOTAL, CENTRE_ID, COORDINATEUR_ID, FORMATION_ID) VALUES ( 2, '2020-10-01', '2021-05-01', 300, 1, 1, 4 );
@@ -57,14 +41,14 @@ INSERT INTO REAC(ID, NOM, DATE_DEBUT, DUREE, LIEN, FORMATION_ID) VALUES ( 1, 'CD
 INSERT INTO REAC(ID, NOM, DATE_DEBUT, DUREE, LIEN, FORMATION_ID) VALUES ( 2, 'DWWM REAC', '2018-01-01', 5, 'https://www.banque.di.afpa.fr/EspaceEmployeursCandidatsActeurs/EGPResultat.aspx?ct=01280m03&type=t', 2 );
 INSERT INTO REAC(ID, NOM, DATE_DEBUT, DUREE, LIEN, FORMATION_ID) VALUES ( 3, 'TSSR REAC', '2016-01-01', 5, 'https://www.youtube.com', 3 );
 INSERT INTO REAC(ID, NOM, DATE_DEBUT, DUREE, LIEN, FORMATION_ID) VALUES ( 4, 'TAI REAC', '2015-01-01', 5, 'https://www.youtube.com', 4 );
-INSERT INTO REAC(ID, NOM, DATE_DEBUT, DUREE, LIEN, FORMATION_ID) VALUES ( 5, 'AUTISM REAC', '2020-01-01', 5, 'https://www.youtube.com', 6 );
+INSERT INTO REAC(ID, NOM, DATE_DEBUT, DUREE, LIEN, FORMATION_ID) VALUES ( 5, 'AUTISIM REAC', '2020-01-01', 5, 'https://www.youtube.com', 6 );
 
 INSERT INTO ACTIVITE(ID, NUMAT, ACTIVITES_TYPES, REAC_ID) VALUES ( 1, 1, 'Concevoir et développer des composants d''interface utilisateur en intégrant les recommandations de sécurité', 1 );
 INSERT INTO ACTIVITE(ID, NUMAT, ACTIVITES_TYPES, REAC_ID) VALUES ( 2, 2, 'Concevoir et développer la persistance des données en intégrant les recommandations de sécurité', 1 );
 INSERT INTO ACTIVITE(ID, NUMAT, ACTIVITES_TYPES, REAC_ID) VALUES ( 3, 3, 'Concevoir et développer une application multicouche répartie en intégrant les recommandations de sécurité', 1 );
-INSERT INTO ACTIVITE(ID, NUMAT, ACTIVITES_TYPES, REAC_ID) VALUES ( 4, 1, 'Chibre', 5 );
-INSERT INTO ACTIVITE(ID, NUMAT, ACTIVITES_TYPES, REAC_ID) VALUES ( 5, 2, 'Chibros', 5 );
-INSERT INTO ACTIVITE(ID, NUMAT, ACTIVITES_TYPES, REAC_ID) VALUES ( 6, 3, 'Chibrifos', 5 );
+INSERT INTO ACTIVITE(ID, NUMAT, ACTIVITES_TYPES, REAC_ID) VALUES ( 4, 1, 'Testos', 5 );
+INSERT INTO ACTIVITE(ID, NUMAT, ACTIVITES_TYPES, REAC_ID) VALUES ( 5, 2, 'Testus', 5 );
+INSERT INTO ACTIVITE(ID, NUMAT, ACTIVITES_TYPES, REAC_ID) VALUES ( 6, 3, 'Testis', 5 );
 
 INSERT INTO COMPETENCE(ID, NUMCP, COMPETENCE_PROFESSIONEL, ACTIVITE_ID) VALUES ( 1, 1, 'Maquetter une application', 1 );
 INSERT INTO COMPETENCE(ID, NUMCP, COMPETENCE_PROFESSIONEL, ACTIVITE_ID) VALUES ( 2, 2, 'Développer une interface utilisateur de type desktop', 1 );
