@@ -35,7 +35,7 @@ public class IntervenantDTO {
     @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
     private String codePostal;
     @NotEmpty(message = "Le champ ne peut pas être vide")
-    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide last")
+    @NotBlank(message = "Le champ ne peut pas contenir uniquement des espaces vide")
     private String tel;
 
 

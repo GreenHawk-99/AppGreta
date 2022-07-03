@@ -18,8 +18,13 @@ public class ExcelController {
 
     @PostMapping("/import")
     public String postImportExcel(@RequestParam("import") MultipartFile multipartFile, RedirectAttributes redirectAttributes) throws IOException {
-        importExcelService.generateDataFromExcel(multipartFile.getInputStream());
-        redirectAttributes.addFlashAttribute("message", "Le fichier à bien été importé");
-        return "redirect:/welcome";
+        if (multipartFile.isEmpty()){
+            redirectAttributes.addFlashAttribute("error", "Aucun fichier excel sélectionné");
+            return "redirect:/welcome";
+        }else {
+            importExcelService.generateDataFromExcel(multipartFile.getInputStream());
+            redirectAttributes.addFlashAttribute("message", "Le fichier a bien été importé");
+            return "redirect:/welcome";
+        }
     }
 }

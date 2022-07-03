@@ -45,7 +45,31 @@
 
             <!--  Tableau  -->
 
-            <h2>Fiche de suivi des cours</h2>
+            <h2 class="h2">Fiche de suivi des cours</h2>
+            <p class="text-decoration-underline">Total Formations : [[${totalItems}]]</p>
+            <div th:if = "${totalPages > 1}">
+                <div class = "row col-sm-10">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" th:if="${currentPage > 1}"
+                                   th:href="@{'/formateur/dashboard/page/' + ${currentPage - 1 }+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Page Précedente</a>
+                                <span class="page-link text-secondary disabled" th:unless="${currentPage > 1}">Page Précedente</span>
+                            </li>
+                            <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                <a class="page-link" th:if="${currentPage != i}"
+                                   th:href="@{'/formateur/dashboard/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                                <span class="page-link text-secondary disabled" th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" th:if="${currentPage < totalPages}"
+                                   th:href="@{'/formateur/dashboard/page/' + ${currentPage + 1 }+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Page Suivant</a>
+                                <span class="page-link text-secondary disabled" th:unless="${currentPage < totalPages}">Page Suivant</span>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
@@ -112,31 +136,6 @@
                     </tr>
                     </tbody>
                 </table>
-                Total Formations : [[${totalItems}]]
-                <div th:if = "${totalPages > 1}">
-                    <div class = "row col-sm-10">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" th:if="${currentPage > totalPages}"
-                                       th:href="@{'/formateur/dashboard/page/' + ${currentPage - 1 }+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Page Précedente</a>
-                                    <span class="page-link text-secondary disabled" th:unless="${currentPage < totalPages}">Page Précedente</span>
-                                </li>
-                                <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
-                                    <a class="page-link" th:if="${currentPage != i}"
-                                       th:href="@{'/formateur/dashboard/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-                                    <span class="page-link text-secondary disabled" th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" th:if="${currentPage < totalPages}"
-                                       th:href="@{'/formateur/dashboard/page/' + ${currentPage + 1 }+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Page Suivant</a>
-                                    <span class="page-link text-secondary disabled" th:unless="${currentPage < totalPages}">Page Suivant</span>
-                                </li>
-                            </ul>
-                        </nav>
-
-                    </div>
-                </div>
             </div>
         </main>
     </div>
