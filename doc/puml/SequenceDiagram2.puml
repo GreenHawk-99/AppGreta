@@ -10,7 +10,7 @@ database "BDD" as BDD
 Coordinateur -> CC: GET/coordonateur/competences
 activate CC #FFBBBB
 
-CC -> CR: getAllCompetences()
+CC -> CR: findAll()
 activate CC #DarkSalmon
 activate CR #FFBBBB
 

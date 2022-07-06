@@ -10,14 +10,14 @@ actor "Coordinateur" as coor
 rectangle GRETASuiviSeance {
   usecase "Renseigner une fiche de séance" as UC1
   usecase "Se connecter" as UC2
-  usecase "Export format specifique" as UC3
+  usecase "Export format spécifique" as UC3
   usecase "Gérer les sessions" as UC4
   usecase "Gérer les Reac" as UC5
   usecase "Gérer les formateurs" as UC6
   usecase "Gérer les formations" as UC10
   usecase "Gérer les utilisateurs" as UC11
   usecase "Gérer les centres" as UC12
-  usecase "Import format specifique" as UC13
+  usecase "Import format spécifique" as UC13
 }
 'vis --- UC2
 forma <|- coor

@@ -2,6 +2,7 @@
 
 actor Coordinateur
 control "CompetenceController" as CC
+participant "ReferentielService" as CS
 participant "CompetenceRepository" as CR
 entity "Competence" as C
 database "BDD" as BDD
@@ -10,8 +11,11 @@ boundary "View" as V
 Coordinateur -> CC: GET/coordonateur/competences
 activate CC #FFBBBB
 
-CC -> CR: getAllCompetences()
+
+CC -> CS: getAllCompetences()
 activate CC #DarkSalmon
+activate CS #FFBBBB
+CS -> CR: findAll()
 activate CR #FFBBBB
 
 CR -> BDD: select * from competence
@@ -19,9 +23,11 @@ activate BDD #FFBBBB
 BDD --> CR: return
 deactivate BDD
 
-CR --> CC: return
-deactivate CC
+CR --> CS: return
 deactivate CR
+CS --> CC: return
+deactivate CS
+deactivate CC
 
 CC -> V: dispose dans le template
 deactivate CC

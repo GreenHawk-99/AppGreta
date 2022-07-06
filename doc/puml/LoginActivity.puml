@@ -1,5 +1,5 @@
 @startuml
-'!theme hacker
+!theme hacker
 
 start
 floating note left: L'utilisateur est inscrit
@@ -10,12 +10,12 @@ backward: Identifiants invalides;
 note right: Identifiants = adresse email et mot de passe
 repeat while (Les identifiants sont correctes?) is (Non) not (Oui)
 
-:L'utilisateur est connécté;
+:L'utilisateur est connecté;
 
 if (L'utilisateur est ?) then (Formateur)
-:Prend le role Formateur;
+:Prend le rôle Formateur;
 else (Coordonateur)
-:Prend le role Coordonateur;
+:Prend le rôle Coordonateur;
 endif
 
 :Affichage et service correspondant;
